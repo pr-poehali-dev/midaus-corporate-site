@@ -14,10 +14,11 @@ export default function Index() {
       <header className="bg-white border-b border-border sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-primary rounded flex items-center justify-center text-white font-heading font-bold text-xl">
-              М
-            </div>
-            <span className="font-heading font-bold text-xl text-foreground">МИДАУС</span>
+            <img 
+              src="https://cdn.poehali.dev/files/bf9d6490-da2b-41da-829f-65eea317fd60.png" 
+              alt="МИДАУС" 
+              className="h-10 w-auto"
+            />
           </div>
           <nav className="hidden md:flex items-center gap-8">
             <a href="#products" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
@@ -328,11 +329,12 @@ export default function Index() {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8">
             <div className="md:col-span-2">
-              <div className="flex items-center gap-2 mb-4">
-                <div className="w-10 h-10 bg-primary rounded flex items-center justify-center text-white font-heading font-bold text-xl">
-                  М
-                </div>
-                <span className="font-heading font-bold text-xl">МИДАУС</span>
+              <div className="flex items-center mb-4">
+                <img 
+                  src="https://cdn.poehali.dev/files/bf9d6490-da2b-41da-829f-65eea317fd60.png" 
+                  alt="МИДАУС" 
+                  className="h-10 w-auto"
+                />
               </div>
               <p className="text-muted-foreground text-sm mb-4">
                 Производство датчиков давления для промышленности с 1993 года. 
