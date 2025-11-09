@@ -55,6 +55,9 @@ export default function Index() {
         
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl animate-fade-in">
+            <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full mb-4">
+              <span className="text-white font-semibold text-sm">🇷🇺 РОССИЙСКИЙ ПРОИЗВОДИТЕЛЬ</span>
+            </div>
             <h1 className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl text-white mb-4 leading-tight">
               ДАТЧИКИ ДАВЛЕНИЯ ПО ТЕХНОЛОГИИ «КРЕМНИЙ НА САПФИРЕ»
             </h1>
