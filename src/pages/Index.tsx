@@ -56,10 +56,10 @@ export default function Index() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl animate-fade-in">
             <h1 className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl text-white mb-4 leading-tight">
-              РОССИЙСКИЙ ПРОИЗВОДИТЕЛЬ ДАТЧИКОВ ДАВЛЕНИЯ
+              ДАТЧИКИ ДАВЛЕНИЯ ПО ТЕХНОЛОГИИ «КРЕМНИЙ НА САПФИРЕ»
             </h1>
             <p className="text-xl text-white/90 mb-8 font-light">
-              Высокоточные решения для промышленности с 1993 года
+              Разработка и производство высокоточных датчиков для нефтегаза, энергетики, космической и транспортной техники
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button size="lg" className="bg-accent hover:bg-accent/90 text-white">
@@ -157,22 +157,22 @@ export default function Index() {
               {
                 icon: 'Gauge',
                 title: 'Датчики давления',
-                description: 'Широкий модельный ряд для различных отраслей',
+                description: 'Общепромышленные, взрывозащищенные, аналоговые и цифровые модели',
               },
               {
-                icon: 'Monitor',
-                title: 'Индикаторы',
-                description: 'Цифровые и аналоговые индикаторы давления',
+                icon: 'Cpu',
+                title: 'Модули давления',
+                description: 'С температурной компенсацией и без нее',
               },
               {
                 icon: 'Zap',
-                title: 'Блоки питания',
+                title: 'Источники питания',
                 description: 'Стабилизированное питание для датчиков',
               },
               {
                 icon: 'Shield',
-                title: 'Блоки защиты',
-                description: 'Защита измерительных цепей от перегрузок',
+                title: 'Средства защиты',
+                description: 'Барьеры искрозащиты и блоки грозозащиты',
               },
             ].map((category, index) => (
               <Card
@@ -210,10 +210,10 @@ export default function Index() {
             {[
               { icon: 'Fuel', title: 'Нефтегаз' },
               { icon: 'Zap', title: 'Энергетика' },
-              { icon: 'Droplets', title: 'Химия' },
-              { icon: 'Droplet', title: 'Водоподготовка' },
-              { icon: 'Factory', title: 'Металлургия' },
-              { icon: 'Settings', title: 'Машиностроение' },
+              { icon: 'Building2', title: 'ЖКХ' },
+              { icon: 'Rocket', title: 'Космическая техника' },
+              { icon: 'Truck', title: 'Транспорт' },
+              { icon: 'Factory', title: 'Промышленность' },
             ].map((solution, index) => (
               <div
                 key={index}
@@ -243,35 +243,35 @@ export default function Index() {
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             <div className="text-center">
               <div className="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
-                <Icon name="Factory" size={36} className="text-white" />
+                <Icon name="Gem" size={36} className="text-white" />
               </div>
               <h3 className="font-heading font-semibold text-xl mb-3">
-                Собственное производство
+                Технология КНС
               </h3>
               <p className="text-muted-foreground">
-                Полный цикл разработки и производства в России. Контроль качества на всех этапах.
+                Уникальная технология «кремний на сапфире» обеспечивает точность и стабильность от –197°C до +500°C
               </p>
             </div>
             <div className="text-center">
               <div className="w-20 h-20 bg-accent rounded-full flex items-center justify-center mx-auto mb-4">
-                <Icon name="FlaskConical" size={36} className="text-white" />
+                <Icon name="Factory" size={36} className="text-white" />
               </div>
               <h3 className="font-heading font-semibold text-xl mb-3">
-                Испытательная лаборатория
+                Полный цикл в России
               </h3>
               <p className="text-muted-foreground">
-                Аттестованная лаборатория для метрологической поверки и калибровки датчиков.
+                Собственное производство, контроль качества на всех этапах, независимость от импорта комплектующих
               </p>
             </div>
             <div className="text-center">
               <div className="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
-                <Icon name="Award" size={36} className="text-white" />
+                <Icon name="Globe" size={36} className="text-white" />
               </div>
               <h3 className="font-heading font-semibold text-xl mb-3">
-                30+ лет опыта
+                Крупные заказчики
               </h3>
               <p className="text-muted-foreground">
-                С 1993 года разрабатываем решения для крупнейших промышленных предприятий России.
+                СИБУР, РАСКО-Газэлектроника, Газпром. География поставок: Россия, Китай, Индия, страны СНГ
               </p>
             </div>
           </div>
@@ -337,8 +337,7 @@ export default function Index() {
                 />
               </div>
               <p className="text-muted-foreground text-sm mb-4">
-                Производство датчиков давления для промышленности с 1993 года. 
-                Качество, надежность, российские технологии.
+                ООО «МИДАУС» — разработка и производство высокоточных датчиков давления по технологии «кремний на сапфире» для промышленности.
               </p>
               <div className="flex gap-3">
                 <a href="#" className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-colors">
