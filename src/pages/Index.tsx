@@ -361,7 +361,7 @@ export default function Index() {
                     </div>
                     <div className="flex items-center justify-center gap-2">
                       <Icon name="Phone" size={16} />
-                      <span>+7 (495) 123-45-67</span>
+                      <span>+7 8422 360 363 доб. 104</span>
                     </div>
                   </div>
                 </div>
@@ -398,7 +398,7 @@ export default function Index() {
                     </div>
                     <div className="flex items-center justify-center gap-2">
                       <Icon name="Phone" size={16} />
-                      <span>+7 (495) 123-45-68</span>
+                      <span>+7 8422 360 363 доб. 106</span>
                     </div>
                   </div>
                 </div>
@@ -435,7 +435,7 @@ export default function Index() {
                     </div>
                     <div className="flex items-center justify-center gap-2">
                       <Icon name="Phone" size={16} />
-                      <span>+7 (495) 123-45-69</span>
+                      <span>+7 8422 360 363 доб. 154</span>
                     </div>
                   </div>
                 </div>
@@ -472,7 +472,7 @@ export default function Index() {
                     </div>
                     <div className="flex items-center justify-center gap-2">
                       <Icon name="Phone" size={16} />
-                      <span>+7 (495) 123-45-70</span>
+                      <span>+7 8422 360 363 доб. 103</span>
                     </div>
                   </div>
                 </div>
@@ -509,7 +509,7 @@ export default function Index() {
                     </div>
                     <div className="flex items-center justify-center gap-2">
                       <Icon name="Phone" size={16} />
-                      <span>+7 (495) 123-45-71</span>
+                      <span>+7 8422 360 363 доб. 161</span>
                     </div>
                   </div>
                 </div>
@@ -544,7 +544,7 @@ export default function Index() {
                     </div>
                     <div className="flex items-center justify-center gap-2">
                       <Icon name="Phone" size={16} />
-                      <span>+7 (495) 123-45-72</span>
+                      <span>+7 8422 360 363 доб. 134</span>
                     </div>
                   </div>
                 </div>
@@ -581,7 +581,7 @@ export default function Index() {
                     </div>
                     <div className="flex items-center justify-center gap-2">
                       <Icon name="Phone" size={16} />
-                      <span>+7 (495) 123-45-73</span>
+                      <span>+7 8422 360 363 доб. 155</span>
                     </div>
                   </div>
                 </div>
