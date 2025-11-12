@@ -47,10 +47,10 @@ export default function Index() {
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: `url('https://cdn.poehali.dev/projects/821a1e50-8ec8-4e2a-91f3-24ac4fed203b/files/d2a73224-025e-4117-8bf9-05e4149235eb.jpg')`,
+            backgroundImage: `url('https://cdn.poehali.dev/files/f8cbff73-54cc-4cd0-8d05-1a83dab572df.JPG')`,
           }}
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/90 to-primary/60"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/95 to-primary/70"></div>
         </div>
         
         <div className="container mx-auto px-4 relative z-10">
