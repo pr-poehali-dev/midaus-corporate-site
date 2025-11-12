@@ -454,7 +454,7 @@ export default function Index() {
                     <img 
                       src="https://cdn.poehali.dev/files/a69e9bf0-3323-44ab-bf08-0a0d54fa6088.png"
                       alt="Алашеев Валентин"
-                      className="w-full h-full object-cover scale-150 object-[center_30%]"
+                      className="w-full h-full object-cover scale-125 object-[center_30%]"
                     />
                   </div>
                   <h3 className="font-heading font-bold text-xl mb-1">
