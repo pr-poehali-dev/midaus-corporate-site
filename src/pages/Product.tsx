@@ -5,28 +5,96 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import Icon from '@/components/ui/icon';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+
+const productsData: Record<string, {
+  name: string;
+  description: string;
+  price: string;
+  specs: Array<{ label: string; value: string }>;
+  features: string[];
+}> = {
+  'mida-13p': {
+    name: 'МИДА-13П',
+    description: 'Общепромышленный датчик давления',
+    price: '12 500',
+    specs: [
+      { label: 'Диапазон измерений', value: '0...0,1 МПа' },
+      { label: 'Точность', value: '±0,25% от диапазона измерений' },
+      { label: 'Выходной сигнал', value: '4...20 мА' },
+      { label: 'Напряжение питания', value: '12...36 В' },
+      { label: 'Температура эксплуатации', value: '-40...+85 °C' },
+      { label: 'Степень защиты', value: 'IP65' },
+      { label: 'Присоединение к процессу', value: 'G1/2" (М20х1,5)' },
+      { label: 'Материал корпуса', value: 'Нержавеющая сталь 12Х18Н10Т' },
+    ],
+    features: [
+      'Технология «кремний на сапфире» обеспечивает высокую точность и долговременную стабильность',
+      'Широкий диапазон рабочих температур от -40 до +85°C',
+      'Высокая степень защиты корпуса IP65',
+      'Устойчивость к вибрационным и ударным нагрузкам',
+    ],
+  },
+  'mida-15': {
+    name: 'МИДА-15',
+    description: 'Датчик давления для работы в условиях повышенной вибрации',
+    price: '15 800',
+    specs: [
+      { label: 'Диапазон измерений', value: '0...1 МПа' },
+      { label: 'Точность', value: '±0,1% от диапазона измерений' },
+      { label: 'Выходной сигнал', value: '4...20 мА' },
+      { label: 'Напряжение питания', value: '12...36 В' },
+      { label: 'Температура эксплуатации', value: '-50...+125 °C' },
+      { label: 'Степень защиты', value: 'IP67' },
+      { label: 'Присоединение к процессу', value: 'G1/2" (М20х1,5)' },
+      { label: 'Материал корпуса', value: 'Нержавеющая сталь 12Х18Н10Т' },
+    ],
+    features: [
+      'Усиленная конструкция для работы в условиях вибрации до 30g',
+      'Повышенная точность измерений ±0,1%',
+      'Расширенный диапазон рабочих температур до +125°C',
+      'Степень защиты IP67 для работы в тяжелых условиях',
+    ],
+  },
+  'mida-12': {
+    name: 'МИДА-12',
+    description: 'Датчик давления для агрессивных сред',
+    price: '18 200',
+    specs: [
+      { label: 'Диапазон измерений', value: '0...10 МПа' },
+      { label: 'Точность', value: '±0,25% от диапазона измерений' },
+      { label: 'Выходной сигнал', value: '4...20 мА' },
+      { label: 'Напряжение питания', value: '12...36 В' },
+      { label: 'Температура эксплуатации', value: '-60...+150 °C' },
+      { label: 'Степень защиты', value: 'IP68' },
+      { label: 'Присоединение к процессу', value: 'G1/2" (М20х1,5)' },
+      { label: 'Материал корпуса', value: 'Титан / Нержавеющая сталь' },
+    ],
+    features: [
+      'Специальное покрытие для защиты от агрессивных химических сред',
+      'Корпус из титана или нержавеющей стали',
+      'Работа при экстремальных температурах от -60 до +150°C',
+      'Максимальная степень защиты IP68 для подводного применения',
+    ],
+  },
+};
 
 export default function Product() {
+  const { id } = useParams<{ id: string }>();
   const [activeTab, setActiveTab] = useState('description');
   const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
+
+  const product = productsData[id || 'mida-13p'];
+
+  if (!product) {
+    return <div>Продукт не найден</div>;
+  }
 
   const images = [
     'https://cdn.poehali.dev/files/f8cbff73-54cc-4cd0-8d05-1a83dab572df.JPG',
     'https://cdn.poehali.dev/files/f8cbff73-54cc-4cd0-8d05-1a83dab572df.JPG',
     'https://cdn.poehali.dev/files/f8cbff73-54cc-4cd0-8d05-1a83dab572df.JPG',
-  ];
-
-  const specifications = [
-    { label: 'Диапазон измерений', value: '0...0,1 МПа' },
-    { label: 'Точность', value: '±0,25% от диапазона измерений' },
-    { label: 'Выходной сигнал', value: '4...20 мА' },
-    { label: 'Напряжение питания', value: '12...36 В' },
-    { label: 'Температура эксплуатации', value: '-40...+85 °C' },
-    { label: 'Степень защиты', value: 'IP65' },
-    { label: 'Присоединение к процессу', value: 'G1/2" (М20х1,5)' },
-    { label: 'Материал корпуса', value: 'Нержавеющая сталь 12Х18Н10Т' },
   ];
 
   return (
@@ -69,7 +137,7 @@ export default function Product() {
           <Icon name="ChevronRight" size={16} />
           <Link to="/#products" className="hover:text-primary">Датчики давления</Link>
           <Icon name="ChevronRight" size={16} />
-          <span className="text-foreground">МИДА-ДИ-13П-01</span>
+          <span className="text-foreground">{product.name}</span>
         </nav>
 
         <div className="grid lg:grid-cols-2 gap-12 mb-12">
@@ -101,15 +169,15 @@ export default function Product() {
               <span className="text-primary font-semibold text-sm">🇷🇺 Российское производство</span>
             </div>
             <h1 className="font-heading font-bold text-3xl md:text-4xl mb-4">
-              МИДА-ДИ-13П-01
+              {product.name}
             </h1>
             <p className="text-xl text-muted-foreground mb-6">
-              Общепромышленный датчик давления
+              {product.description}
             </p>
 
             <div className="bg-secondary p-6 rounded-lg mb-6">
               <div className="flex items-baseline gap-2 mb-4">
-                <span className="text-3xl font-bold text-primary">от 12 500 ₽</span>
+                <span className="text-3xl font-bold text-primary">от {product.price} ₽</span>
                 <span className="text-sm text-muted-foreground">с НДС</span>
               </div>
               <div className="flex items-center gap-4 mb-4">
@@ -197,28 +265,18 @@ export default function Product() {
           {activeTab === 'description' && (
             <div className="prose max-w-none">
               <p className="text-lg mb-4">
-                Датчик давления МИДА-ДИ-13П-01 предназначен для непрерывного преобразования 
+                Датчик давления {product.name} предназначен для непрерывного преобразования 
                 измеряемой величины избыточного давления жидких и газообразных сред в 
                 унифицированный токовый выходной сигнал 4...20 мА.
               </p>
               <h3 className="font-heading font-bold text-xl mt-6 mb-3">Особенности</h3>
               <ul className="space-y-2">
-                <li className="flex items-start gap-2">
-                  <Icon name="Check" size={20} className="text-primary mt-1 flex-shrink-0" />
-                  <span>Технология «кремний на сапфире» обеспечивает высокую точность и долговременную стабильность</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <Icon name="Check" size={20} className="text-primary mt-1 flex-shrink-0" />
-                  <span>Широкий диапазон рабочих температур от -40 до +85°C</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <Icon name="Check" size={20} className="text-primary mt-1 flex-shrink-0" />
-                  <span>Высокая степень защиты корпуса IP65</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <Icon name="Check" size={20} className="text-primary mt-1 flex-shrink-0" />
-                  <span>Устойчивость к вибрационным и ударным нагрузкам</span>
-                </li>
+                {product.features.map((feature, index) => (
+                  <li key={index} className="flex items-start gap-2">
+                    <Icon name="Check" size={20} className="text-primary mt-1 flex-shrink-0" />
+                    <span>{feature}</span>
+                  </li>
+                ))}
               </ul>
               <h3 className="font-heading font-bold text-xl mt-6 mb-3">Области применения</h3>
               <p>
@@ -235,7 +293,7 @@ export default function Product() {
                 <CardContent className="p-6">
                   <table className="w-full">
                     <tbody>
-                      {specifications.map((spec, index) => (
+                      {product.specs.map((spec, index) => (
                         <tr key={index} className={index % 2 === 0 ? 'bg-secondary/50' : ''}>
                           <td className="py-3 px-4 font-medium">{spec.label}</td>
                           <td className="py-3 px-4 text-muted-foreground">{spec.value}</td>
@@ -334,7 +392,7 @@ export default function Product() {
                     <Label htmlFor="contact-message">Вопрос</Label>
                     <Textarea
                       id="contact-message"
-                      placeholder="Интересует датчик МИДА-ДИ-13П-01..."
+                      placeholder={`Интересует датчик ${product.name}...`}
                       rows={3}
                     />
                   </div>

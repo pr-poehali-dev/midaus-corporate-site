@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import Icon from '@/components/ui/icon';
+import { Link } from 'react-router-dom';
 
 export default function Index() {
   const [selectedRange, setSelectedRange] = useState('');
@@ -161,44 +162,49 @@ export default function Index() {
                 icon: 'Gauge',
                 title: 'Датчики давления',
                 description: 'Общепромышленные, взрывозащищенные, аналоговые и цифровые модели',
+                link: '/products',
               },
               {
                 icon: 'Cpu',
                 title: 'Модули давления',
                 description: 'С температурной компенсацией и без нее',
+                link: '#',
               },
               {
                 icon: 'Zap',
                 title: 'Источники питания',
                 description: 'Стабилизированное питание для датчиков',
+                link: '#',
               },
               {
                 icon: 'Shield',
                 title: 'Средства защиты',
                 description: 'Барьеры искрозащиты и блоки грозозащиты',
+                link: '#',
               },
             ].map((category, index) => (
-              <Card
-                key={index}
-                className="group hover:border-primary hover:shadow-lg transition-all duration-300 cursor-pointer animate-slide-up"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                <CardContent className="p-6 text-center">
-                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-primary transition-colors">
-                    <Icon
-                      name={category.icon}
-                      size={32}
-                      className="text-primary group-hover:text-white transition-colors"
-                    />
-                  </div>
-                  <h3 className="font-heading font-semibold text-lg mb-2">
-                    {category.title}
-                  </h3>
-                  <p className="text-sm text-muted-foreground">
-                    {category.description}
-                  </p>
-                </CardContent>
-              </Card>
+              <Link to={category.link} key={index}>
+                <Card
+                  className="group hover:border-primary hover:shadow-lg transition-all duration-300 cursor-pointer animate-slide-up h-full"
+                  style={{ animationDelay: `${index * 100}ms` }}
+                >
+                  <CardContent className="p-6 text-center">
+                    <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-primary transition-colors">
+                      <Icon
+                        name={category.icon}
+                        size={32}
+                        className="text-primary group-hover:text-white transition-colors"
+                      />
+                    </div>
+                    <h3 className="font-heading font-semibold text-lg mb-2">
+                      {category.title}
+                    </h3>
+                    <p className="text-sm text-muted-foreground">
+                      {category.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              </Link>
             ))}
           </div>
         </div>
