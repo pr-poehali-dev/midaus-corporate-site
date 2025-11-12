@@ -437,7 +437,7 @@ export default function Index() {
                 </div>
                 <div className="p-6">
                   <p className="text-sm text-muted-foreground text-center">
-                    Научные разработки, инновации, развитие новых технологий и продуктов
+                    Научные разработки, инновации, развитие новых технологий и продуктов, маркетинг
                   </p>
                 </div>
               </CardContent>
@@ -473,6 +473,41 @@ export default function Index() {
                 <div className="p-6">
                   <p className="text-sm text-muted-foreground text-center">
                     Конструкторские решения, проектирование датчиков, техническая документация
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="overflow-hidden hover:shadow-lg transition-shadow md:col-span-2 lg:col-span-1">
+              <CardContent className="p-0">
+                <div className="bg-gradient-to-br from-primary/10 to-primary/5 p-8 text-center">
+                  <div className="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden bg-muted border-4 border-white shadow-lg">
+                    <div className="w-full h-full bg-primary/20 flex items-center justify-center">
+                      <Icon name="Users" size={48} className="text-primary" />
+                    </div>
+                  </div>
+                  <h3 className="font-heading font-bold text-xl mb-1">
+                    Отдел продаж
+                  </h3>
+                  <p className="text-primary font-medium mb-4">
+                    Коммерческий отдел
+                  </p>
+                  <div className="space-y-2 text-sm text-muted-foreground">
+                    <div className="flex items-center justify-center gap-2">
+                      <Icon name="Mail" size={16} />
+                      <a href="mailto:sales@midaus.ru" className="hover:text-primary transition-colors">
+                        sales@midaus.ru
+                      </a>
+                    </div>
+                    <div className="flex items-center justify-center gap-2">
+                      <Icon name="Phone" size={16} />
+                      <span>+7 (495) 123-45-71</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="p-6">
+                  <p className="text-sm text-muted-foreground text-center">
+                    Коммерческие предложения, ценообразование, условия поставки
                   </p>
                 </div>
               </CardContent>
