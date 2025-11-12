@@ -341,7 +341,7 @@ export default function Index() {
                 <div className="bg-gradient-to-br from-primary/10 to-primary/5 p-8 text-center">
                   <div className="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden bg-muted border-4 border-white shadow-lg">
                     <img 
-                      src="https://cdn.poehali.dev/files/cc869553-43ca-41ba-99e3-4a9bbccb94b6.png"
+                      src="https://cdn.poehali.dev/files/3d07504c-3256-4d06-9827-becf8e1d2716.png"
                       alt="Бушев Константин"
                       className="w-full h-full object-cover"
                     />
@@ -378,7 +378,7 @@ export default function Index() {
                 <div className="bg-gradient-to-br from-primary/10 to-primary/5 p-8 text-center">
                   <div className="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden bg-muted border-4 border-white shadow-lg">
                     <img 
-                      src="https://cdn.poehali.dev/files/d967c042-5950-4ddd-a2d8-063b4746125a.png"
+                      src="https://cdn.poehali.dev/files/ba1aecfa-bb8c-46bd-b496-5fe035a2f25c.png"
                       alt="Купырин Владимир"
                       className="w-full h-full object-cover"
                     />
@@ -415,7 +415,7 @@ export default function Index() {
                 <div className="bg-gradient-to-br from-primary/10 to-primary/5 p-8 text-center">
                   <div className="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden bg-muted border-4 border-white shadow-lg">
                     <img 
-                      src="https://cdn.poehali.dev/files/e982a37f-fba4-4459-96ce-f18e14df3795.png"
+                      src="https://cdn.poehali.dev/files/37913a75-6054-49a6-8b1c-33288be6200d.png"
                       alt="Савченко Евгений"
                       className="w-full h-full object-cover"
                     />
@@ -451,9 +451,11 @@ export default function Index() {
               <CardContent className="p-0">
                 <div className="bg-gradient-to-br from-primary/10 to-primary/5 p-8 text-center">
                   <div className="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden bg-muted border-4 border-white shadow-lg">
-                    <div className="w-full h-full bg-primary/20 flex items-center justify-center">
-                      <Icon name="User" size={48} className="text-primary" />
-                    </div>
+                    <img 
+                      src="https://cdn.poehali.dev/files/4ebce975-e148-4655-bb6b-0c40e6301031.png"
+                      alt="Алашеев Валентин"
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                   <h3 className="font-heading font-bold text-xl mb-1">
                     Алашеев Валентин
@@ -556,9 +558,11 @@ export default function Index() {
               <CardContent className="p-0">
                 <div className="bg-gradient-to-br from-primary/10 to-primary/5 p-8 text-center">
                   <div className="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden bg-muted border-4 border-white shadow-lg">
-                    <div className="w-full h-full bg-primary/20 flex items-center justify-center">
-                      <Icon name="User" size={48} className="text-primary" />
-                    </div>
+                    <img 
+                      src="https://cdn.poehali.dev/files/99c522b5-c873-4889-8df0-0576b6a43c3a.png"
+                      alt="Лукьянов Сергей"
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                   <h3 className="font-heading font-bold text-xl mb-1">
                     Лукьянов Сергей
