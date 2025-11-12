@@ -341,7 +341,7 @@ export default function Index() {
                 <div className="bg-gradient-to-br from-primary/10 to-primary/5 p-8 text-center">
                   <div className="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden bg-muted border-4 border-white shadow-lg">
                     <img 
-                      src="https://cdn.poehali.dev/files/078effa0-6f2e-457e-9d5b-67ebfc94ac05.png"
+                      src="https://cdn.poehali.dev/files/cc869553-43ca-41ba-99e3-4a9bbccb94b6.png"
                       alt="Бушев Константин"
                       className="w-full h-full object-cover"
                     />
