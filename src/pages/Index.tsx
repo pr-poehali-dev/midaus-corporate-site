@@ -392,8 +392,8 @@ export default function Index() {
                   <div className="space-y-2 text-sm text-muted-foreground">
                     <div className="flex items-center justify-center gap-2">
                       <Icon name="Mail" size={16} />
-                      <a href="mailto:tech@midaus.ru" className="hover:text-primary transition-colors">
-                        tech@midaus.ru
+                      <a href="mailto:kupyrin@midaus.com" className="hover:text-primary transition-colors">
+                        kupyrin@midaus.com
                       </a>
                     </div>
                     <div className="flex items-center justify-center gap-2">
@@ -429,8 +429,8 @@ export default function Index() {
                   <div className="space-y-2 text-sm text-muted-foreground">
                     <div className="flex items-center justify-center gap-2">
                       <Icon name="Mail" size={16} />
-                      <a href="mailto:rd@midaus.ru" className="hover:text-primary transition-colors">
-                        rd@midaus.ru
+                      <a href="mailto:seg@midaus.com" className="hover:text-primary transition-colors">
+                        seg@midaus.com
                       </a>
                     </div>
                     <div className="flex items-center justify-center gap-2">
@@ -466,8 +466,8 @@ export default function Index() {
                   <div className="space-y-2 text-sm text-muted-foreground">
                     <div className="flex items-center justify-center gap-2">
                       <Icon name="Mail" size={16} />
-                      <a href="mailto:design@midaus.ru" className="hover:text-primary transition-colors">
-                        design@midaus.ru
+                      <a href="mailto:ala@midaus.com" className="hover:text-primary transition-colors">
+                        ala@midaus.com
                       </a>
                     </div>
                     <div className="flex items-center justify-center gap-2">
@@ -503,8 +503,8 @@ export default function Index() {
                   <div className="space-y-2 text-sm text-muted-foreground">
                     <div className="flex items-center justify-center gap-2">
                       <Icon name="Mail" size={16} />
-                      <a href="mailto:sales@midaus.ru" className="hover:text-primary transition-colors">
-                        sales@midaus.ru
+                      <a href="mailto:sokol@midaus.com" className="hover:text-primary transition-colors">
+                        sokol@midaus.com
                       </a>
                     </div>
                     <div className="flex items-center justify-center gap-2">
@@ -538,8 +538,8 @@ export default function Index() {
                   <div className="space-y-2 text-sm text-muted-foreground">
                     <div className="flex items-center justify-center gap-2">
                       <Icon name="Mail" size={16} />
-                      <a href="mailto:metrology@midaus.ru" className="hover:text-primary transition-colors">
-                        metrology@midaus.ru
+                      <a href="mailto:malanin@midaus.com" className="hover:text-primary transition-colors">
+                        malanin@midaus.com
                       </a>
                     </div>
                     <div className="flex items-center justify-center gap-2">
@@ -575,8 +575,8 @@ export default function Index() {
                   <div className="space-y-2 text-sm text-muted-foreground">
                     <div className="flex items-center justify-center gap-2">
                       <Icon name="Mail" size={16} />
-                      <a href="mailto:quality@midaus.ru" className="hover:text-primary transition-colors">
-                        quality@midaus.ru
+                      <a href="mailto:lsv@midaus.com" className="hover:text-primary transition-colors">
+                        lsv@midaus.com
                       </a>
                     </div>
                     <div className="flex items-center justify-center gap-2">
