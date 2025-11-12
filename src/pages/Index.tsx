@@ -512,6 +512,76 @@ export default function Index() {
                 </div>
               </CardContent>
             </Card>
+
+            <Card className="overflow-hidden hover:shadow-lg transition-shadow md:col-span-2 lg:col-span-1">
+              <CardContent className="p-0">
+                <div className="bg-gradient-to-br from-primary/10 to-primary/5 p-8 text-center">
+                  <div className="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden bg-muted border-4 border-white shadow-lg">
+                    <div className="w-full h-full bg-primary/20 flex items-center justify-center">
+                      <Icon name="User" size={48} className="text-primary" />
+                    </div>
+                  </div>
+                  <h3 className="font-heading font-bold text-xl mb-1">
+                    Маланин Михаил
+                  </h3>
+                  <p className="text-primary font-medium mb-4">
+                    Главный метролог
+                  </p>
+                  <div className="space-y-2 text-sm text-muted-foreground">
+                    <div className="flex items-center justify-center gap-2">
+                      <Icon name="Mail" size={16} />
+                      <a href="mailto:metrology@midaus.ru" className="hover:text-primary transition-colors">
+                        metrology@midaus.ru
+                      </a>
+                    </div>
+                    <div className="flex items-center justify-center gap-2">
+                      <Icon name="Phone" size={16} />
+                      <span>+7 (495) 123-45-72</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="p-6">
+                  <p className="text-sm text-muted-foreground text-center">
+                    Метрологическое обеспечение, калибровка, поверка приборов, аттестация оборудования
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="overflow-hidden hover:shadow-lg transition-shadow md:col-span-2 lg:col-span-1">
+              <CardContent className="p-0">
+                <div className="bg-gradient-to-br from-primary/10 to-primary/5 p-8 text-center">
+                  <div className="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden bg-muted border-4 border-white shadow-lg">
+                    <div className="w-full h-full bg-primary/20 flex items-center justify-center">
+                      <Icon name="User" size={48} className="text-primary" />
+                    </div>
+                  </div>
+                  <h3 className="font-heading font-bold text-xl mb-1">
+                    Лукьянов Сергей
+                  </h3>
+                  <p className="text-primary font-medium mb-4">
+                    Начальник группы качества
+                  </p>
+                  <div className="space-y-2 text-sm text-muted-foreground">
+                    <div className="flex items-center justify-center gap-2">
+                      <Icon name="Mail" size={16} />
+                      <a href="mailto:quality@midaus.ru" className="hover:text-primary transition-colors">
+                        quality@midaus.ru
+                      </a>
+                    </div>
+                    <div className="flex items-center justify-center gap-2">
+                      <Icon name="Phone" size={16} />
+                      <span>+7 (495) 123-45-73</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="p-6">
+                  <p className="text-sm text-muted-foreground text-center">
+                    Контроль качества продукции, система менеджмента качества, сертификация
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
           </div>
 
           <div className="mt-12 text-center">
