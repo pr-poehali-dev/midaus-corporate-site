@@ -198,6 +198,18 @@ export default function Product() {
 
   const showLowerLimitField = config.pressureType && config.pressureType !== 'ДВ';
 
+  const isUnitEnabled = config.pressureType !== '';
+  const isUpperLimitEnabled = isUnitEnabled && config.unit !== '';
+  const isLowerLimitEnabled = isUpperLimitEnabled && (config.upperLimit !== '' || config.upperLimitCustom !== '');
+  const isAccuracyEnabled = showLowerLimitField 
+    ? (isLowerLimitEnabled && (config.lowerLimit !== '' || config.lowerLimitCustom !== ''))
+    : isUpperLimitEnabled && (config.upperLimit !== '' || config.upperLimitCustom !== '');
+  const isOutputSignalEnabled = isAccuracyEnabled && config.accuracy !== '';
+  const isMechanicalConnectionEnabled = isOutputSignalEnabled && config.outputSignal !== '';
+  const isElectricalConnectionEnabled = isMechanicalConnectionEnabled && config.mechanicalConnection !== '';
+  const isExplosionProtectionEnabled = isElectricalConnectionEnabled && config.electricalConnection !== '';
+  const isMembraneMaterialEnabled = isExplosionProtectionEnabled && config.explosionProtection !== '';
+
   return (
     <div className="min-h-screen bg-background">
       <header className="bg-white border-b border-border sticky top-0 z-50">
@@ -296,8 +308,8 @@ export default function Product() {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="unit">Единица измерения</Label>
-                  <Select value={config.unit} onValueChange={(value) => setConfig({...config, unit: value})}>
+                  <Label htmlFor="unit" className={!isUnitEnabled ? 'text-muted-foreground' : ''}>Единица измерения</Label>
+                  <Select value={config.unit} onValueChange={(value) => setConfig({...config, unit: value})} disabled={!isUnitEnabled}>
                     <SelectTrigger>
                       <SelectValue placeholder="Выберите единицу измерения" />
                     </SelectTrigger>
@@ -316,7 +328,7 @@ export default function Product() {
 
                 {config.pressureType && (
                   <div className="space-y-2">
-                    <Label htmlFor="upperLimit">
+                    <Label htmlFor="upperLimit" className={!isUpperLimitEnabled ? 'text-muted-foreground' : ''}>
                       Верхний предел измерения давления
                       {config.pressureType === 'ДИ' && ' (до 160 МПа)'}
                       {config.pressureType === 'ДА' && ' (до 10 МПа)'}
@@ -331,7 +343,7 @@ export default function Product() {
                         } else {
                           setConfig({...config, upperLimit: value});
                         }
-                      }}>
+                      }} disabled={!isUpperLimitEnabled}>
                         <SelectTrigger>
                           <SelectValue placeholder="Выберите из стандартного ряда" />
                         </SelectTrigger>
@@ -351,6 +363,7 @@ export default function Product() {
                           placeholder="Введите значение"
                           value={config.upperLimitCustom}
                           onChange={(e) => setConfig({...config, upperLimitCustom: e.target.value})}
+                          disabled={!isUpperLimitEnabled}
                         />
                         <Button
                           variant="outline"
@@ -368,7 +381,7 @@ export default function Product() {
 
                 {showLowerLimitField && (
                   <div className="space-y-2">
-                    <Label htmlFor="lowerLimit">
+                    <Label htmlFor="lowerLimit" className={!isLowerLimitEnabled ? 'text-muted-foreground' : ''}>
                       Нижний предел измерения давления
                       {config.pressureType === 'ДА' && ' (от 0 до 0.08 МПа)'}
                       {config.pressureType === 'ДИВ' && ' (от -0.002 до -0.1 МПа)'}
@@ -379,6 +392,7 @@ export default function Product() {
                         placeholder="Введите значение"
                         value={config.lowerLimitCustom}
                         onChange={(e) => setConfig({...config, lowerLimitCustom: e.target.value})}
+                        disabled={!isLowerLimitEnabled}
                       />
                     ) : !showLowerCustomInput ? (
                       <Select value={config.lowerLimit} onValueChange={(value) => {
@@ -388,7 +402,7 @@ export default function Product() {
                         } else {
                           setConfig({...config, lowerLimit: value});
                         }
-                      }}>
+                      }} disabled={!isLowerLimitEnabled}>
                         <SelectTrigger>
                           <SelectValue placeholder="Выберите из стандартного ряда" />
                         </SelectTrigger>
@@ -408,6 +422,7 @@ export default function Product() {
                           placeholder="Введите значение"
                           value={config.lowerLimitCustom}
                           onChange={(e) => setConfig({...config, lowerLimitCustom: e.target.value})}
+                          disabled={!isLowerLimitEnabled}
                         />
                         <Button
                           variant="outline"
@@ -415,6 +430,7 @@ export default function Product() {
                             setShowLowerCustomInput(false);
                             setConfig({...config, lowerLimitCustom: ''});
                           }}
+                          disabled={!isLowerLimitEnabled}
                         >
                           Отмена
                         </Button>
@@ -424,8 +440,8 @@ export default function Product() {
                 )}
 
                 <div className="space-y-2">
-                  <Label htmlFor="accuracy">Основная приведенная погрешность, % от диапазона измерения</Label>
-                  <Select value={config.accuracy} onValueChange={(value) => setConfig({...config, accuracy: value})}>
+                  <Label htmlFor="accuracy" className={!isAccuracyEnabled ? 'text-muted-foreground' : ''}>Основная приведенная погрешность, % от диапазона измерения</Label>
+                  <Select value={config.accuracy} onValueChange={(value) => setConfig({...config, accuracy: value})} disabled={!isAccuracyEnabled}>
                     <SelectTrigger>
                       <SelectValue placeholder="Выберите точность" />
                     </SelectTrigger>
@@ -439,8 +455,8 @@ export default function Product() {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="outputSignal">Выходной сигнал</Label>
-                  <Select value={config.outputSignal} onValueChange={(value) => setConfig({...config, outputSignal: value})}>
+                  <Label htmlFor="outputSignal" className={!isOutputSignalEnabled ? 'text-muted-foreground' : ''}>Выходной сигнал</Label>
+                  <Select value={config.outputSignal} onValueChange={(value) => setConfig({...config, outputSignal: value})} disabled={!isOutputSignalEnabled}>
                     <SelectTrigger>
                       <SelectValue placeholder="Выберите выходной сигнал" />
                     </SelectTrigger>
@@ -457,8 +473,8 @@ export default function Product() {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="mechanicalConnection">Механическое присоединение</Label>
-                  <Select value={config.mechanicalConnection} onValueChange={(value) => setConfig({...config, mechanicalConnection: value})}>
+                  <Label htmlFor="mechanicalConnection" className={!isMechanicalConnectionEnabled ? 'text-muted-foreground' : ''}>Механическое присоединение</Label>
+                  <Select value={config.mechanicalConnection} onValueChange={(value) => setConfig({...config, mechanicalConnection: value})} disabled={!isMechanicalConnectionEnabled}>
                     <SelectTrigger>
                       <SelectValue placeholder="Выберите тип присоединения" />
                     </SelectTrigger>
@@ -471,8 +487,8 @@ export default function Product() {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="electricalConnection">Электрическое присоединение</Label>
-                  <Select value={config.electricalConnection} onValueChange={(value) => setConfig({...config, electricalConnection: value})}>
+                  <Label htmlFor="electricalConnection" className={!isElectricalConnectionEnabled ? 'text-muted-foreground' : ''}>Электрическое присоединение</Label>
+                  <Select value={config.electricalConnection} onValueChange={(value) => setConfig({...config, electricalConnection: value})} disabled={!isElectricalConnectionEnabled}>
                     <SelectTrigger>
                       <SelectValue placeholder="Выберите тип присоединения" />
                     </SelectTrigger>
@@ -485,8 +501,8 @@ export default function Product() {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="explosionProtection">Вид взрывозащиты</Label>
-                  <Select value={config.explosionProtection} onValueChange={(value) => setConfig({...config, explosionProtection: value})}>
+                  <Label htmlFor="explosionProtection" className={!isExplosionProtectionEnabled ? 'text-muted-foreground' : ''}>Вид взрывозащиты</Label>
+                  <Select value={config.explosionProtection} onValueChange={(value) => setConfig({...config, explosionProtection: value})} disabled={!isExplosionProtectionEnabled}>
                     <SelectTrigger>
                       <SelectValue placeholder="Выберите вид взрывозащиты" />
                     </SelectTrigger>
@@ -499,8 +515,8 @@ export default function Product() {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="membraneMaterial">Материал мембраны</Label>
-                  <Select value={config.membraneMaterial} onValueChange={(value) => setConfig({...config, membraneMaterial: value})}>
+                  <Label htmlFor="membraneMaterial" className={!isMembraneMaterialEnabled ? 'text-muted-foreground' : ''}>Материал мембраны</Label>
+                  <Select value={config.membraneMaterial} onValueChange={(value) => setConfig({...config, membraneMaterial: value})} disabled={!isMembraneMaterialEnabled}>
                     <SelectTrigger>
                       <SelectValue placeholder="Выберите материал" />
                     </SelectTrigger>
