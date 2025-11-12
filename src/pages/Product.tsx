@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import Icon from '@/components/ui/icon';
 import { Link, useParams } from 'react-router-dom';
 
@@ -107,14 +108,20 @@ export default function Product() {
     lowerLimitCustom: '',
     accuracy: '',
     outputSignal: '',
+    execution: '',
     mechanicalConnection: '',
-    electricalConnection: '',
+    mechanicalConnectionCustom: '',
     explosionProtection: '',
-    membraneMaterial: '',
+    electricalConnection: '',
+    electricalConnectionCustom: '',
+    material: '',
+    climate: '',
   });
 
   const [showUpperCustomInput, setShowUpperCustomInput] = useState(false);
   const [showLowerCustomInput, setShowLowerCustomInput] = useState(false);
+  const [showMechanicalCustomInput, setShowMechanicalCustomInput] = useState(false);
+  const [showElectricalCustomInput, setShowElectricalCustomInput] = useState(false);
 
   const product = productsData[id || 'mida-13p'];
 
@@ -180,6 +187,48 @@ export default function Product() {
     if (config.accuracy) {
       code += ` (${config.accuracy})`;
     }
+
+    if (config.execution === 'В') code += ' В';
+    else if (config.execution === 'УС-411/412') code += ' УС-411/412';
+    else if (config.execution === 'К') code += ' К';
+    else if (config.execution === 'КН') code += ' КН';
+
+    if (config.explosionProtection === 'Ex') code += ' Ex';
+    else if (config.explosionProtection === 'Вн') code += ' Вн';
+    else if (config.explosionProtection === 'Вн-Г') code += ' Вн-Г';
+
+    const mechConn = showMechanicalCustomInput ? config.mechanicalConnectionCustom : config.mechanicalConnection;
+    if (mechConn) code += ` ${mechConn}`;
+
+    const elecCodes: Record<string, string> = {
+      'DIN 43650А': 'G',
+      'Кабельный ввод (прямой пластиковый)': 'ПП',
+      'Кабельный ввод (прямой металлический)': 'ПМ',
+      'Кабельный ввод (угловой пластиковый)': 'УП',
+      'Кабельный ввод (угловой металлический)': 'УМ',
+      'Кабельный ввод (прямой под металлорукав)': 'ПММ',
+      'Кабельный ввод (угловой под металлорукав)': 'УММ',
+      'Кабельный ввод (прямой под металлопластиковый рукав)': 'УММ-15',
+      'Кабельный ввод (примой металлический с усиленным корпусом)': 'ПМ1',
+      'Кабельный ввод (прямой под бронекабель)': 'ПБ',
+      'Кабельный ввод (угловой под бронекабель)': 'УБ',
+      'Кабельный ввод (угловой трубный)': 'УТ',
+      'Кабельный ввод (прямой трубный)': 'ПТ',
+      'Разъем РСГ4ТВ': 'ПР',
+      'Разъем РСГ7ТВ': 'Р',
+      'Разъем 2РМТ22': 'УР2',
+      'Разъем 2РМТ14': 'УР3',
+      'Разъем 2РМГ14': 'УР4',
+      'Разъем 2РМГ22': 'УР5',
+    };
+    
+    const elecConn = showElectricalCustomInput ? config.electricalConnectionCustom : (elecCodes[config.electricalConnection] || '');
+    if (elecConn) code += ` ${elecConn}`;
+
+    if (config.material === 'Титановый сплав') code += ' штуцер титановый';
+    else if (config.material === 'Нержавеющая сталь') code += ' биметал';
+
+    if (config.climate) code += ` ${config.climate}`;
     
     return code;
   };
@@ -197,6 +246,59 @@ export default function Product() {
   }, [config.pressureType]);
 
   const showLowerLimitField = config.pressureType && config.pressureType !== 'ДВ';
+
+  const getAvailableElectricalConnections = () => {
+    const all = [
+      'DIN 43650А',
+      'Кабельный ввод (прямой пластиковый)',
+      'Кабельный ввод (прямой металлический)',
+      'Кабельный ввод (угловой пластиковый)',
+      'Кабельный ввод (угловой металлический)',
+      'Кабельный ввод (прямой под металлорукав)',
+      'Кабельный ввод (угловой под металлорукав)',
+      'Кабельный ввод (прямой под металлопластиковый рукав)',
+      'Разъем РСГ4ТВ',
+      'Разъем РСГ7ТВ',
+      'Разъем 2РМТ22',
+      'Разъем 2РМТ14',
+      'Разъем 2РМГ14',
+      'Разъем 2РМГ22',
+    ];
+
+    const mechConn = showMechanicalCustomInput ? config.mechanicalConnectionCustom : config.mechanicalConnection;
+    if (mechConn && mechConn.includes('открытая мембрана')) {
+      all.push('Кабельный ввод (примой металлический с усиленным корпусом)');
+    }
+
+    if (config.explosionProtection === 'Вн' || config.explosionProtection === 'Вн-Г') {
+      all.push('Кабельный ввод (прямой под бронекабель)');
+      all.push('Кабельный ввод (угловой под бронекабель)');
+      all.push('Кабельный ввод (угловой трубный)');
+      all.push('Кабельный ввод (прямой трубный)');
+    }
+
+    return all;
+  };
+
+  const getAvailableClimate = () => {
+    const upperValue = parseFloat(showUpperCustomInput ? config.upperLimitCustom : config.upperLimit);
+    const options = [];
+
+    if (upperValue >= 0 && upperValue <= 0.025) {
+      options.push('УХЛ**3.1');
+    }
+    if (upperValue >= 0.04 && upperValue <= 160) {
+      options.push('У**2');
+    }
+
+    const elecConn = showElectricalCustomInput ? config.electricalConnectionCustom : config.electricalConnection;
+    const allowedU1 = ['УММ', 'ПММ', 'УММ-15', 'УБ', 'УТ'];
+    if (allowedU1.some(code => elecConn.includes(code))) {
+      options.push('У**1');
+    }
+
+    return options;
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -276,7 +378,7 @@ export default function Product() {
               {product.description}
             </p>
 
-            <div className="bg-secondary p-6 rounded-lg mb-6">
+            <div className="bg-secondary p-6 rounded-lg mb-6 max-h-[600px] overflow-y-auto">
               <h3 className="font-heading font-semibold text-lg mb-4">Конфигуратор заказа</h3>
               
               <div className="space-y-4 mb-6">
@@ -434,6 +536,7 @@ export default function Product() {
                       <SelectItem value="±0.2%">±0.2%</SelectItem>
                       <SelectItem value="±0.25%">±0.25%</SelectItem>
                       <SelectItem value="±0.5%">±0.5%</SelectItem>
+                      <SelectItem value="±1%">±1%</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -457,66 +560,191 @@ export default function Product() {
                 </div>
 
                 <div className="space-y-2">
+                  <Label>Исполнение</Label>
+                  <RadioGroup value={config.execution} onValueChange={(value) => setConfig({...config, execution: value})}>
+                    <div className="flex items-start space-x-2">
+                      <RadioGroupItem value="standard" id="exec-standard" />
+                      <Label htmlFor="exec-standard" className="font-normal cursor-pointer">
+                        Стандартное исполнение с подстройкой «нуля» и «диапазона» с помощью подстроечных резисторов
+                      </Label>
+                    </div>
+                    <div className="flex items-start space-x-2">
+                      <RadioGroupItem value="В" id="exec-b" />
+                      <Label htmlFor="exec-b" className="font-normal cursor-pointer">
+                        Исполнение с подстройкой. Дополнительная температурная погрешность снижена (Код В)
+                      </Label>
+                    </div>
+                    <div className="flex items-start space-x-2">
+                      <RadioGroupItem value="УС-411/412" id="exec-us" />
+                      <Label htmlFor="exec-us" className="font-normal cursor-pointer">
+                        С подстройкой через внешнее устройство МИДА-УС-411/412 (Код УС-411/412)
+                      </Label>
+                    </div>
+                    <div className="flex items-start space-x-2">
+                      <RadioGroupItem value="К" id="exec-k" />
+                      <Label htmlFor="exec-k" className="font-normal cursor-pointer">
+                        Микропроцессорная обработка сигнала с устройством МИДА-УО-402 (Код К)
+                      </Label>
+                    </div>
+                    <div className="flex items-start space-x-2">
+                      <RadioGroupItem value="КН" id="exec-kn" />
+                      <Label htmlFor="exec-kn" className="font-normal cursor-pointer">
+                        Микропроцессорная обработка с перенастройкой до 1:10 и устройством МИДА-УПД-406 (Код КН)
+                      </Label>
+                    </div>
+                  </RadioGroup>
+                </div>
+
+                <div className="space-y-2">
                   <Label htmlFor="mechanicalConnection">Механическое присоединение</Label>
-                  <Select value={config.mechanicalConnection} onValueChange={(value) => setConfig({...config, mechanicalConnection: value})}>
+                  {!showMechanicalCustomInput ? (
+                    <Select value={config.mechanicalConnection} onValueChange={(value) => {
+                      if (value === 'custom') {
+                        setShowMechanicalCustomInput(true);
+                        setConfig({...config, mechanicalConnection: ''});
+                      } else {
+                        setConfig({...config, mechanicalConnection: value});
+                      }
+                    }}>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Выберите тип присоединения" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="М20х1.5 ГОСТ 2405">М20х1.5 ГОСТ 2405</SelectItem>
+                        <SelectItem value="М20х1.5 DIN 3852">М20х1.5 DIN 3852</SelectItem>
+                        <SelectItem value="М20х1.5 открытая мембрана">М20х1.5 открытая мембрана</SelectItem>
+                        <SelectItem value="М14х1.5 ГОСТ 2405">М14х1.5 ГОСТ 2405</SelectItem>
+                        <SelectItem value="М14х1.5 DIN 3852">М14х1.5 DIN 3852</SelectItem>
+                        <SelectItem value="М14х1.5 открытая мембрана">М14х1.5 открытая мембрана</SelectItem>
+                        <SelectItem value="М12х1.5 ГОСТ 2405">М12х1.5 ГОСТ 2405</SelectItem>
+                        <SelectItem value="М12х1">М12х1</SelectItem>
+                        <SelectItem value='G3/4" EN 837'>G3/4" EN 837</SelectItem>
+                        <SelectItem value='G3/4" DIN 3852'>G3/4" DIN 3852</SelectItem>
+                        <SelectItem value='G3/4" открытая мембрана'>G3/4" открытая мембрана</SelectItem>
+                        <SelectItem value='G1/2" EN 837'>G1/2" EN 837</SelectItem>
+                        <SelectItem value='G1/2" DIN 3852'>G1/2" DIN 3852</SelectItem>
+                        <SelectItem value='G1/2" открытая мембрана'>G1/2" открытая мембрана</SelectItem>
+                        <SelectItem value='G1/4" EN 837'>G1/4" EN 837</SelectItem>
+                        <SelectItem value='G1/4" DIN 3852'>G1/4" DIN 3852</SelectItem>
+                        <SelectItem value='G1/4" открытая мембрана'>G1/4" открытая мембрана</SelectItem>
+                        <SelectItem value='1/2" NPT'>1/2" NPT</SelectItem>
+                        <SelectItem value='1/4" NPT'>1/4" NPT</SelectItem>
+                        <SelectItem value="custom">Другое (ввести вручную)</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  ) : (
+                    <div className="flex gap-2">
+                      <Input
+                        type="text"
+                        placeholder="Введите значение"
+                        value={config.mechanicalConnectionCustom}
+                        onChange={(e) => setConfig({...config, mechanicalConnectionCustom: e.target.value})}
+                      />
+                      <Button
+                        variant="outline"
+                        onClick={() => {
+                          setShowMechanicalCustomInput(false);
+                          setConfig({...config, mechanicalConnectionCustom: ''});
+                        }}
+                      >
+                        Отмена
+                      </Button>
+                    </div>
+                  )}
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="explosionProtection">Вид взрывозащиты, грозозащиты</Label>
+                  <Select value={config.explosionProtection} onValueChange={(value) => setConfig({...config, explosionProtection: value})}>
                     <SelectTrigger>
-                      <SelectValue placeholder="Выберите тип присоединения" />
+                      <SelectValue placeholder="Выберите вид взрывозащиты" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="G1/2">G1/2</SelectItem>
-                      <SelectItem value="M20x1.5">M20x1.5</SelectItem>
-                      <SelectItem value="NPT1/2">NPT1/2</SelectItem>
+                      <SelectItem value="-">Электрооборудование общего назначения</SelectItem>
+                      <SelectItem value="Ex">Искробезопасная электрическая цепь (Ex)</SelectItem>
+                      <SelectItem value="Вн">Взрывонепроницаемая оболочка (Вн)</SelectItem>
+                      <SelectItem value="Вн-Г">Взрывонепроницаемая оболочка со сменным блоком грозозащиты (Вн-Г)</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="electricalConnection">Электрическое присоединение</Label>
-                  <Select value={config.electricalConnection} onValueChange={(value) => setConfig({...config, electricalConnection: value})}>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Выберите тип присоединения" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="DIN 43650">DIN 43650</SelectItem>
-                      <SelectItem value="М12х1">М12х1</SelectItem>
-                      <SelectItem value="Кабель">Кабель</SelectItem>
-                    </SelectContent>
-                  </Select>
+                  {!showElectricalCustomInput ? (
+                    <Select value={config.electricalConnection} onValueChange={(value) => {
+                      if (value === 'custom') {
+                        setShowElectricalCustomInput(true);
+                        setConfig({...config, electricalConnection: ''});
+                      } else {
+                        setConfig({...config, electricalConnection: value});
+                      }
+                    }}>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Выберите тип присоединения" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {getAvailableElectricalConnections().map((conn) => (
+                          <SelectItem key={conn} value={conn}>{conn}</SelectItem>
+                        ))}
+                        <SelectItem value="custom">Другое (ввести вручную)</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  ) : (
+                    <div className="flex gap-2">
+                      <Input
+                        type="text"
+                        placeholder="Введите значение"
+                        value={config.electricalConnectionCustom}
+                        onChange={(e) => setConfig({...config, electricalConnectionCustom: e.target.value})}
+                      />
+                      <Button
+                        variant="outline"
+                        onClick={() => {
+                          setShowElectricalCustomInput(false);
+                          setConfig({...config, electricalConnectionCustom: ''});
+                        }}
+                      >
+                        Отмена
+                      </Button>
+                    </div>
+                  )}
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="explosionProtection">Вид взрывозащиты</Label>
-                  <Select value={config.explosionProtection} onValueChange={(value) => setConfig({...config, explosionProtection: value})}>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Выберите вид взрывозащиты" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="Без взрывозащиты">Без взрывозащиты</SelectItem>
-                      <SelectItem value="ExiaIICT6">ExiaIICT6</SelectItem>
-                      <SelectItem value="ExdIICT6">ExdIICT6</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="membraneMaterial">Материал мембраны</Label>
-                  <Select value={config.membraneMaterial} onValueChange={(value) => setConfig({...config, membraneMaterial: value})}>
+                  <Label htmlFor="material">Материал деталей, контактирующих с контролируемой средой</Label>
+                  <Select value={config.material} onValueChange={(value) => setConfig({...config, material: value})}>
                     <SelectTrigger>
                       <SelectValue placeholder="Выберите материал" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="12Х18Н10Т">Нержавеющая сталь 12Х18Н10Т</SelectItem>
-                      <SelectItem value="Титан">Титан</SelectItem>
-                      <SelectItem value="Хастеллой">Хастеллой</SelectItem>
+                      <SelectItem value="Титановый сплав, нержавеющая сталь">Титановый сплав, нержавеющая сталь (стандарт)</SelectItem>
+                      <SelectItem value="Титановый сплав">Титановый сплав (код: штуцер титановый)</SelectItem>
+                      <SelectItem value="Нержавеющая сталь">Нержавеющая сталь (код: биметал)</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
+
+                {config.upperLimit || config.upperLimitCustom ? (
+                  <div className="space-y-2">
+                    <Label htmlFor="climate">Климатическое исполнение</Label>
+                    <Select value={config.climate} onValueChange={(value) => setConfig({...config, climate: value})}>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Выберите исполнение" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {getAvailableClimate().map((climate) => (
+                          <SelectItem key={climate} value={climate}>{climate}</SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                ) : null}
               </div>
 
               {config.pressureType && (
                 <div className="p-4 bg-white rounded-lg border border-primary/20">
                   <p className="text-sm text-muted-foreground mb-1">Код заказа:</p>
-                  <p className="font-mono font-semibold text-lg">{getOrderCode()}</p>
+                  <p className="font-mono font-semibold text-lg break-words">{getOrderCode()}</p>
                 </div>
               )}
             </div>
