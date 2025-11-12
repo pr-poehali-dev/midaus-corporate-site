@@ -84,6 +84,17 @@ export default function Product() {
   const [activeTab, setActiveTab] = useState('description');
   const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
+  
+  const [config, setConfig] = useState({
+    pressureType: '',
+    pressureValue: '',
+    accuracy: '',
+    outputSignal: '',
+    mechanicalConnection: '',
+    electricalConnection: '',
+    explosionProtection: '',
+    membraneMaterial: '',
+  });
 
   const product = productsData[id || 'mida-13p'];
 
@@ -190,36 +201,182 @@ export default function Product() {
             </p>
 
             <div className="bg-secondary p-6 rounded-lg mb-6">
-              <div className="flex items-baseline gap-2 mb-4">
-                <span className="text-3xl font-bold text-primary">от {product.price} ₽</span>
-                <span className="text-sm text-muted-foreground">с НДС</span>
-              </div>
-              <div className="flex items-center gap-4 mb-4">
-                <Label htmlFor="quantity">Количество:</Label>
-                <div className="flex items-center gap-2">
-                  <Button 
-                    variant="outline" 
-                    size="icon"
-                    onClick={() => setQuantity(Math.max(1, quantity - 1))}
+              <h3 className="font-heading font-semibold text-lg mb-4">Конфигуратор заказа</h3>
+              
+              <div className="space-y-4 mb-6">
+                <div className="space-y-2">
+                  <Label htmlFor="pressureType">Тип давления</Label>
+                  <select
+                    id="pressureType"
+                    value={config.pressureType}
+                    onChange={(e) => setConfig({...config, pressureType: e.target.value})}
+                    className="w-full px-3 py-2 border border-input rounded-md bg-background"
                   >
-                    <Icon name="Minus" size={16} />
-                  </Button>
-                  <Input 
-                    id="quantity"
-                    type="number" 
-                    value={quantity}
-                    onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value) || 1))}
-                    className="w-20 text-center"
-                  />
-                  <Button 
-                    variant="outline" 
-                    size="icon"
-                    onClick={() => setQuantity(quantity + 1)}
+                    <option value="">Выберите тип</option>
+                    <option value="absolute">Абсолютное (Ра)</option>
+                    <option value="gauge">Избыточное (Ри)</option>
+                    <option value="differential">Дифференциальное (ΔР)</option>
+                    <option value="vacuum">Вакуумметрическое (Рв)</option>
+                  </select>
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="pressureValue">Значение давления</Label>
+                  <select
+                    id="pressureValue"
+                    value={config.pressureValue}
+                    onChange={(e) => setConfig({...config, pressureValue: e.target.value})}
+                    className="w-full px-3 py-2 border border-input rounded-md bg-background"
                   >
-                    <Icon name="Plus" size={16} />
-                  </Button>
+                    <option value="">Выберите диапазон</option>
+                    <option value="0.1">0...0,1 МПа</option>
+                    <option value="0.25">0...0,25 МПа</option>
+                    <option value="0.6">0...0,6 МПа</option>
+                    <option value="1">0...1 МПа</option>
+                    <option value="2.5">0...2,5 МПа</option>
+                    <option value="6">0...6 МПа</option>
+                    <option value="10">0...10 МПа</option>
+                    <option value="16">0...16 МПа</option>
+                    <option value="25">0...25 МПа</option>
+                    <option value="40">0...40 МПа</option>
+                    <option value="60">0...60 МПа</option>
+                    <option value="100">0...100 МПа</option>
+                  </select>
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="accuracy">Основная погрешность</Label>
+                  <select
+                    id="accuracy"
+                    value={config.accuracy}
+                    onChange={(e) => setConfig({...config, accuracy: e.target.value})}
+                    className="w-full px-3 py-2 border border-input rounded-md bg-background"
+                  >
+                    <option value="">Выберите класс точности</option>
+                    <option value="0.1">±0,1% (высокая)</option>
+                    <option value="0.25">±0,25% (повышенная)</option>
+                    <option value="0.5">±0,5% (стандартная)</option>
+                    <option value="1">±1,0% (базовая)</option>
+                  </select>
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="outputSignal">Выходной сигнал</Label>
+                  <select
+                    id="outputSignal"
+                    value={config.outputSignal}
+                    onChange={(e) => setConfig({...config, outputSignal: e.target.value})}
+                    className="w-full px-3 py-2 border border-input rounded-md bg-background"
+                  >
+                    <option value="">Выберите тип сигнала</option>
+                    <option value="4-20ma">4...20 мА</option>
+                    <option value="0-5ma">0...5 мА</option>
+                    <option value="0-20ma">0...20 мА</option>
+                    <option value="0-10v">0...10 В</option>
+                    <option value="rs485">RS-485 (цифровой)</option>
+                    <option value="hart">HART</option>
+                  </select>
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="mechanicalConnection">Механическое присоединение</Label>
+                  <select
+                    id="mechanicalConnection"
+                    value={config.mechanicalConnection}
+                    onChange={(e) => setConfig({...config, mechanicalConnection: e.target.value})}
+                    className="w-full px-3 py-2 border border-input rounded-md bg-background"
+                  >
+                    <option value="">Выберите тип резьбы</option>
+                    <option value="g1/2">G1/2"</option>
+                    <option value="m20x1.5">M20×1,5</option>
+                    <option value="g1/4">G1/4"</option>
+                    <option value="m14x1.5">M14×1,5</option>
+                    <option value="npt1/2">NPT1/2"</option>
+                    <option value="npt1/4">NPT1/4"</option>
+                  </select>
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="electricalConnection">Электрическое присоединение</Label>
+                  <select
+                    id="electricalConnection"
+                    value={config.electricalConnection}
+                    onChange={(e) => setConfig({...config, electricalConnection: e.target.value})}
+                    className="w-full px-3 py-2 border border-input rounded-md bg-background"
+                  >
+                    <option value="">Выберите тип разъема</option>
+                    <option value="cable">Кабельный ввод</option>
+                    <option value="din43650">Разъем DIN 43650</option>
+                    <option value="m12">Разъем M12</option>
+                    <option value="hirschmann">Разъем Hirschmann</option>
+                  </select>
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="explosionProtection">Вид взрывозащиты</Label>
+                  <select
+                    id="explosionProtection"
+                    value={config.explosionProtection}
+                    onChange={(e) => setConfig({...config, explosionProtection: e.target.value})}
+                    className="w-full px-3 py-2 border border-input rounded-md bg-background"
+                  >
+                    <option value="">Не требуется</option>
+                    <option value="exia">ExiaIICT6 (искробезопасная)</option>
+                    <option value="exd">ExdIICT6 (взрывонепроницаемая)</option>
+                    <option value="exib">ExibIICT6 (искробезопасная)</option>
+                  </select>
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="membraneMaterial">Материал мембраны</Label>
+                  <select
+                    id="membraneMaterial"
+                    value={config.membraneMaterial}
+                    onChange={(e) => setConfig({...config, membraneMaterial: e.target.value})}
+                    className="w-full px-3 py-2 border border-input rounded-md bg-background"
+                  >
+                    <option value="">Выберите материал</option>
+                    <option value="12x18n10t">12Х18Н10Т (нержавеющая сталь)</option>
+                    <option value="titanium">Титан</option>
+                    <option value="hastelloy">Hastelloy C276</option>
+                    <option value="tantalum">Тантал</option>
+                  </select>
                 </div>
               </div>
+
+              <div className="border-t border-border pt-4 mb-4">
+                <div className="flex items-baseline gap-2 mb-4">
+                  <span className="text-3xl font-bold text-primary">от {product.price} ₽</span>
+                  <span className="text-sm text-muted-foreground">с НДС</span>
+                </div>
+                <div className="flex items-center gap-4 mb-4">
+                  <Label htmlFor="quantity">Количество:</Label>
+                  <div className="flex items-center gap-2">
+                    <Button 
+                      variant="outline" 
+                      size="icon"
+                      onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                    >
+                      <Icon name="Minus" size={16} />
+                    </Button>
+                    <Input 
+                      id="quantity"
+                      type="number" 
+                      value={quantity}
+                      onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value) || 1))}
+                      className="w-20 text-center"
+                    />
+                    <Button 
+                      variant="outline" 
+                      size="icon"
+                      onClick={() => setQuantity(quantity + 1)}
+                    >
+                      <Icon name="Plus" size={16} />
+                    </Button>
+                  </div>
+                </div>
+              </div>
+              
               <div className="flex gap-3">
                 <Button className="flex-1 bg-accent hover:bg-accent/90">
                   <Icon name="ShoppingCart" size={20} className="mr-2" />
