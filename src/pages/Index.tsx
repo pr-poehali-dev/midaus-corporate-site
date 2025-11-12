@@ -338,14 +338,14 @@ export default function Index() {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
             <Card className="overflow-hidden hover:shadow-lg transition-shadow">
               <CardContent className="p-0">
-                <div className="bg-gradient-to-br from-primary/10 to-primary/5 p-8 text-center">
-                  <div className="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden bg-muted border-4 border-white shadow-lg">
-                    <img 
-                      src="https://cdn.poehali.dev/files/50c00573-4df2-4605-aee1-b401c4599241.png"
-                      alt="Бушев Константин"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
+                <div className="aspect-square overflow-hidden">
+                  <img 
+                    src="https://cdn.poehali.dev/files/50c00573-4df2-4605-aee1-b401c4599241.png"
+                    alt="Бушев Константин"
+                    className="w-full h-full object-cover object-center"
+                  />
+                </div>
+                <div className="bg-gradient-to-br from-primary/10 to-primary/5 p-6 text-center">
                   <h3 className="font-heading font-bold text-xl mb-1">
                     Бушев Константин
                   </h3>
