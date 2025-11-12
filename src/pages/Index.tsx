@@ -31,6 +31,9 @@ export default function Index() {
             <a href="#about" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
               О компании
             </a>
+            <a href="#specialists" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
+              Специалисты
+            </a>
             <a href="#support" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
               Поддержка
             </a>
@@ -321,6 +324,144 @@ export default function Index() {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 bg-white" id="specialists">
+        <div className="container mx-auto px-4">
+          <h2 className="font-heading font-bold text-3xl text-center mb-4">
+            Вопросы к специалистам
+          </h2>
+          <p className="text-center text-muted-foreground mb-12 text-lg max-w-3xl mx-auto">
+            Руководство компании МИДАУС всегда готово ответить на ваши вопросы и обсудить возможности сотрудничества
+          </p>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <Card className="overflow-hidden hover:shadow-lg transition-shadow">
+              <CardContent className="p-0">
+                <div className="bg-gradient-to-br from-primary/10 to-primary/5 p-8 text-center">
+                  <div className="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden bg-muted border-4 border-white shadow-lg">
+                    <div className="w-full h-full bg-primary/20 flex items-center justify-center">
+                      <Icon name="User" size={48} className="text-primary" />
+                    </div>
+                  </div>
+                  <h3 className="font-heading font-bold text-xl mb-1">
+                    Бушев Константин
+                  </h3>
+                  <p className="text-primary font-medium mb-4">
+                    Генеральный директор
+                  </p>
+                  <div className="space-y-2 text-sm text-muted-foreground">
+                    <div className="flex items-center justify-center gap-2">
+                      <Icon name="Mail" size={16} />
+                      <a href="mailto:info@midaus.ru" className="hover:text-primary transition-colors">
+                        info@midaus.ru
+                      </a>
+                    </div>
+                    <div className="flex items-center justify-center gap-2">
+                      <Icon name="Phone" size={16} />
+                      <span>+7 (495) 123-45-67</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="p-6">
+                  <p className="text-sm text-muted-foreground text-center">
+                    Общее руководство компанией, стратегическое планирование, вопросы партнерства
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="overflow-hidden hover:shadow-lg transition-shadow">
+              <CardContent className="p-0">
+                <div className="bg-gradient-to-br from-primary/10 to-primary/5 p-8 text-center">
+                  <div className="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden bg-muted border-4 border-white shadow-lg">
+                    <div className="w-full h-full bg-primary/20 flex items-center justify-center">
+                      <Icon name="User" size={48} className="text-primary" />
+                    </div>
+                  </div>
+                  <h3 className="font-heading font-bold text-xl mb-1">
+                    Маланин Михаил
+                  </h3>
+                  <p className="text-primary font-medium mb-4">
+                    Технический директор
+                  </p>
+                  <div className="space-y-2 text-sm text-muted-foreground">
+                    <div className="flex items-center justify-center gap-2">
+                      <Icon name="Mail" size={16} />
+                      <a href="mailto:tech@midaus.ru" className="hover:text-primary transition-colors">
+                        tech@midaus.ru
+                      </a>
+                    </div>
+                    <div className="flex items-center justify-center gap-2">
+                      <Icon name="Phone" size={16} />
+                      <span>+7 (495) 123-45-68</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="p-6">
+                  <p className="text-sm text-muted-foreground text-center">
+                    Технические вопросы, подбор оборудования, разработка специальных решений
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="overflow-hidden hover:shadow-lg transition-shadow">
+              <CardContent className="p-0">
+                <div className="bg-gradient-to-br from-primary/10 to-primary/5 p-8 text-center">
+                  <div className="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden bg-muted border-4 border-white shadow-lg">
+                    <img 
+                      src="https://cdn.poehali.dev/files/6ed6e014-abc2-48d4-9e47-4739f322d363.png"
+                      alt="Коммерческий директор"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <h3 className="font-heading font-bold text-xl mb-1">
+                    Отдел продаж
+                  </h3>
+                  <p className="text-primary font-medium mb-4">
+                    Коммерческий отдел
+                  </p>
+                  <div className="space-y-2 text-sm text-muted-foreground">
+                    <div className="flex items-center justify-center gap-2">
+                      <Icon name="Mail" size={16} />
+                      <a href="mailto:sales@midaus.ru" className="hover:text-primary transition-colors">
+                        sales@midaus.ru
+                      </a>
+                    </div>
+                    <div className="flex items-center justify-center gap-2">
+                      <Icon name="Phone" size={16} />
+                      <span>+7 (495) 123-45-69</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="p-6">
+                  <p className="text-sm text-muted-foreground text-center">
+                    Коммерческие предложения, ценообразование, условия поставки
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          <div className="mt-12 text-center">
+            <Card className="max-w-2xl mx-auto bg-secondary">
+              <CardContent className="p-8">
+                <Icon name="MessageCircle" size={48} className="text-primary mx-auto mb-4" />
+                <h3 className="font-heading font-bold text-xl mb-2">
+                  Не нашли нужного специалиста?
+                </h3>
+                <p className="text-muted-foreground mb-6">
+                  Напишите нам через форму обратной связи, и мы направим ваш вопрос профильному специалисту
+                </p>
+                <Button size="lg" className="bg-accent hover:bg-accent/90">
+                  <Icon name="Send" size={20} className="mr-2" />
+                  Написать сообщение
+                </Button>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
