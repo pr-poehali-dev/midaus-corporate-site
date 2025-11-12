@@ -65,7 +65,7 @@ export default function Index() {
             <h1 className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl text-white mb-4 leading-tight">
               ДАТЧИКИ ДАВЛЕНИЯ ПО ТЕХНОЛОГИИ «КРЕМНИЙ НА САПФИРЕ»
             </h1>
-            <p className="text-xl text-white/90 mb-8 font-light">Разработка и производство высокоточных датчиков для различных отраслей промышленности</p>
+            <p className="text-xl text-white/90 mb-8 font-light">Разработка и производство высокоточных датчиков давления для различных отраслей промышленности</p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button size="lg" className="bg-white text-primary hover:bg-white/90 shadow-lg">
                 <Icon name="Search" size={20} className="mr-2" />
