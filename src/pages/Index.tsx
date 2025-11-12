@@ -491,7 +491,7 @@ export default function Index() {
                     <img 
                       src="https://cdn.poehali.dev/files/c4a20118-d30e-4853-a8fc-6acb57406274.png"
                       alt="Мартынова Людмила"
-                      className="w-full h-full object-cover scale-150 object-[center_25%]"
+                      className="w-full h-full object-cover scale-150 object-[center_25%] my-6"
                     />
                   </div>
                   <h3 className="font-heading font-bold text-xl mb-1">
