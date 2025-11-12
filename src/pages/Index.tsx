@@ -66,11 +66,11 @@ export default function Index() {
               Разработка и производство высокоточных датчиков для нефтегаза, энергетики, космической и транспортной техники
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" className="bg-accent hover:bg-accent/90 text-white">
+              <Button size="lg" className="bg-white text-primary hover:bg-white/90 shadow-lg">
                 <Icon name="Search" size={20} className="mr-2" />
                 Подобрать датчик
               </Button>
-              <Button size="lg" variant="outline" className="bg-white/10 border-white text-white hover:bg-white hover:text-primary backdrop-blur-sm">
+              <Button size="lg" variant="outline" className="bg-white/10 border-white border-2 text-white hover:bg-white hover:text-primary backdrop-blur-sm">
                 <Icon name="Download" size={20} className="mr-2" />
                 Скачать каталог
               </Button>
