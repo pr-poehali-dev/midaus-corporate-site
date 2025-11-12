@@ -9,6 +9,23 @@ import { Link } from 'react-router-dom';
 
 export default function Index() {
   const [selectedRange, setSelectedRange] = useState('');
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const productionImages = [
+    { url: 'https://cdn.poehali.dev/files/1b6c8ea8-5bea-48db-b363-50ae180491ca.jpeg', title: 'Механический цех' },
+    { url: 'https://cdn.poehali.dev/files/af3b298d-3b96-4d06-a1b7-72ee38bac03e.jpeg', title: 'Производственные линии' },
+    { url: 'https://cdn.poehali.dev/files/43259228-92ef-472c-9023-4dd7e597f24d.jpeg', title: 'Токарное производство' },
+    { url: 'https://cdn.poehali.dev/files/91785d28-cc14-47e5-87bd-58d73f18171a.jpeg', title: 'Метрологическая лаборатория' },
+    { url: 'https://cdn.poehali.dev/files/48ace166-ee49-4617-b80f-a5ff3e3b8ac1.jpeg', title: 'Лаборатория поверки' },
+  ];
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % productionImages.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + productionImages.length) % productionImages.length);
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -287,23 +304,52 @@ export default function Index() {
           </div>
           
           <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
-            <div className="relative h-96 bg-muted rounded-lg overflow-hidden shadow-xl">
+            <div className="relative h-96 bg-muted rounded-lg overflow-hidden shadow-xl group">
               <img 
-                src="https://cdn.poehali.dev/files/6ed6e014-abc2-48d4-9e47-4739f322d363.png"
-                alt="Производство датчиков МИДАУС"
-                className="absolute inset-0 w-full h-full object-cover"
+                src={productionImages[currentSlide].url}
+                alt={productionImages[currentSlide].title}
+                className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
               />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
+                <p className="text-white font-semibold text-lg p-6">{productionImages[currentSlide].title}</p>
+              </div>
+              <button
+                onClick={prevSlide}
+                className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white p-2 rounded-full shadow-lg transition-all opacity-0 group-hover:opacity-100"
+                aria-label="Предыдущее фото"
+              >
+                <Icon name="ChevronLeft" size={24} className="text-primary" />
+              </button>
+              <button
+                onClick={nextSlide}
+                className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white p-2 rounded-full shadow-lg transition-all opacity-0 group-hover:opacity-100"
+                aria-label="Следующее фото"
+              >
+                <Icon name="ChevronRight" size={24} className="text-primary" />
+              </button>
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+                {productionImages.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentSlide(index)}
+                    className={`w-2 h-2 rounded-full transition-all ${
+                      index === currentSlide ? 'bg-white w-8' : 'bg-white/50'
+                    }`}
+                    aria-label={`Перейти к фото ${index + 1}`}
+                  />
+                ))}
+              </div>
             </div>
             <div>
               <h3 className="font-heading font-bold text-2xl mb-6">
-                О компании МИДАУС
+                Полный цикл производства
               </h3>
               <div className="space-y-4 text-muted-foreground">
                 <p>
-                  МИДАУС — российский производитель датчиков давления, работающий на рынке контрольно-измерительных приборов с 1992 года.
+                  У нас реализован полный производственный цикл — от изготовления чувствительных элементов на основе технологии «кремний на сапфире» до финальной поверки готовых датчиков в собственной аккредитованной метрологической лаборатории.
                 </p>
                 <p>
-                  Мы специализируемся на разработке и производстве высокоточных датчиков давления на основе технологии «кремний на сапфире» для критически важных отраслей промышленности.
+                  Наше современное производство оснащено высокоточным оборудованием, которое позволяет обеспечивать стабильное качество продукции и выполнять заказы любой сложности в установленные сроки.
                 </p>
                 <div className="grid grid-cols-2 gap-4 pt-4">
                   {[
