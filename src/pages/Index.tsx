@@ -488,9 +488,11 @@ export default function Index() {
               <CardContent className="p-0">
                 <div className="bg-gradient-to-br from-primary/10 to-primary/5 p-8 text-center">
                   <div className="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden bg-muted border-4 border-white shadow-lg">
-                    <div className="w-full h-full bg-primary/20 flex items-center justify-center">
-                      <Icon name="User" size={48} className="text-primary" />
-                    </div>
+                    <img 
+                      src="https://cdn.poehali.dev/files/c4a20118-d30e-4853-a8fc-6acb57406274.png"
+                      alt="Мартынова Людмила"
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                   <h3 className="font-heading font-bold text-xl mb-1">
                     Мартынова Людмила
