@@ -285,7 +285,7 @@ export default function Index() {
             </div>
           </div>
           
-          <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto mb-12">
+          <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
             <div className="relative h-96 bg-muted rounded-lg overflow-hidden shadow-xl">
               <img 
                 src="https://cdn.poehali.dev/files/6ed6e014-abc2-48d4-9e47-4739f322d363.png"
@@ -319,25 +319,6 @@ export default function Index() {
                     </div>
                   ))}
                 </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="max-w-6xl mx-auto">
-            <div className="relative h-[500px] bg-muted rounded-lg overflow-hidden shadow-xl">
-              <img 
-                src="https://cdn.poehali.dev/files/cdeafae2-35b5-4585-920c-9ca29f720829.jpg"
-                alt="Производственный комплекс МИДАУС"
-                className="absolute inset-0 w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-              <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
-                <h3 className="font-heading font-bold text-2xl mb-2">
-                  Производственный комплекс МИДАУС
-                </h3>
-                <p className="text-white/90 text-lg">
-                  Современное оборудование и полный цикл производства на территории России
-                </p>
               </div>
             </div>
           </div>
