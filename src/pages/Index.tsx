@@ -487,14 +487,14 @@ export default function Index() {
                 <div className="bg-gradient-to-br from-primary/10 to-primary/5 p-8 text-center">
                   <div className="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden bg-muted border-4 border-white shadow-lg">
                     <div className="w-full h-full bg-primary/20 flex items-center justify-center">
-                      <Icon name="Users" size={48} className="text-primary" />
+                      <Icon name="User" size={48} className="text-primary" />
                     </div>
                   </div>
                   <h3 className="font-heading font-bold text-xl mb-1">
-                    Отдел продаж
+                    Мартынова Людмила
                   </h3>
                   <p className="text-primary font-medium mb-4">
-                    Коммерческий отдел
+                    Начальник отдела продаж
                   </p>
                   <div className="space-y-2 text-sm text-muted-foreground">
                     <div className="flex items-center justify-center gap-2">
