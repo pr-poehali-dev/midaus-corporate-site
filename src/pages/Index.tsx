@@ -332,7 +332,7 @@ export default function Index() {
             Вопросы к специалистам
           </h2>
           <p className="text-center text-muted-foreground mb-12 text-lg max-w-3xl mx-auto">
-            Руководство компании МИДАУС всегда готово ответить на ваши вопросы и обсудить возможности сотрудничества
+            Специалисты компании МИДАУС всегда готовы ответить на ваши вопросы и обсудить возможности сотрудничества
           </p>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
