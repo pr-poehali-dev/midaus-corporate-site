@@ -243,7 +243,7 @@ export default function Index() {
           <h2 className="font-heading font-bold text-3xl text-center mb-12">
             Преимущества МИДАУС
           </h2>
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-16">
             <div className="text-center">
               <div className="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
                 <Icon name="Gem" size={36} className="text-white" />
@@ -276,6 +276,44 @@ export default function Index() {
               <p className="text-muted-foreground">
                 СИБУР, РАСКО-Газэлектроника, Газпром. География поставок: Россия, Китай, Индия, страны СНГ
               </p>
+            </div>
+          </div>
+          
+          <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+            <div className="relative h-96 bg-muted rounded-lg overflow-hidden shadow-xl">
+              <img 
+                src="https://cdn.poehali.dev/files/6ed6e014-abc2-48d4-9e47-4739f322d363.png"
+                alt="Производство датчиков МИДАУС"
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+            </div>
+            <div>
+              <h3 className="font-heading font-bold text-2xl mb-6">
+                О компании МИДАУС
+              </h3>
+              <div className="space-y-4 text-muted-foreground">
+                <p>
+                  МИДАУС — российский производитель датчиков давления, работающий на рынке контрольно-измерительных приборов с 1992 года.
+                </p>
+                <p>
+                  Мы специализируемся на разработке и производстве высокоточных датчиков давления на основе технологии «кремний на сапфире» для критически важных отраслей промышленности.
+                </p>
+                <div className="grid grid-cols-2 gap-4 pt-4">
+                  {[
+                    { value: '30+', label: 'Лет на рынке' },
+                    { value: '500+', label: 'Моделей приборов' },
+                    { value: '1000+', label: 'Клиентов по России' },
+                    { value: '100%', label: 'Российская разработка' },
+                  ].map((stat, index) => (
+                    <div key={index} className="text-center">
+                      <div className="font-heading font-bold text-3xl text-primary mb-1">
+                        {stat.value}
+                      </div>
+                      <div className="text-sm">{stat.label}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>
