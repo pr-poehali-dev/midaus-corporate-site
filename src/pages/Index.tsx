@@ -15,8 +15,8 @@ export default function Index() {
     { url: 'https://cdn.poehali.dev/files/1b6c8ea8-5bea-48db-b363-50ae180491ca.jpeg', title: 'Механический цех' },
     { url: 'https://cdn.poehali.dev/files/af3b298d-3b96-4d06-a1b7-72ee38bac03e.jpeg', title: 'Производственные линии' },
     { url: 'https://cdn.poehali.dev/files/43259228-92ef-472c-9023-4dd7e597f24d.jpeg', title: 'Токарное производство' },
-    { url: 'https://cdn.poehali.dev/files/91785d28-cc14-47e5-87bd-58d73f18171a.jpeg', title: 'Метрологическая лаборатория' },
-    { url: 'https://cdn.poehali.dev/files/48ace166-ee49-4617-b80f-a5ff3e3b8ac1.jpeg', title: 'Лаборатория поверки' },
+    { url: 'https://cdn.poehali.dev/files/91785d28-cc14-47e5-87bd-58d73f18171a.jpeg', title: '' },
+    { url: 'https://cdn.poehali.dev/files/48ace166-ee49-4617-b80f-a5ff3e3b8ac1.jpeg', title: '' },
     { url: 'https://cdn.poehali.dev/files/ac629dca-703c-49d9-a667-09393387e41f.jpeg', title: 'Калибровочная лаборатория' },
   ];
 
