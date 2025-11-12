@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import Icon from '@/components/ui/icon';
 import { Link, useParams } from 'react-router-dom';
 
@@ -79,6 +80,18 @@ const productsData: Record<string, {
   },
 };
 
+const pressureRanges = {
+  'ДИ': ['0.1', '0.16', '0.25', '0.4', '0.6', '1', '1.6', '2.5', '4', '6', '10', '16', '25', '40', '60', '100', '160'],
+  'ДА': ['0.1', '0.16', '0.25', '0.4', '0.6', '1', '1.6', '2.5', '4', '6', '10'],
+  'ДВ': ['0.004', '0.006', '0.01', '0.016', '0.025', '0.04', '0.06', '0.1'],
+  'ДИВ': ['0.002', '0.004', '0.006', '0.01', '0.016', '0.025', '0.04', '0.06', '0.1', '0.16', '0.25', '0.4', '0.6', '1', '1.6', '2.4'],
+};
+
+const lowerPressureRanges = {
+  'ДА': ['0', '0.01', '0.016', '0.025', '0.04', '0.06', '0.08'],
+  'ДИВ': ['0.002', '0.004', '0.006', '0.01', '0.016', '0.025', '0.04', '0.06', '0.1'],
+};
+
 export default function Product() {
   const { id } = useParams<{ id: string }>();
   const [activeTab, setActiveTab] = useState('description');
@@ -87,7 +100,11 @@ export default function Product() {
   
   const [config, setConfig] = useState({
     pressureType: '',
-    pressureValue: '',
+    unit: '',
+    upperLimit: '',
+    upperLimitCustom: '',
+    lowerLimit: '',
+    lowerLimitCustom: '',
     accuracy: '',
     outputSignal: '',
     mechanicalConnection: '',
@@ -95,6 +112,9 @@ export default function Product() {
     explosionProtection: '',
     membraneMaterial: '',
   });
+
+  const [showUpperCustomInput, setShowUpperCustomInput] = useState(false);
+  const [showLowerCustomInput, setShowLowerCustomInput] = useState(false);
 
   const product = productsData[id || 'mida-13p'];
 
@@ -121,6 +141,62 @@ export default function Product() {
   };
 
   const images = productImages[id || 'mida-13p'];
+
+  const getOrderCode = () => {
+    let code = 'МИДА-';
+    
+    if (config.pressureType === 'ДИ') code += 'ДИ';
+    else if (config.pressureType === 'ДА') code += 'ДА';
+    else if (config.pressureType === 'ДВ') code += 'ДВ';
+    else if (config.pressureType === 'ДИВ') code += 'ДИВ';
+    
+    code += '-13П';
+    
+    if (config.outputSignal === '4…20 мА / 2-х пров.') code += '-01';
+    else if (config.outputSignal === '0…5 мА / 3-х пров.') code += '-02';
+    else if (config.outputSignal === '0…5 мА / 4-х пров.') code += '-04';
+    else if (config.outputSignal === '0.4…2 В / 3-х пров.') code += '-05/1';
+    else if (config.outputSignal === '0.5…4.5 В / 3-х пров.') code += '-05/2';
+    else if (config.outputSignal === '0…5 В / 4-х пров.') code += '-03';
+    else if (config.outputSignal === '0…10 В / 3-х пров.') code += '-05/4';
+    
+    const upperValue = showUpperCustomInput ? config.upperLimitCustom : config.upperLimit;
+    const lowerValue = showLowerCustomInput ? config.lowerLimitCustom : config.lowerLimit;
+    
+    if (config.pressureType === 'ДИ' && lowerValue && upperValue) {
+      code += `-${lowerValue.replace('.', ',')}...${upperValue.replace('.', ',')}`;
+    } else if (config.pressureType === 'ДА' && lowerValue && upperValue) {
+      code += `-${lowerValue.replace('.', ',')}...${upperValue.replace('.', ',')}`;
+    } else if (config.pressureType === 'ДВ' && upperValue) {
+      code += `-${upperValue.replace('.', ',')}`;
+    } else if (config.pressureType === 'ДИВ' && lowerValue && upperValue) {
+      code += `-${lowerValue.replace('.', ',')}...${upperValue.replace('.', ',')}`;
+    }
+    
+    if (config.unit) {
+      code += ` ${config.unit}`;
+    }
+    
+    if (config.accuracy) {
+      code += ` (${config.accuracy})`;
+    }
+    
+    return code;
+  };
+
+  useEffect(() => {
+    setConfig(prev => ({
+      ...prev,
+      upperLimit: '',
+      upperLimitCustom: '',
+      lowerLimit: '',
+      lowerLimitCustom: '',
+    }));
+    setShowUpperCustomInput(false);
+    setShowLowerCustomInput(false);
+  }, [config.pressureType]);
+
+  const showLowerLimitField = config.pressureType && config.pressureType !== 'ДВ';
 
   return (
     <div className="min-h-screen bg-background">
@@ -206,416 +282,442 @@ export default function Product() {
               <div className="space-y-4 mb-6">
                 <div className="space-y-2">
                   <Label htmlFor="pressureType">Тип давления</Label>
-                  <select
-                    id="pressureType"
-                    value={config.pressureType}
-                    onChange={(e) => setConfig({...config, pressureType: e.target.value})}
-                    className="w-full px-3 py-2 border border-input rounded-md bg-background"
-                  >
-                    <option value="">Выберите тип</option>
-                    <option value="absolute">Абсолютное (Ра)</option>
-                    <option value="gauge">Избыточное (Ри)</option>
-                    <option value="differential">Дифференциальное (ΔР)</option>
-                    <option value="vacuum">Вакуумметрическое (Рв)</option>
-                  </select>
+                  <Select value={config.pressureType} onValueChange={(value) => setConfig({...config, pressureType: value})}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Выберите тип давления" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="ДИ">Избыточное (ДИ)</SelectItem>
+                      <SelectItem value="ДА">Абсолютное (ДА)</SelectItem>
+                      <SelectItem value="ДВ">Давление-разрежение (ДВ)</SelectItem>
+                      <SelectItem value="ДИВ">Избыточное давление-разрежение (ДИВ)</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="pressureValue">Значение давления</Label>
-                  <select
-                    id="pressureValue"
-                    value={config.pressureValue}
-                    onChange={(e) => setConfig({...config, pressureValue: e.target.value})}
-                    className="w-full px-3 py-2 border border-input rounded-md bg-background"
-                  >
-                    <option value="">Выберите диапазон</option>
-                    <option value="0.1">0...0,1 МПа</option>
-                    <option value="0.25">0...0,25 МПа</option>
-                    <option value="0.6">0...0,6 МПа</option>
-                    <option value="1">0...1 МПа</option>
-                    <option value="2.5">0...2,5 МПа</option>
-                    <option value="6">0...6 МПа</option>
-                    <option value="10">0...10 МПа</option>
-                    <option value="16">0...16 МПа</option>
-                    <option value="25">0...25 МПа</option>
-                    <option value="40">0...40 МПа</option>
-                    <option value="60">0...60 МПа</option>
-                    <option value="100">0...100 МПа</option>
-                  </select>
+                  <Label htmlFor="unit">Единица измерения</Label>
+                  <Select value={config.unit} onValueChange={(value) => setConfig({...config, unit: value})}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Выберите единицу измерения" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="МПа">МПа</SelectItem>
+                      <SelectItem value="кПа">кПа</SelectItem>
+                      <SelectItem value="бар">бар</SelectItem>
+                      <SelectItem value="кгс/см²">кгс/см²</SelectItem>
+                      <SelectItem value="psi">psi</SelectItem>
+                      <SelectItem value="мм рт. ст.">мм рт. ст.</SelectItem>
+                      <SelectItem value="м вод. ст.">м вод. ст.</SelectItem>
+                      <SelectItem value="другая">другая</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
 
+                {config.pressureType && (
+                  <div className="space-y-2">
+                    <Label htmlFor="upperLimit">
+                      Верхний предел измерения давления
+                      {config.pressureType === 'ДИ' && ' (до 160 МПа)'}
+                      {config.pressureType === 'ДА' && ' (до 10 МПа)'}
+                      {config.pressureType === 'ДВ' && ' (от 0.004 до 0.1 МПа)'}
+                      {config.pressureType === 'ДИВ' && ' (от 0.002 до 2.4 МПа)'}
+                    </Label>
+                    {!showUpperCustomInput ? (
+                      <Select value={config.upperLimit} onValueChange={(value) => {
+                        if (value === 'custom') {
+                          setShowUpperCustomInput(true);
+                          setConfig({...config, upperLimit: ''});
+                        } else {
+                          setConfig({...config, upperLimit: value});
+                        }
+                      }}>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Выберите из стандартного ряда" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {pressureRanges[config.pressureType as keyof typeof pressureRanges]?.map((value) => (
+                            <SelectItem key={value} value={value}>
+                              {config.pressureType === 'ДВ' ? `-${value}` : value} МПа
+                            </SelectItem>
+                          ))}
+                          <SelectItem value="custom">Другой (ввести вручную)</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    ) : (
+                      <div className="flex gap-2">
+                        <Input
+                          type="text"
+                          placeholder="Введите значение"
+                          value={config.upperLimitCustom}
+                          onChange={(e) => setConfig({...config, upperLimitCustom: e.target.value})}
+                        />
+                        <Button
+                          variant="outline"
+                          onClick={() => {
+                            setShowUpperCustomInput(false);
+                            setConfig({...config, upperLimitCustom: ''});
+                          }}
+                        >
+                          Отмена
+                        </Button>
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {showLowerLimitField && (
+                  <div className="space-y-2">
+                    <Label htmlFor="lowerLimit">
+                      Нижний предел измерения давления
+                      {config.pressureType === 'ДА' && ' (от 0 до 0.08 МПа)'}
+                      {config.pressureType === 'ДИВ' && ' (от -0.002 до -0.1 МПа)'}
+                    </Label>
+                    {config.pressureType === 'ДИ' ? (
+                      <Input
+                        type="text"
+                        placeholder="Введите значение"
+                        value={config.lowerLimitCustom}
+                        onChange={(e) => setConfig({...config, lowerLimitCustom: e.target.value})}
+                      />
+                    ) : !showLowerCustomInput ? (
+                      <Select value={config.lowerLimit} onValueChange={(value) => {
+                        if (value === 'custom') {
+                          setShowLowerCustomInput(true);
+                          setConfig({...config, lowerLimit: ''});
+                        } else {
+                          setConfig({...config, lowerLimit: value});
+                        }
+                      }}>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Выберите из стандартного ряда" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {lowerPressureRanges[config.pressureType as keyof typeof lowerPressureRanges]?.map((value) => (
+                            <SelectItem key={value} value={value}>
+                              {config.pressureType === 'ДИВ' ? `-${value}` : value} МПа
+                            </SelectItem>
+                          ))}
+                          <SelectItem value="custom">Другой (ввести вручную)</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    ) : (
+                      <div className="flex gap-2">
+                        <Input
+                          type="text"
+                          placeholder="Введите значение"
+                          value={config.lowerLimitCustom}
+                          onChange={(e) => setConfig({...config, lowerLimitCustom: e.target.value})}
+                        />
+                        <Button
+                          variant="outline"
+                          onClick={() => {
+                            setShowLowerCustomInput(false);
+                            setConfig({...config, lowerLimitCustom: ''});
+                          }}
+                        >
+                          Отмена
+                        </Button>
+                      </div>
+                    )}
+                  </div>
+                )}
+
                 <div className="space-y-2">
-                  <Label htmlFor="accuracy">Основная погрешность</Label>
-                  <select
-                    id="accuracy"
-                    value={config.accuracy}
-                    onChange={(e) => setConfig({...config, accuracy: e.target.value})}
-                    className="w-full px-3 py-2 border border-input rounded-md bg-background"
-                  >
-                    <option value="">Выберите класс точности</option>
-                    <option value="0.1">±0,1% (высокая)</option>
-                    <option value="0.25">±0,25% (повышенная)</option>
-                    <option value="0.5">±0,5% (стандартная)</option>
-                    <option value="1">±1,0% (базовая)</option>
-                  </select>
+                  <Label htmlFor="accuracy">Основная приведенная погрешность, % от диапазона измерения</Label>
+                  <Select value={config.accuracy} onValueChange={(value) => setConfig({...config, accuracy: value})}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Выберите точность" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="±0.15%">±0.15%</SelectItem>
+                      <SelectItem value="±0.2%">±0.2%</SelectItem>
+                      <SelectItem value="±0.25%">±0.25%</SelectItem>
+                      <SelectItem value="±0.5%">±0.5%</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="outputSignal">Выходной сигнал</Label>
-                  <select
-                    id="outputSignal"
-                    value={config.outputSignal}
-                    onChange={(e) => setConfig({...config, outputSignal: e.target.value})}
-                    className="w-full px-3 py-2 border border-input rounded-md bg-background"
-                  >
-                    <option value="">Выберите тип сигнала</option>
-                    <option value="4-20ma">4...20 мА</option>
-                    <option value="0-5ma">0...5 мА</option>
-                    <option value="0-20ma">0...20 мА</option>
-                    <option value="0-10v">0...10 В</option>
-                    <option value="rs485">RS-485 (цифровой)</option>
-                    <option value="hart">HART</option>
-                  </select>
+                  <Select value={config.outputSignal} onValueChange={(value) => setConfig({...config, outputSignal: value})}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Выберите выходной сигнал" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="4…20 мА / 2-х пров.">4…20 мА / 2-х пров. (Код 01)</SelectItem>
+                      <SelectItem value="0…5 мА / 3-х пров.">0…5 мА / 3-х пров. (Код 02)</SelectItem>
+                      <SelectItem value="0…5 мА / 4-х пров.">0…5 мА / 4-х пров. (Код 04)</SelectItem>
+                      <SelectItem value="0.4…2 В / 3-х пров.">0.4…2 В / 3-х пров. (Код 05/1)</SelectItem>
+                      <SelectItem value="0.5…4.5 В / 3-х пров.">0.5…4.5 В / 3-х пров. (Код 05/2)</SelectItem>
+                      <SelectItem value="0…5 В / 4-х пров.">0…5 В / 4-х пров. (Код 03)</SelectItem>
+                      <SelectItem value="0…10 В / 3-х пров.">0…10 В / 3-х пров. (Код 05/4)</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="mechanicalConnection">Механическое присоединение</Label>
-                  <select
-                    id="mechanicalConnection"
-                    value={config.mechanicalConnection}
-                    onChange={(e) => setConfig({...config, mechanicalConnection: e.target.value})}
-                    className="w-full px-3 py-2 border border-input rounded-md bg-background"
-                  >
-                    <option value="">Выберите тип резьбы</option>
-                    <option value="g1/2">G1/2"</option>
-                    <option value="m20x1.5">M20×1,5</option>
-                    <option value="g1/4">G1/4"</option>
-                    <option value="m14x1.5">M14×1,5</option>
-                    <option value="npt1/2">NPT1/2"</option>
-                    <option value="npt1/4">NPT1/4"</option>
-                  </select>
+                  <Select value={config.mechanicalConnection} onValueChange={(value) => setConfig({...config, mechanicalConnection: value})}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Выберите тип присоединения" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="G1/2">G1/2</SelectItem>
+                      <SelectItem value="M20x1.5">M20x1.5</SelectItem>
+                      <SelectItem value="NPT1/2">NPT1/2</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="electricalConnection">Электрическое присоединение</Label>
-                  <select
-                    id="electricalConnection"
-                    value={config.electricalConnection}
-                    onChange={(e) => setConfig({...config, electricalConnection: e.target.value})}
-                    className="w-full px-3 py-2 border border-input rounded-md bg-background"
-                  >
-                    <option value="">Выберите тип разъема</option>
-                    <option value="cable">Кабельный ввод</option>
-                    <option value="din43650">Разъем DIN 43650</option>
-                    <option value="m12">Разъем M12</option>
-                    <option value="hirschmann">Разъем Hirschmann</option>
-                  </select>
+                  <Select value={config.electricalConnection} onValueChange={(value) => setConfig({...config, electricalConnection: value})}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Выберите тип присоединения" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="DIN 43650">DIN 43650</SelectItem>
+                      <SelectItem value="М12х1">М12х1</SelectItem>
+                      <SelectItem value="Кабель">Кабель</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="explosionProtection">Вид взрывозащиты</Label>
-                  <select
-                    id="explosionProtection"
-                    value={config.explosionProtection}
-                    onChange={(e) => setConfig({...config, explosionProtection: e.target.value})}
-                    className="w-full px-3 py-2 border border-input rounded-md bg-background"
-                  >
-                    <option value="">Не требуется</option>
-                    <option value="exia">ExiaIICT6 (искробезопасная)</option>
-                    <option value="exd">ExdIICT6 (взрывонепроницаемая)</option>
-                    <option value="exib">ExibIICT6 (искробезопасная)</option>
-                  </select>
+                  <Select value={config.explosionProtection} onValueChange={(value) => setConfig({...config, explosionProtection: value})}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Выберите вид взрывозащиты" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="Без взрывозащиты">Без взрывозащиты</SelectItem>
+                      <SelectItem value="ExiaIICT6">ExiaIICT6</SelectItem>
+                      <SelectItem value="ExdIICT6">ExdIICT6</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="membraneMaterial">Материал мембраны</Label>
-                  <select
-                    id="membraneMaterial"
-                    value={config.membraneMaterial}
-                    onChange={(e) => setConfig({...config, membraneMaterial: e.target.value})}
-                    className="w-full px-3 py-2 border border-input rounded-md bg-background"
-                  >
-                    <option value="">Выберите материал</option>
-                    <option value="12x18n10t">12Х18Н10Т (нержавеющая сталь)</option>
-                    <option value="titanium">Титан</option>
-                    <option value="hastelloy">Hastelloy C276</option>
-                    <option value="tantalum">Тантал</option>
-                  </select>
+                  <Select value={config.membraneMaterial} onValueChange={(value) => setConfig({...config, membraneMaterial: value})}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Выберите материал" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="12Х18Н10Т">Нержавеющая сталь 12Х18Н10Т</SelectItem>
+                      <SelectItem value="Титан">Титан</SelectItem>
+                      <SelectItem value="Хастеллой">Хастеллой</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
               </div>
 
-              <div className="border-t border-border pt-4 mb-4">
-                <div className="flex items-baseline gap-2 mb-4">
-                  <span className="text-3xl font-bold text-primary">от {product.price} ₽</span>
-                  <span className="text-sm text-muted-foreground">с НДС</span>
+              {config.pressureType && (
+                <div className="p-4 bg-white rounded-lg border border-primary/20">
+                  <p className="text-sm text-muted-foreground mb-1">Код заказа:</p>
+                  <p className="font-mono font-semibold text-lg">{getOrderCode()}</p>
                 </div>
-                <div className="flex items-center gap-4 mb-4">
-                  <Label htmlFor="quantity">Количество:</Label>
-                  <div className="flex items-center gap-2">
-                    <Button 
-                      variant="outline" 
-                      size="icon"
-                      onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    >
-                      <Icon name="Minus" size={16} />
-                    </Button>
-                    <Input 
-                      id="quantity"
-                      type="number" 
-                      value={quantity}
-                      onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value) || 1))}
-                      className="w-20 text-center"
-                    />
-                    <Button 
-                      variant="outline" 
-                      size="icon"
-                      onClick={() => setQuantity(quantity + 1)}
-                    >
-                      <Icon name="Plus" size={16} />
-                    </Button>
-                  </div>
-                </div>
+              )}
+            </div>
+
+            <div className="flex items-center gap-4 mb-6">
+              <div className="flex items-center border border-border rounded-lg">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                >
+                  <Icon name="Minus" size={16} />
+                </Button>
+                <span className="px-6 py-2 font-semibold">{quantity}</span>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => setQuantity(quantity + 1)}
+                >
+                  <Icon name="Plus" size={16} />
+                </Button>
               </div>
-              
-              <div className="flex gap-3">
-                <Button className="flex-1 bg-accent hover:bg-accent/90">
-                  <Icon name="ShoppingCart" size={20} className="mr-2" />
-                  В корзину
-                </Button>
-                <Button variant="outline">
-                  <Icon name="Heart" size={20} />
-                </Button>
+              <div className="flex-1">
+                <p className="text-sm text-muted-foreground">Цена за единицу</p>
+                <p className="font-heading font-bold text-2xl">{product.price} ₽</p>
               </div>
             </div>
 
-            <div className="space-y-3">
-              <div className="flex items-center gap-3 text-sm">
-                <Icon name="CheckCircle2" size={20} className="text-green-600" />
-                <span>В наличии на складе</span>
-              </div>
-              <div className="flex items-center gap-3 text-sm">
-                <Icon name="Truck" size={20} className="text-primary" />
-                <span>Доставка по России и СНГ</span>
-              </div>
-              <div className="flex items-center gap-3 text-sm">
-                <Icon name="FileText" size={20} className="text-primary" />
-                <span>Полный комплект документации</span>
-              </div>
-              <div className="flex items-center gap-3 text-sm">
-                <Icon name="Shield" size={20} className="text-primary" />
-                <span>Гарантия 24 месяца</span>
-              </div>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <Button className="flex-1" size="lg">
+                <Icon name="ShoppingCart" size={20} className="mr-2" />
+                Добавить в корзину
+              </Button>
+              <Button variant="outline" size="lg">
+                <Icon name="MessageSquare" size={20} className="mr-2" />
+                Получить консультацию
+              </Button>
             </div>
           </div>
         </div>
 
         <div className="mb-12">
-          <div className="border-b border-border mb-6">
-            <div className="flex gap-8">
-              {[
-                { id: 'description', label: 'Описание' },
-                { id: 'specs', label: 'Технические характеристики' },
-                { id: 'docs', label: 'Документация' },
-                { id: 'delivery', label: 'Доставка и оплата' },
-              ].map((tab) => (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveTab(tab.id)}
-                  className={`pb-3 font-medium transition-colors ${
-                    activeTab === tab.id
-                      ? 'text-primary border-b-2 border-primary'
-                      : 'text-muted-foreground hover:text-foreground'
-                  }`}
-                >
-                  {tab.label}
-                </button>
-              ))}
-            </div>
+          <div className="flex gap-2 border-b border-border mb-6">
+            {['description', 'specs', 'docs'].map((tab) => (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className={`px-6 py-3 font-medium transition-colors ${
+                  activeTab === tab
+                    ? 'text-primary border-b-2 border-primary'
+                    : 'text-muted-foreground hover:text-foreground'
+                }`}
+              >
+                {tab === 'description' && 'Описание'}
+                {tab === 'specs' && 'Технические характеристики'}
+                {tab === 'docs' && 'Документация'}
+              </button>
+            ))}
           </div>
 
           {activeTab === 'description' && (
             <div className="prose max-w-none">
-              <p className="text-lg mb-4">
-                Датчик давления {product.name} предназначен для непрерывного преобразования 
-                измеряемой величины избыточного давления жидких и газообразных сред в 
-                унифицированный токовый выходной сигнал 4...20 мА.
-              </p>
-              <h3 className="font-heading font-bold text-xl mt-6 mb-3">Особенности</h3>
-              <ul className="space-y-2">
+              <h3 className="font-heading font-bold text-2xl mb-4">Преимущества</h3>
+              <ul className="space-y-3">
                 {product.features.map((feature, index) => (
-                  <li key={index} className="flex items-start gap-2">
-                    <Icon name="Check" size={20} className="text-primary mt-1 flex-shrink-0" />
+                  <li key={index} className="flex items-start gap-3">
+                    <Icon name="CheckCircle" size={20} className="text-primary mt-1 flex-shrink-0" />
                     <span>{feature}</span>
                   </li>
                 ))}
               </ul>
-              <h3 className="font-heading font-bold text-xl mt-6 mb-3">Области применения</h3>
-              <p>
-                Датчик применяется в системах автоматического контроля и регулирования 
-                технологических процессов в нефтегазовой, химической, энергетической 
-                промышленности, системах водоснабжения и ЖКХ.
-              </p>
             </div>
           )}
 
           {activeTab === 'specs' && (
-            <div>
-              <Card>
-                <CardContent className="p-6">
-                  <table className="w-full">
-                    <tbody>
-                      {product.specs.map((spec, index) => (
-                        <tr key={index} className={index % 2 === 0 ? 'bg-secondary/50' : ''}>
-                          <td className="py-3 px-4 font-medium">{spec.label}</td>
-                          <td className="py-3 px-4 text-muted-foreground">{spec.value}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </CardContent>
-              </Card>
+            <div className="grid md:grid-cols-2 gap-6">
+              {product.specs.map((spec, index) => (
+                <div key={index} className="flex justify-between items-center p-4 bg-secondary rounded-lg">
+                  <span className="font-medium">{spec.label}</span>
+                  <span className="text-muted-foreground">{spec.value}</span>
+                </div>
+              ))}
             </div>
           )}
 
           {activeTab === 'docs' && (
             <div className="space-y-4">
-              {[
-                { name: 'Паспорт изделия', size: '2.4 МБ', type: 'PDF' },
-                { name: 'Руководство по эксплуатации', size: '3.1 МБ', type: 'PDF' },
-                { name: 'Декларация о соответствии', size: '856 КБ', type: 'PDF' },
-                { name: 'Габаритные чертежи', size: '1.2 МБ', type: 'DWG' },
-              ].map((doc, index) => (
-                <Card key={index} className="hover:border-primary transition-colors cursor-pointer">
-                  <CardContent className="p-4 flex items-center justify-between">
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 bg-primary/10 rounded flex items-center justify-center">
-                        <Icon name="FileText" size={24} className="text-primary" />
-                      </div>
-                      <div>
-                        <div className="font-medium">{doc.name}</div>
-                        <div className="text-sm text-muted-foreground">{doc.type} • {doc.size}</div>
-                      </div>
+              <Card className="hover:shadow-md transition-shadow">
+                <CardContent className="p-6 flex items-center justify-between">
+                  <div className="flex items-center gap-4">
+                    <Icon name="FileText" size={32} className="text-primary" />
+                    <div>
+                      <h4 className="font-semibold mb-1">Техническое описание</h4>
+                      <p className="text-sm text-muted-foreground">PDF, 2.5 МБ</p>
                     </div>
-                    <Button variant="ghost" size="icon">
-                      <Icon name="Download" size={20} />
-                    </Button>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          )}
-
-          {activeTab === 'delivery' && (
-            <div className="prose max-w-none">
-              <h3 className="font-heading font-bold text-xl mb-3">Способы доставки</h3>
-              <ul className="space-y-3">
-                <li className="flex items-start gap-3">
-                  <Icon name="Truck" size={20} className="text-primary mt-1" />
-                  <div>
-                    <strong>Транспортные компании</strong>
-                    <p className="text-muted-foreground">СДЭК, ПЭК, Деловые Линии — 3-7 дней</p>
                   </div>
-                </li>
-                <li className="flex items-start gap-3">
-                  <Icon name="Building2" size={20} className="text-primary mt-1" />
-                  <div>
-                    <strong>Самовывоз</strong>
-                    <p className="text-muted-foreground">г. Москва, ул. Примерная, д. 10</p>
+                  <Button variant="outline">
+                    <Icon name="Download" size={16} className="mr-2" />
+                    Скачать
+                  </Button>
+                </CardContent>
+              </Card>
+              <Card className="hover:shadow-md transition-shadow">
+                <CardContent className="p-6 flex items-center justify-between">
+                  <div className="flex items-center gap-4">
+                    <Icon name="FileText" size={32} className="text-primary" />
+                    <div>
+                      <h4 className="font-semibold mb-1">Руководство по эксплуатации</h4>
+                      <p className="text-sm text-muted-foreground">PDF, 3.8 МБ</p>
+                    </div>
                   </div>
-                </li>
-              </ul>
-              <h3 className="font-heading font-bold text-xl mt-6 mb-3">Способы оплаты</h3>
-              <ul className="space-y-2">
-                <li className="flex items-center gap-2">
-                  <Icon name="Check" size={20} className="text-primary" />
-                  <span>Безналичный расчет для юридических лиц</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <Icon name="Check" size={20} className="text-primary" />
-                  <span>Банковские карты (предоплата)</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <Icon name="Check" size={20} className="text-primary" />
-                  <span>Наличные при получении (для физических лиц)</span>
-                </li>
-              </ul>
+                  <Button variant="outline">
+                    <Icon name="Download" size={16} className="mr-2" />
+                    Скачать
+                  </Button>
+                </CardContent>
+              </Card>
+              <Card className="hover:shadow-md transition-shadow">
+                <CardContent className="p-6 flex items-center justify-between">
+                  <div className="flex items-center gap-4">
+                    <Icon name="FileText" size={32} className="text-primary" />
+                    <div>
+                      <h4 className="font-semibold mb-1">Сертификат соответствия</h4>
+                      <p className="text-sm text-muted-foreground">PDF, 1.2 МБ</p>
+                    </div>
+                  </div>
+                  <Button variant="outline">
+                    <Icon name="Download" size={16} className="mr-2" />
+                    Скачать
+                  </Button>
+                </CardContent>
+              </Card>
             </div>
           )}
         </div>
 
-        <section className="py-12 bg-secondary rounded-lg">
-          <div className="container mx-auto px-4">
-            <h2 className="font-heading font-bold text-2xl text-center mb-8">
-              Получить консультацию
-            </h2>
-            <Card className="max-w-2xl mx-auto">
-              <CardContent className="p-6">
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="contact-name">Имя</Label>
-                    <Input id="contact-name" placeholder="Иван Иванов" />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="contact-phone">Телефон</Label>
-                    <Input id="contact-phone" placeholder="+7 (999) 123-45-67" />
-                  </div>
-                  <div className="md:col-span-2 space-y-2">
-                    <Label htmlFor="contact-message">Вопрос</Label>
-                    <Textarea
-                      id="contact-message"
-                      placeholder={`Интересует датчик ${product.name}...`}
-                      rows={3}
-                    />
-                  </div>
-                </div>
-                <Button className="w-full mt-4 bg-accent hover:bg-accent/90">
-                  Отправить запрос
-                </Button>
-              </CardContent>
-            </Card>
-          </div>
-        </section>
+        <div className="bg-secondary p-8 rounded-lg">
+          <h2 className="font-heading font-bold text-2xl mb-6 text-center">
+            Остались вопросы?
+          </h2>
+          <form className="max-w-xl mx-auto space-y-4">
+            <div className="grid sm:grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="name">Имя</Label>
+                <Input id="name" placeholder="Ваше имя" />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="email">Email</Label>
+                <Input id="email" type="email" placeholder="example@email.com" />
+              </div>
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="message">Сообщение</Label>
+              <Textarea id="message" placeholder="Ваш вопрос..." rows={4} />
+            </div>
+            <Button className="w-full" size="lg">
+              Отправить запрос
+            </Button>
+          </form>
+        </div>
       </div>
 
-      <footer className="bg-primary text-white py-12 mt-16">
+      <footer className="bg-secondary mt-16 py-12">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
               <img 
                 src="https://cdn.poehali.dev/files/bf9d6490-da2b-41da-829f-65eea317fd60.png" 
                 alt="МИДАУС" 
-                className="h-10 w-auto mb-4 brightness-0 invert"
+                className="h-10 w-auto mb-4"
               />
-              <p className="text-white/80 text-sm">
-                Российский производитель датчиков давления с 1992 года
+              <p className="text-sm text-muted-foreground">
+                Производство датчиков давления и систем измерения для промышленности
               </p>
             </div>
             <div>
-              <h3 className="font-heading font-semibold mb-4">Продукция</h3>
-              <ul className="space-y-2 text-sm text-white/80">
-                <li><a href="#" className="hover:text-white">Датчики давления</a></li>
-                <li><a href="#" className="hover:text-white">Модули давления</a></li>
-                <li><a href="#" className="hover:text-white">Источники питания</a></li>
+              <h4 className="font-semibold mb-4">Продукция</h4>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li><a href="#" className="hover:text-primary">Датчики давления</a></li>
+                <li><a href="#" className="hover:text-primary">Манометры</a></li>
+                <li><a href="#" className="hover:text-primary">Преобразователи</a></li>
               </ul>
             </div>
             <div>
-              <h3 className="font-heading font-semibold mb-4">Контакты</h3>
-              <ul className="space-y-2 text-sm text-white/80">
+              <h4 className="font-semibold mb-4">Компания</h4>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li><a href="#" className="hover:text-primary">О нас</a></li>
+                <li><a href="#" className="hover:text-primary">Сертификаты</a></li>
+                <li><a href="#" className="hover:text-primary">Контакты</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">Контакты</h4>
+              <ul className="space-y-2 text-sm text-muted-foreground">
                 <li>+7 (495) 123-45-67</li>
                 <li>info@midaus.ru</li>
-                <li>г. Москва, ул. Примерная, д. 10</li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-heading font-semibold mb-4">Документы</h3>
-              <ul className="space-y-2 text-sm text-white/80">
-                <li><a href="#" className="hover:text-white">Сертификаты</a></li>
-                <li><a href="#" className="hover:text-white">Реквизиты</a></li>
-                <li><a href="#" className="hover:text-white">Политика конфиденциальности</a></li>
+                <li>Москва, ул. Примерная, 123</li>
               </ul>
             </div>
           </div>
-          <div className="border-t border-white/20 mt-8 pt-8 text-center text-sm text-white/60">
+          <div className="pt-8 border-t border-border text-center text-sm text-muted-foreground">
             © 2024 МИДАУС. Все права защищены.
           </div>
         </div>
