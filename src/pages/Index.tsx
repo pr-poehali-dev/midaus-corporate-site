@@ -343,7 +343,7 @@ export default function Index() {
                     <img 
                       src="https://cdn.poehali.dev/files/3d07504c-3256-4d06-9827-becf8e1d2716.png"
                       alt="Бушев Константин"
-                      className="w-full h-full object-cover scale-150 object-[center_20%]"
+                      className="w-full h-full object-cover scale-150 object-[center_20%] my-3.5"
                     />
                   </div>
                   <h3 className="font-heading font-bold text-xl mb-1">
@@ -380,7 +380,7 @@ export default function Index() {
                     <img 
                       src="https://cdn.poehali.dev/files/ba1aecfa-bb8c-46bd-b496-5fe035a2f25c.png"
                       alt="Купырин Владимир"
-                      className="w-full h-full object-cover scale-150 object-[center_20%]"
+                      className="w-full h-full object-cover scale-150 object-[center_20%] my-6"
                     />
                   </div>
                   <h3 className="font-heading font-bold text-xl mb-1">
