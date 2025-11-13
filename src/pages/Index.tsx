@@ -471,8 +471,11 @@ export default function Index() {
                   <h3 className="font-heading font-bold text-xl mb-1">
                     Савченко Евгений
                   </h3>
-                  <p className="text-primary font-medium mb-4">
+                  <p className="text-primary font-medium mb-2">
                     Директор по развитию и науке
+                  </p>
+                  <p className="text-sm text-muted-foreground italic mb-2">
+                    Кандидат технических наук
                   </p>
                   <div className="space-y-2 text-sm text-muted-foreground">
                     <div className="flex items-center justify-center gap-2">
