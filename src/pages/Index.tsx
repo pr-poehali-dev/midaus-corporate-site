@@ -634,7 +634,7 @@ export default function Index() {
                     <img 
                       src="https://cdn.poehali.dev/files/7d62bd22-19be-4dc5-99a6-e6fdc092c2e5.png"
                       alt="Маланин Михаил"
-                      className="w-full h-full object-cover my-0 mx-[1px] py-0"
+                      className="w-full h-full object-cover scale-110"
                     />
                   </div>
                   <h3 className="font-heading font-bold text-xl mb-1">
