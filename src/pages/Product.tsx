@@ -92,89 +92,6 @@ const lowerPressureRanges: Record<string, string[]> = {
   'ДИВ': ['0.002', '0.004', '0.006', '0.01', '0.016', '0.025', '0.04', '0.06', '0.1'],
 };
 
-const outputSignals = [
-  { label: '4…20 мА / 2-х пров.', code: '01' },
-  { label: '0…5 мА / 3-х пров.', code: '02' },
-  { label: '0…5 мА / 4-х пров.', code: '04' },
-  { label: '0.4…2 В / 3-х пров.', code: '05/1' },
-  { label: '0.5…4.5 В / 3-х пров.', code: '05/2' },
-  { label: '0…5 В / 4-х пров.', code: '03' },
-  { label: '0…10 В / 3-х пров.', code: '05/4' },
-];
-
-const executions = [
-  { label: 'Стандартное исполнение', code: '' },
-  { label: 'Снижена температурная погрешность', code: 'В' },
-  { label: 'С МИДА-УС-411/412', code: 'УС-411/412' },
-  { label: 'Микропроцессорная обработка', code: 'К' },
-  { label: 'Микропроцессорная с перенастройкой', code: 'КН' },
-];
-
-const mechanicalConnections = [
-  'М20х1.5 ГОСТ 2405',
-  'М20х1.5 DIN 3852',
-  'М20х1.5 открытая мембрана',
-  'М14х1.5 ГОСТ 2405',
-  'М14х1.5 DIN 3852',
-  'М14х1.5 открытая мембрана',
-  'М12х1.5 ГОСТ 2405',
-  'М12х1',
-  'G3/4" EN 837',
-  'G3/4" DIN 3852',
-  'G3/4" открытая мембрана',
-  'G1/2" EN 837',
-  'G1/2" DIN 3852',
-  'G1/2" открытая мембрана',
-  'G1/4" EN 837',
-  'G1/4" DIN 3852',
-  'G1/4" открытая мембрана',
-  '1/2" NPT',
-  '1/4" NPT',
-  'другое',
-];
-
-const explosionProtections = [
-  { label: 'Электрооборудование общего назначения', code: '-' },
-  { label: 'Искробезопасная электрическая цепь', code: 'Ex' },
-  { label: 'Взрывонепроницаемая оболочка', code: 'Вн' },
-  { label: 'Взрывонепроницаемая оболочка со сменным блоком грозозащиты', code: 'Вн-Г' },
-];
-
-const electricalConnections = [
-  { label: 'DIN 43650А', code: 'G' },
-  { label: 'Кабельный ввод (прямой пластиковый)', code: 'ПП' },
-  { label: 'Кабельный ввод (прямой металлический)', code: 'ПМ' },
-  { label: 'Кабельный ввод (угловой пластиковый)', code: 'УП' },
-  { label: 'Кабельный ввод (угловой металлический)', code: 'УМ' },
-  { label: 'Кабельный ввод (прямой под металлорукав)', code: 'ПММ' },
-  { label: 'Кабельный ввод (угловой под металлорукав)', code: 'УММ' },
-  { label: 'Кабельный ввод (прямой под металлопластиковый рукав)', code: 'УММ-15' },
-  { label: 'Кабельный ввод (прямой металлический с усиленным корпусом)', code: 'ПМ1', requiresOpenMembrane: true },
-  { label: 'Кабельный ввод (прямой под бронекабель)', code: 'ПБ', requiresExplosionProof: true },
-  { label: 'Кабельный ввод (угловой под бронекабель)', code: 'УБ', requiresExplosionProof: true },
-  { label: 'Кабельный ввод (угловой трубный)', code: 'УТ', requiresExplosionProof: true },
-  { label: 'Кабельный ввод (прямой трубный)', code: 'ПТ', requiresExplosionProof: true },
-  { label: 'Разъем РСГ4ТВ', code: 'ПР' },
-  { label: 'Разъем РСГ7ТВ', code: 'Р' },
-  { label: 'Разъем 2РМТ22', code: 'УР2' },
-  { label: 'Разъем 2РМТ14', code: 'УР3' },
-  { label: 'Разъем 2РМГ14', code: 'УР4' },
-  { label: 'Разъем 2РМГ22', code: 'УР5' },
-  { label: 'другое', code: 'другое' },
-];
-
-const membraneMaterials = [
-  { label: 'Титановый сплав, нержавеющая сталь (стандарт)', code: '' },
-  { label: 'Титановый сплав', code: 'штуцер титановый' },
-  { label: 'Нержавеющая сталь', code: 'биметал' },
-];
-
-const climateExecutions = [
-  { label: 'УХЛ**3.1', code: 'УХЛ**3.1', maxPressure: 0.025 },
-  { label: 'У**2', code: 'У**2', minPressure: 0.04 },
-  { label: 'У**1', code: 'У**1', requiresSpecialConnection: true },
-];
-
 export default function Product() {
   const { id } = useParams<{ id: string }>();
   const [activeTab, setActiveTab] = useState('description');
@@ -189,13 +106,6 @@ export default function Product() {
     lowerLimit: '',
     lowerLimitCustom: '',
     accuracy: '',
-    outputSignal: '',
-    execution: '',
-    mechanicalConnection: '',
-    electricalConnection: '',
-    explosionProtection: '',
-    membraneMaterial: '',
-    climateExecution: '',
   });
 
   const [showUpperCustomInput, setShowUpperCustomInput] = useState(false);
@@ -214,618 +124,382 @@ export default function Product() {
       'https://cdn.poehali.dev/files/a3f1681a-52dc-44d0-8385-7592e1e0db2e.JPG',
     ],
     'mida-15': [
-      'https://cdn.poehali.dev/files/7a89d217-d4c2-4e24-a104-517e6812f925.JPG',
-      'https://cdn.poehali.dev/files/7a89d217-d4c2-4e24-a104-517e6812f925.JPG',
-      'https://cdn.poehali.dev/files/7a89d217-d4c2-4e24-a104-517e6812f925.JPG',
+      'https://cdn.poehali.dev/files/a3f1681a-52dc-44d0-8385-7592e1e0db2e.JPG',
+      'https://cdn.poehali.dev/files/a3f1681a-52dc-44d0-8385-7592e1e0db2e.JPG',
     ],
     'mida-12': [
-      'https://cdn.poehali.dev/files/be011901-0128-4730-b5b2-1583c9ceb051.JPG',
-      'https://cdn.poehali.dev/files/be011901-0128-4730-b5b2-1583c9ceb051.JPG',
-      'https://cdn.poehali.dev/files/be011901-0128-4730-b5b2-1583c9ceb051.JPG',
+      'https://cdn.poehali.dev/files/a3f1681a-52dc-44d0-8385-7592e1e0db2e.JPG',
+      'https://cdn.poehali.dev/files/a3f1681a-52dc-44d0-8385-7592e1e0db2e.JPG',
     ],
   };
 
-  const images = productImages[id || 'mida-13p'];
+  const images = productImages[id || 'mida-13p'] || productImages['mida-13p'];
 
-  const getOrderCode = () => {
-    let code = 'МИДА-';
-    
-    if (config.pressureType === 'ДИ') code += 'ДИ';
-    else if (config.pressureType === 'ДА') code += 'ДА';
-    else if (config.pressureType === 'ДВ') code += 'ДВ';
-    else if (config.pressureType === 'ДИВ') code += 'ДИВ';
-    
-    code += '-13П';
-    
-    const outputSignal = outputSignals.find(s => s.label === config.outputSignal);
-    if (outputSignal) {
-      code += `-${outputSignal.code}`;
+  const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = parseInt(e.target.value);
+    if (!isNaN(value) && value > 0) {
+      setQuantity(value);
     }
-    
-    const upperValue = showUpperCustomInput ? config.upperLimitCustom : config.upperLimit;
-    const lowerValue = showLowerCustomInput ? config.lowerLimitCustom : config.lowerLimit;
-    
-    if (config.pressureType === 'ДИ' && lowerValue && upperValue) {
-      code += `-${lowerValue.replace('.', ',')}...${upperValue.replace('.', ',')}`;
-    } else if (config.pressureType === 'ДА' && lowerValue && upperValue) {
-      code += `-${lowerValue.replace('.', ',')}...${upperValue.replace('.', ',')}`;
-    } else if (config.pressureType === 'ДВ' && upperValue) {
-      code += `-${upperValue.replace('.', ',')}`;
-    } else if (config.pressureType === 'ДИВ' && lowerValue && upperValue) {
-      code += `-${lowerValue.replace('.', ',')}...${upperValue.replace('.', ',')}`;
-    }
-    
-    if (config.unit) {
-      code += ` ${config.unit}`;
-    }
-    
-    if (config.accuracy) {
-      code += ` (${config.accuracy})`;
-    }
+  };
 
-    const execution = executions.find(e => e.label === config.execution);
-    if (execution && execution.code) {
-      code += ` ${execution.code}`;
-    }
+  const handleConfigChange = (field: string, value: string) => {
+    setConfig(prev => ({ ...prev, [field]: value }));
+  };
 
-    const explosionProtection = explosionProtections.find(e => e.label === config.explosionProtection);
-    if (explosionProtection && explosionProtection.code !== '-') {
-      code += ` ${explosionProtection.code}`;
-    }
+  const handleAddToCart = () => {
+    console.log('Добавлено в корзину:', {
+      product,
+      quantity,
+      config,
+    });
+    alert('Товар добавлен в корзину');
+  };
 
-    const electricalConnection = electricalConnections.find(e => e.label === config.electricalConnection);
-    if (electricalConnection && electricalConnection.code !== 'другое') {
-      code += ` ${electricalConnection.code}`;
+  const generateArticleNumber = () => {
+    const parts = [];
+    parts.push('МИДА-13П');
+    if (config.pressureType) parts.push(config.pressureType);
+    if (config.upperLimit || config.upperLimitCustom) {
+      parts.push(config.upperLimit === 'custom' ? config.upperLimitCustom : config.upperLimit);
     }
+    if (config.unit) parts.push(config.unit);
+    if (config.accuracy) parts.push(config.accuracy);
+    return parts.join('-');
+  };
 
-    const membraneMaterial = membraneMaterials.find(m => m.label === config.membraneMaterial);
-    if (membraneMaterial && membraneMaterial.code) {
-      code += ` ${membraneMaterial.code}`;
-    }
-
-    if (config.climateExecution) {
-      code += ` ${config.climateExecution}`;
-    }
-    
-    return code;
+  const isConfigValid = () => {
+    return (
+      config.pressureType &&
+      config.unit &&
+      (config.upperLimit || config.upperLimitCustom) &&
+      config.accuracy &&
+      (config.pressureType === 'ДА' || config.pressureType === 'ДИВ' ? config.lowerLimit || config.lowerLimitCustom : true)
+    );
   };
 
   useEffect(() => {
-    setConfig(prev => ({
-      ...prev,
+    setConfig({
+      pressureType: '',
+      unit: '',
       upperLimit: '',
       upperLimitCustom: '',
       lowerLimit: '',
       lowerLimitCustom: '',
-    }));
+      accuracy: '',
+    });
     setShowUpperCustomInput(false);
     setShowLowerCustomInput(false);
-  }, [config.pressureType]);
-
-  const showLowerLimitField = config.pressureType && config.pressureType !== 'ДВ';
-
-  const isUnitEnabled = config.pressureType !== '';
-  const isUpperLimitEnabled = isUnitEnabled && config.unit !== '';
-  const isLowerLimitEnabled = isUpperLimitEnabled && (config.upperLimit !== '' || config.upperLimitCustom !== '');
-  const isAccuracyEnabled = showLowerLimitField 
-    ? (isLowerLimitEnabled && (config.lowerLimit !== '' || config.lowerLimitCustom !== ''))
-    : isUpperLimitEnabled && (config.upperLimit !== '' || config.upperLimitCustom !== '');
-  const isOutputSignalEnabled = isAccuracyEnabled && config.accuracy !== '';
-  const isExecutionEnabled = isOutputSignalEnabled && config.outputSignal !== '';
-  const isMechanicalConnectionEnabled = isExecutionEnabled && config.execution !== '';
-  const isExplosionProtectionEnabled = isMechanicalConnectionEnabled && config.mechanicalConnection !== '';
-  const isElectricalConnectionEnabled = isExplosionProtectionEnabled && config.explosionProtection !== '';
-  const isMembraneMaterialEnabled = isElectricalConnectionEnabled && config.electricalConnection !== '';
-  const isClimateExecutionEnabled = isMembraneMaterialEnabled && config.membraneMaterial !== '';
-
-  const availableElectricalConnections = electricalConnections.filter(conn => {
-    if (conn.requiresOpenMembrane) {
-      return config.mechanicalConnection.includes('открытая мембрана');
-    }
-    if (conn.requiresExplosionProof) {
-      return config.explosionProtection === 'Взрывонепроницаемая оболочка' || config.explosionProtection === 'Взрывонепроницаемая оболочка со сменным блоком грозозащиты';
-    }
-    return true;
-  });
-
-  const availableClimateExecutions = climateExecutions.filter(climate => {
-    const upperPressure = parseFloat(showUpperCustomInput ? config.upperLimitCustom : config.upperLimit);
-    
-    if (climate.maxPressure && upperPressure > climate.maxPressure) {
-      return false;
-    }
-    if (climate.minPressure && upperPressure < climate.minPressure) {
-      return false;
-    }
-    if (climate.requiresSpecialConnection) {
-      const electricalCode = electricalConnections.find(e => e.label === config.electricalConnection)?.code || '';
-      return ['УММ', 'ПММ', 'УММ-15', 'УБ', 'УТ'].includes(electricalCode);
-    }
-    return true;
-  });
+  }, [id]);
 
   return (
-    <div className="min-h-screen bg-background">
-      <header className="bg-white border-b border-border sticky top-0 z-50">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2">
-            <img 
-              src="https://cdn.poehali.dev/files/bf9d6490-da2b-41da-829f-65eea317fd60.png" 
-              alt="МИДАУС" 
-              className="h-10 w-auto"
-            />
-          </Link>
-          <Button variant="default">
-            Заказать звонок
-          </Button>
-        </div>
-      </header>
-
+    <div className="min-h-screen bg-gray-50">
       <div className="container mx-auto px-4 py-8">
         <div className="mb-6">
-          <Link to="/" className="inline-flex items-center text-sm text-muted-foreground hover:text-primary">
-            <Icon name="ChevronLeft" size={16} className="mr-1" />
-            Вернуться к каталогу
+          <Link to="/products" className="text-blue-600 hover:text-blue-700 flex items-center gap-2">
+            <Icon name="arrow-left" className="w-4 h-4" />
+            <span>Назад к каталогу</span>
           </Link>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8 mb-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
           <div>
-            <div className="bg-muted rounded-lg overflow-hidden mb-4">
+            <div className="bg-white rounded-lg shadow-md overflow-hidden mb-4">
               <img 
                 src={images[selectedImage]} 
                 alt={product.name}
                 className="w-full h-96 object-cover"
               />
             </div>
-            <div className="grid grid-cols-3 gap-2">
-              {images.map((img, index) => (
+            <div className="flex gap-2 overflow-x-auto">
+              {images.map((image, index) => (
                 <button
                   key={index}
                   onClick={() => setSelectedImage(index)}
-                  className={`border-2 rounded-lg overflow-hidden ${selectedImage === index ? 'border-primary' : 'border-transparent'}`}
+                  className={`flex-shrink-0 w-20 h-20 rounded-md overflow-hidden border-2 ${
+                    selectedImage === index ? 'border-blue-600' : 'border-gray-200'
+                  }`}
                 >
-                  <img src={img} alt={`${product.name} ${index + 1}`} className="w-full h-24 object-cover" />
+                  <img src={image} alt={`${product.name} ${index + 1}`} className="w-full h-full object-cover" />
                 </button>
               ))}
             </div>
           </div>
 
           <div>
-            <h1 className="font-heading font-bold text-4xl mb-4">{product.name}</h1>
-            <p className="text-xl text-muted-foreground mb-6">{product.description}</p>
+            <h1 className="text-3xl font-bold mb-4">{product.name}</h1>
+            <p className="text-gray-600 mb-6">{product.description}</p>
             
-            <div className="flex items-baseline gap-4 mb-6">
-              <span className="font-heading font-bold text-3xl text-primary">от {product.price} ₽</span>
-              <span className="text-sm text-muted-foreground">за единицу</span>
+            <div className="bg-blue-50 p-4 rounded-lg mb-6">
+              <div className="text-3xl font-bold text-blue-600 mb-2">{product.price} ₽</div>
+              <div className="text-sm text-gray-600">Цена за единицу</div>
             </div>
 
-            <div className="flex items-center gap-4 mb-6">
-              <Label>Количество:</Label>
-              <div className="flex items-center gap-2">
-                <Button 
-                  variant="outline" 
-                  size="icon"
-                  onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                >
-                  <Icon name="Minus" size={16} />
-                </Button>
-                <Input 
-                  type="number" 
-                  value={quantity}
-                  onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value) || 1))}
-                  className="w-20 text-center"
+            <div className="flex gap-4 mb-6">
+              <div className="flex-1">
+                <Label htmlFor="quantity">Количество</Label>
+                <Input
+                  id="quantity"
+                  type="number"
                   min="1"
+                  value={quantity}
+                  onChange={handleQuantityChange}
+                  className="w-full"
                 />
-                <Button 
-                  variant="outline" 
-                  size="icon"
-                  onClick={() => setQuantity(quantity + 1)}
-                >
-                  <Icon name="Plus" size={16} />
-                </Button>
               </div>
             </div>
 
-            <div className="flex gap-4">
-              <Button size="lg" className="flex-1">
-                <Icon name="ShoppingCart" size={20} className="mr-2" />
-                В корзину
-              </Button>
-              <Button size="lg" variant="outline">
-                <Icon name="Heart" size={20} />
-              </Button>
-            </div>
+            <Button 
+              onClick={handleAddToCart}
+              className="w-full mb-4"
+              size="lg"
+            >
+              <Icon name="shopping-cart" className="w-5 h-5 mr-2" />
+              Добавить в корзину
+            </Button>
+
+            <Button 
+              variant="outline"
+              className="w-full"
+              size="lg"
+            >
+              <Icon name="phone" className="w-5 h-5 mr-2" />
+              Запросить консультацию
+            </Button>
           </div>
         </div>
 
-        <div className="mb-12">
-          <div className="border-b border-border mb-6">
-            <div className="flex gap-8">
-              {['description', 'specs', 'configurator'].map((tab) => (
-                <button
-                  key={tab}
-                  onClick={() => setActiveTab(tab)}
-                  className={`pb-4 px-2 font-medium transition-colors relative ${
-                    activeTab === tab 
-                      ? 'text-primary' 
-                      : 'text-muted-foreground hover:text-foreground'
-                  }`}
-                >
-                  {tab === 'description' && 'Описание'}
-                  {tab === 'specs' && 'Характеристики'}
-                  {tab === 'configurator' && 'Конфигуратор'}
-                  {activeTab === tab && (
-                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary"></div>
-                  )}
-                </button>
-              ))}
+        <div className="bg-white rounded-lg shadow-md">
+          <div className="border-b">
+            <div className="flex">
+              <button
+                className={`px-6 py-4 font-medium ${
+                  activeTab === 'description'
+                    ? 'border-b-2 border-blue-600 text-blue-600'
+                    : 'text-gray-600 hover:text-gray-900'
+                }`}
+                onClick={() => setActiveTab('description')}
+              >
+                Описание
+              </button>
+              <button
+                className={`px-6 py-4 font-medium ${
+                  activeTab === 'specs'
+                    ? 'border-b-2 border-blue-600 text-blue-600'
+                    : 'text-gray-600 hover:text-gray-900'
+                }`}
+                onClick={() => setActiveTab('specs')}
+              >
+                Характеристики
+              </button>
+              <button
+                className={`px-6 py-4 font-medium ${
+                  activeTab === 'configurator'
+                    ? 'border-b-2 border-blue-600 text-blue-600'
+                    : 'text-gray-600 hover:text-gray-900'
+                }`}
+                onClick={() => setActiveTab('configurator')}
+              >
+                Конфигуратор
+              </button>
             </div>
           </div>
 
-          {activeTab === 'description' && (
-            <div className="space-y-6">
+          <div className="p-6">
+            {activeTab === 'description' && (
               <div>
-                <h3 className="font-heading font-semibold text-2xl mb-4">Особенности</h3>
-                <ul className="space-y-3">
+                <h2 className="text-2xl font-bold mb-4">Описание продукта</h2>
+                <p className="text-gray-700 mb-6">{product.description}</p>
+                
+                <h3 className="text-xl font-semibold mb-3">Особенности</h3>
+                <ul className="space-y-2">
                   {product.features.map((feature, index) => (
-                    <li key={index} className="flex items-start gap-3">
-                      <Icon name="CheckCircle2" size={20} className="text-primary flex-shrink-0 mt-0.5" />
-                      <span>{feature}</span>
+                    <li key={index} className="flex items-start gap-2">
+                      <Icon name="check-circle" className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-700">{feature}</span>
                     </li>
                   ))}
                 </ul>
               </div>
-            </div>
-          )}
+            )}
 
-          {activeTab === 'specs' && (
-            <div>
-              <h3 className="font-heading font-semibold text-2xl mb-6">Технические характеристики</h3>
-              <div className="grid gap-4">
-                {product.specs.map((spec, index) => (
-                  <div key={index} className="flex justify-between py-3 border-b border-border">
-                    <span className="text-muted-foreground">{spec.label}</span>
-                    <span className="font-medium text-right">{spec.value}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {activeTab === 'configurator' && (
-            <div>
-              <h3 className="font-heading font-semibold text-2xl mb-6">Конфигуратор МИДА-13П</h3>
-              
-              <Card className="mb-6">
-                <CardContent className="p-6">
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                      <Label>Тип давления</Label>
-                      <Select value={config.pressureType} onValueChange={(value) => setConfig({...config, pressureType: value})}>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Выберите тип" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="ДИ">Избыточное (ДИ)</SelectItem>
-                          <SelectItem value="ДА">Абсолютное (ДА)</SelectItem>
-                          <SelectItem value="ДВ">Давление-разрежение (ДВ)</SelectItem>
-                          <SelectItem value="ДИВ">Избыточное давление-разрежение (ДИВ)</SelectItem>
-                        </SelectContent>
-                      </Select>
+            {activeTab === 'specs' && (
+              <div>
+                <h2 className="text-2xl font-bold mb-4">Технические характеристики</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {product.specs.map((spec, index) => (
+                    <div key={index} className="border-b pb-3">
+                      <div className="text-sm text-gray-600 mb-1">{spec.label}</div>
+                      <div className="font-medium">{spec.value}</div>
                     </div>
+                  ))}
+                </div>
+              </div>
+            )}
 
-                    <div className="space-y-2">
-                      <Label>Единица измерения</Label>
-                      <Select 
-                        value={config.unit} 
-                        onValueChange={(value) => setConfig({...config, unit: value})}
-                        disabled={!isUnitEnabled}
+            {activeTab === 'configurator' && (
+              <div>
+                <h2 className="text-2xl font-bold mb-4">Конфигуратор изделия</h2>
+                <p className="text-gray-600 mb-6">
+                  Настройте параметры датчика согласно вашим требованиям
+                </p>
+
+                <div className="space-y-6">
+                  <div>
+                    <Label htmlFor="pressureType">Тип давления</Label>
+                    <Select
+                      value={config.pressureType}
+                      onValueChange={(value) => {
+                        handleConfigChange('pressureType', value);
+                        handleConfigChange('upperLimit', '');
+                        handleConfigChange('lowerLimit', '');
+                        setShowUpperCustomInput(false);
+                        setShowLowerCustomInput(false);
+                      }}
+                    >
+                      <SelectTrigger id="pressureType">
+                        <SelectValue placeholder="Выберите тип давления" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="ДИ">ДИ - Избыточное давление</SelectItem>
+                        <SelectItem value="ДА">ДА - Абсолютное давление</SelectItem>
+                        <SelectItem value="ДВ">ДВ - Вакуумметрическое давление</SelectItem>
+                        <SelectItem value="ДИВ">ДИВ - Избыточно-вакуумметрическое давление</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  {config.pressureType && (
+                    <div>
+                      <Label htmlFor="unit">Единица измерения</Label>
+                      <Select
+                        value={config.unit}
+                        onValueChange={(value) => handleConfigChange('unit', value)}
                       >
-                        <SelectTrigger>
-                          <SelectValue placeholder="Выберите единицу" />
+                        <SelectTrigger id="unit">
+                          <SelectValue placeholder="Выберите единицу измерения" />
                         </SelectTrigger>
                         <SelectContent>
                           <SelectItem value="МПа">МПа</SelectItem>
                           <SelectItem value="кПа">кПа</SelectItem>
+                          <SelectItem value="кгс/см²">кгс/см²</SelectItem>
                           <SelectItem value="бар">бар</SelectItem>
-                          <SelectItem value="кгс/см2">кгс/см²</SelectItem>
-                          <SelectItem value="psi">psi</SelectItem>
-                          <SelectItem value="мм рт. ст.">мм рт. ст.</SelectItem>
-                          <SelectItem value="м вод. ст.">м вод. ст.</SelectItem>
-                          <SelectItem value="другая">другая</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
+                  )}
 
-                    <div className="space-y-2">
-                      <Label>Верхний предел измерения</Label>
-                      {!showUpperCustomInput ? (
-                        <div className="flex gap-2">
-                          <Select 
-                            value={config.upperLimit} 
-                            onValueChange={(value) => {
-                              if (value === 'custom') {
-                                setShowUpperCustomInput(true);
-                              } else {
-                                setConfig({...config, upperLimit: value});
-                              }
-                            }}
-                            disabled={!isUpperLimitEnabled}
-                          >
-                            <SelectTrigger>
-                              <SelectValue placeholder="Выберите предел" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              {config.pressureType && pressureRanges[config.pressureType]?.map((range) => (
-                                <SelectItem key={range} value={range}>
-                                  {config.pressureType === 'ДВ' ? `-${range}` : range} МПа
-                                </SelectItem>
-                              ))}
-                              <SelectItem value="custom">Другой (ввести вручную)</SelectItem>
-                            </SelectContent>
-                          </Select>
-                        </div>
-                      ) : (
-                        <div className="flex gap-2">
-                          <Input
-                            type="number"
-                            step="0.001"
-                            value={config.upperLimitCustom}
-                            onChange={(e) => setConfig({...config, upperLimitCustom: e.target.value})}
-                            placeholder="Введите значение"
-                          />
-                          <Button 
-                            variant="outline" 
-                            size="icon"
-                            onClick={() => {
-                              setShowUpperCustomInput(false);
-                              setConfig({...config, upperLimitCustom: ''});
-                            }}
-                          >
-                            <Icon name="X" size={16} />
-                          </Button>
-                        </div>
+                  {(config.pressureType === 'ДА' || config.pressureType === 'ДИВ') && (
+                    <div>
+                      <Label htmlFor="lowerLimit">Нижний предел измерения</Label>
+                      <Select
+                        value={config.lowerLimit}
+                        onValueChange={(value) => {
+                          handleConfigChange('lowerLimit', value);
+                          setShowLowerCustomInput(value === 'custom');
+                        }}
+                      >
+                        <SelectTrigger id="lowerLimit">
+                          <SelectValue placeholder="Выберите нижний предел" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {lowerPressureRanges[config.pressureType]?.map((range) => (
+                            <SelectItem key={range} value={range}>
+                              {range} {config.unit || 'МПа'}
+                            </SelectItem>
+                          ))}
+                          <SelectItem value="custom">Другое значение</SelectItem>
+                        </SelectContent>
+                      </Select>
+                      {showLowerCustomInput && (
+                        <Input
+                          placeholder="Введите нижний предел"
+                          value={config.lowerLimitCustom}
+                          onChange={(e) => handleConfigChange('lowerLimitCustom', e.target.value)}
+                          className="mt-2"
+                        />
                       )}
                     </div>
+                  )}
 
-                    {showLowerLimitField && (
-                      <div className="space-y-2">
-                        <Label>Нижний предел измерения</Label>
-                        {config.pressureType === 'ДИ' ? (
-                          <Input
-                            type="number"
-                            step="0.001"
-                            value={config.lowerLimitCustom}
-                            onChange={(e) => setConfig({...config, lowerLimitCustom: e.target.value})}
-                            placeholder="Введите значение"
-                            disabled={!isLowerLimitEnabled}
-                          />
-                        ) : !showLowerCustomInput ? (
-                          <div className="flex gap-2">
-                            <Select 
-                              value={config.lowerLimit} 
-                              onValueChange={(value) => {
-                                if (value === 'custom') {
-                                  setShowLowerCustomInput(true);
-                                } else {
-                                  setConfig({...config, lowerLimit: value});
-                                }
-                              }}
-                              disabled={!isLowerLimitEnabled}
-                            >
-                              <SelectTrigger>
-                                <SelectValue placeholder="Выберите предел" />
-                              </SelectTrigger>
-                              <SelectContent>
-                                {config.pressureType && lowerPressureRanges[config.pressureType]?.map((range) => (
-                                  <SelectItem key={range} value={range}>
-                                    {config.pressureType === 'ДИВ' ? `-${range}` : range} МПа
-                                  </SelectItem>
-                                ))}
-                                <SelectItem value="custom">Другой (ввести вручную)</SelectItem>
-                              </SelectContent>
-                            </Select>
-                          </div>
-                        ) : (
-                          <div className="flex gap-2">
-                            <Input
-                              type="number"
-                              step="0.001"
-                              value={config.lowerLimitCustom}
-                              onChange={(e) => setConfig({...config, lowerLimitCustom: e.target.value})}
-                              placeholder="Введите значение"
-                            />
-                            <Button 
-                              variant="outline" 
-                              size="icon"
-                              onClick={() => {
-                                setShowLowerCustomInput(false);
-                                setConfig({...config, lowerLimitCustom: ''});
-                              }}
-                            >
-                              <Icon name="X" size={16} />
-                            </Button>
-                          </div>
-                        )}
-                      </div>
-                    )}
-
-                    <div className="space-y-2">
-                      <Label>Погрешность</Label>
-                      <Select 
-                        value={config.accuracy} 
-                        onValueChange={(value) => setConfig({...config, accuracy: value})}
-                        disabled={!isAccuracyEnabled}
+                  {config.pressureType && (
+                    <div>
+                      <Label htmlFor="upperLimit">Верхний предел измерения</Label>
+                      <Select
+                        value={config.upperLimit}
+                        onValueChange={(value) => {
+                          handleConfigChange('upperLimit', value);
+                          setShowUpperCustomInput(value === 'custom');
+                        }}
                       >
-                        <SelectTrigger>
-                          <SelectValue placeholder="Выберите погрешность" />
+                        <SelectTrigger id="upperLimit">
+                          <SelectValue placeholder="Выберите верхний предел" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="±0.15%">±0.15%</SelectItem>
-                          <SelectItem value="±0.2%">±0.2%</SelectItem>
-                          <SelectItem value="±0.25%">±0.25%</SelectItem>
-                          <SelectItem value="±0.5%">±0.5%</SelectItem>
-                          <SelectItem value="±1%">±1%</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label>Выходной сигнал</Label>
-                      <Select 
-                        value={config.outputSignal} 
-                        onValueChange={(value) => setConfig({...config, outputSignal: value})}
-                        disabled={!isOutputSignalEnabled}
-                      >
-                        <SelectTrigger>
-                          <SelectValue placeholder="Выберите сигнал" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {outputSignals.map((signal) => (
-                            <SelectItem key={signal.code} value={signal.label}>
-                              {signal.label}
+                          {pressureRanges[config.pressureType]?.map((range) => (
+                            <SelectItem key={range} value={range}>
+                              {range} {config.unit || 'МПа'}
                             </SelectItem>
                           ))}
+                          <SelectItem value="custom">Другое значение</SelectItem>
                         </SelectContent>
                       </Select>
+                      {showUpperCustomInput && (
+                        <Input
+                          placeholder="Введите верхний предел"
+                          value={config.upperLimitCustom}
+                          onChange={(e) => handleConfigChange('upperLimitCustom', e.target.value)}
+                          className="mt-2"
+                        />
+                      )}
                     </div>
+                  )}
 
-                    <div className="space-y-2">
-                      <Label>Исполнение</Label>
-                      <Select 
-                        value={config.execution} 
-                        onValueChange={(value) => setConfig({...config, execution: value})}
-                        disabled={!isExecutionEnabled}
-                      >
-                        <SelectTrigger>
-                          <SelectValue placeholder="Выберите исполнение" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {executions.map((execution) => (
-                            <SelectItem key={execution.code} value={execution.label}>
-                              {execution.label}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label>Механическое присоединение</Label>
-                      <Select 
-                        value={config.mechanicalConnection} 
-                        onValueChange={(value) => setConfig({...config, mechanicalConnection: value})}
-                        disabled={!isMechanicalConnectionEnabled}
-                      >
-                        <SelectTrigger>
-                          <SelectValue placeholder="Выберите присоединение" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {mechanicalConnections.map((connection) => (
-                            <SelectItem key={connection} value={connection}>
-                              {connection}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label>Вид взрывозащиты</Label>
-                      <Select 
-                        value={config.explosionProtection} 
-                        onValueChange={(value) => setConfig({...config, explosionProtection: value})}
-                        disabled={!isExplosionProtectionEnabled}
-                      >
-                        <SelectTrigger>
-                          <SelectValue placeholder="Выберите вид" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {explosionProtections.map((protection) => (
-                            <SelectItem key={protection.code} value={protection.label}>
-                              {protection.label}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label>Электрическое присоединение</Label>
-                      <Select 
-                        value={config.electricalConnection} 
-                        onValueChange={(value) => setConfig({...config, electricalConnection: value})}
-                        disabled={!isElectricalConnectionEnabled}
-                      >
-                        <SelectTrigger>
-                          <SelectValue placeholder="Выберите присоединение" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {availableElectricalConnections.map((connection) => (
-                            <SelectItem key={connection.code} value={connection.label}>
-                              {connection.label}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label>Материал мембраны</Label>
-                      <Select 
-                        value={config.membraneMaterial} 
-                        onValueChange={(value) => setConfig({...config, membraneMaterial: value})}
-                        disabled={!isMembraneMaterialEnabled}
-                      >
-                        <SelectTrigger>
-                          <SelectValue placeholder="Выберите материал" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {membraneMaterials.map((material) => (
-                            <SelectItem key={material.code} value={material.label}>
-                              {material.label}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label>Климатическое исполнение</Label>
-                      <Select 
-                        value={config.climateExecution} 
-                        onValueChange={(value) => setConfig({...config, climateExecution: value})}
-                        disabled={!isClimateExecutionEnabled}
-                      >
-                        <SelectTrigger>
-                          <SelectValue placeholder="Выберите исполнение" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {availableClimateExecutions.map((climate) => (
-                            <SelectItem key={climate.code} value={climate.code}>
-                              {climate.label}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    </div>
+                  <div>
+                    <Label htmlFor="accuracy">Класс точности</Label>
+                    <Select
+                      value={config.accuracy}
+                      onValueChange={(value) => handleConfigChange('accuracy', value)}
+                    >
+                      <SelectTrigger id="accuracy">
+                        <SelectValue placeholder="Выберите класс точности" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="0.1">0.1%</SelectItem>
+                        <SelectItem value="0.25">0.25%</SelectItem>
+                        <SelectItem value="0.5">0.5%</SelectItem>
+                      </SelectContent>
+                    </Select>
                   </div>
-                </CardContent>
-              </Card>
 
-              {getOrderCode() !== 'МИДА--13П' && (
-                <Card>
-                  <CardContent className="p-6">
-                    <h4 className="font-heading font-semibold text-lg mb-4">Код заказа</h4>
-                    <div className="bg-secondary p-4 rounded-lg font-mono text-lg">
-                      {getOrderCode()}
-                    </div>
-                  </CardContent>
-                </Card>
-              )}
-            </div>
-          )}
+                  {isConfigValid() && (
+                    <Card className="bg-blue-50 border-blue-200">
+                      <CardContent className="pt-6">
+                        <h3 className="font-semibold mb-2">Артикул изделия:</h3>
+                        <p className="text-lg font-mono">{generateArticleNumber()}</p>
+                      </CardContent>
+                    </Card>
+                  )}
+
+                  <div>
+                    <Label htmlFor="comments">Дополнительные пожелания</Label>
+                    <Textarea
+                      id="comments"
+                      placeholder="Укажите дополнительные требования к изделию"
+                      rows={4}
+                    />
+                  </div>
+
+                  <Button 
+                    className="w-full"
+                    size="lg"
+                    disabled={!isConfigValid()}
+                  >
+                    Отправить запрос
+                  </Button>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>
