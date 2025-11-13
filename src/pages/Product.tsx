@@ -631,12 +631,12 @@ export default function Product() {
         </div>
 
         <div className="mb-12">
-          <div className="flex gap-2 border-b border-border mb-6">
-            {['specs', 'docs'].map((tab) => (
+          <div className="flex gap-2 border-b border-border mb-6 overflow-x-auto">
+            {['specs', 'docs', 'howto'].map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`px-6 py-3 font-medium transition-colors ${
+                className={`px-6 py-3 font-medium transition-colors whitespace-nowrap ${
                   activeTab === tab
                     ? 'text-primary border-b-2 border-primary'
                     : 'text-muted-foreground hover:text-foreground'
@@ -644,6 +644,7 @@ export default function Product() {
               >
                 {tab === 'specs' && 'Технические характеристики'}
                 {tab === 'docs' && 'Документация'}
+                {tab === 'howto' && 'Как работать с датчиками'}
               </button>
             ))}
           </div>
@@ -704,6 +705,64 @@ export default function Product() {
                     <Icon name="Download" size={16} className="mr-2" />
                     Скачать
                   </Button>
+                </CardContent>
+              </Card>
+            </div>
+          )}
+
+          {activeTab === 'howto' && (
+            <div className="space-y-6">
+              <Card className="overflow-hidden">
+                <CardContent className="p-0">
+                  <div className="relative rounded-lg overflow-hidden" style={{ paddingBottom: '56.25%' }}>
+                    <iframe
+                      src="https://rutube.ru/play/embed/ae55921aae3fd7ca1e132823d8f1cd39"
+                      frameBorder="0"
+                      allow="clipboard-write; autoplay"
+                      allowFullScreen
+                      className="absolute inset-0 w-full h-full"
+                    />
+                  </div>
+                  <div className="p-4 bg-secondary">
+                    <h4 className="font-semibold mb-1">Видео 1: Основы работы с датчиками давления</h4>
+                    <p className="text-sm text-muted-foreground">Введение в принципы работы и подключения датчиков</p>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="overflow-hidden">
+                <CardContent className="p-0">
+                  <div className="relative rounded-lg overflow-hidden" style={{ paddingBottom: '56.25%' }}>
+                    <iframe
+                      src="https://rutube.ru/play/embed/d57f45343d112ff987668287f77972d2"
+                      frameBorder="0"
+                      allow="clipboard-write; autoplay"
+                      allowFullScreen
+                      className="absolute inset-0 w-full h-full"
+                    />
+                  </div>
+                  <div className="p-4 bg-secondary">
+                    <h4 className="font-semibold mb-1">Видео 2: Настройка и калибровка датчиков</h4>
+                    <p className="text-sm text-muted-foreground">Пошаговая инструкция по настройке параметров</p>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="overflow-hidden">
+                <CardContent className="p-0">
+                  <div className="relative rounded-lg overflow-hidden" style={{ paddingBottom: '56.25%' }}>
+                    <iframe
+                      src="https://rutube.ru/play/embed/37e56c1e3eb530deae95ab598195cfea"
+                      frameBorder="0"
+                      allow="clipboard-write; autoplay"
+                      allowFullScreen
+                      className="absolute inset-0 w-full h-full"
+                    />
+                  </div>
+                  <div className="p-4 bg-secondary">
+                    <h4 className="font-semibold mb-1">Видео 3: Обслуживание и диагностика</h4>
+                    <p className="text-sm text-muted-foreground">Рекомендации по эксплуатации и решению проблем</p>
+                  </div>
                 </CardContent>
               </Card>
             </div>
