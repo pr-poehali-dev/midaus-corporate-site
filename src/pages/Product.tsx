@@ -73,6 +73,7 @@ export default function Product() {
   const [activeTab, setActiveTab] = useState('specs');
   const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
+  const [showPriceModal, setShowPriceModal] = useState(false);
   
   const [config, setConfig] = useState({
     pressureType: '',
@@ -610,7 +611,7 @@ export default function Product() {
 
 
             <div className="flex flex-col sm:flex-row gap-3 mt-6">
-              <Button className="flex-1" size="lg">
+              <Button className="flex-1" size="lg" onClick={() => setShowPriceModal(true)}>
                 <Icon name="DollarSign" size={20} className="mr-2" />
                 Запросить цену
               </Button>
@@ -831,6 +832,61 @@ export default function Product() {
           </div>
         </div>
       </footer>
+
+      {showPriceModal && (
+        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4" onClick={() => setShowPriceModal(false)}>
+          <Card className="max-w-md w-full" onClick={(e) => e.stopPropagation()}>
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="font-heading font-bold text-xl">Запросить цену</h3>
+                <Button variant="ghost" size="icon" onClick={() => setShowPriceModal(false)}>
+                  <Icon name="X" size={20} />
+                </Button>
+              </div>
+              <p className="text-sm text-muted-foreground mb-6">
+                Заполните форму, и мы отправим вам коммерческое предложение с актуальными ценами на {product.name}
+              </p>
+              <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); setShowPriceModal(false); }}>
+                <div className="space-y-2">
+                  <Label htmlFor="modal-name">Имя *</Label>
+                  <Input id="modal-name" placeholder="Иван Иванов" required />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="modal-company">Компания *</Label>
+                  <Input id="modal-company" placeholder="ООО Компания" required />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="modal-phone">Телефон *</Label>
+                  <Input id="modal-phone" placeholder="+7 (999) 123-45-67" required />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="modal-email">Email *</Label>
+                  <Input id="modal-email" type="email" placeholder="email@company.ru" required />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="modal-quantity">Количество</Label>
+                  <Input id="modal-quantity" type="number" min="1" defaultValue="1" />
+                </div>
+                {config.pressureType && (
+                  <div className="p-3 bg-secondary rounded-lg">
+                    <p className="text-xs text-muted-foreground mb-1">Конфигурация:</p>
+                    <p className="font-mono text-sm">{getOrderCode()}</p>
+                  </div>
+                )}
+                <div className="flex gap-3 pt-2">
+                  <Button type="submit" className="flex-1">
+                    <Icon name="Send" size={16} className="mr-2" />
+                    Отправить запрос
+                  </Button>
+                  <Button type="button" variant="outline" onClick={() => setShowPriceModal(false)}>
+                    Отмена
+                  </Button>
+                </div>
+              </form>
+            </CardContent>
+          </Card>
+        </div>
+      )}
     </div>
   );
 }
