@@ -865,11 +865,14 @@ export default function Index() {
                 ООО «МИДАУС» — разработка и производство высокоточных датчиков давления по технологии «кремний на сапфире» для промышленности.
               </p>
               <div className="flex gap-3">
-                <a href="#" className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-colors">
+                <a href="mailto:info@midaus.ru" className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-colors" aria-label="Email">
                   <Icon name="Mail" size={20} />
                 </a>
-                <a href="#" className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-colors">
+                <a href="tel:+78422360363" className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-colors" aria-label="Телефон">
                   <Icon name="Phone" size={20} />
+                </a>
+                <a href="https://rutube.ru/channel/30623596" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-colors" aria-label="RuTube канал">
+                  <Icon name="Youtube" size={20} />
                 </a>
               </div>
             </div>
