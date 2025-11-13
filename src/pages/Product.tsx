@@ -20,21 +20,13 @@ const productsData: Record<string, {
     description: 'Общепромышленный датчик давления',
     price: '12 500',
     specs: [
-      { label: 'Диапазон измерений', value: '0...0,1 МПа' },
-      { label: 'Точность', value: '±0,25% от диапазона измерений' },
-      { label: 'Выходной сигнал', value: '4...20 мА' },
-      { label: 'Напряжение питания', value: '12...36 В' },
-      { label: 'Температура эксплуатации', value: '-40...+85 °C' },
-      { label: 'Степень защиты', value: 'IP65' },
-      { label: 'Присоединение к процессу', value: 'G1/2" (М20х1,5)' },
-      { label: 'Материал корпуса', value: 'Нержавеющая сталь 12Х18Н10Т' },
+      { label: 'Область применения', value: 'общепромышленные системы контроля и регулирования, в т. ч. атомная электроэнергетика' },
+      { label: 'Рабочая среда', value: 'жидкости и газы, неагрессивные к титановым сплавам и нержавеющим сталям' },
+      { label: 'Номер в Госреестре средств измерения РФ', value: '17636 - 17' },
+      { label: 'Межповерочный интервал', value: '5 лет' },
+      { label: 'Пылевлагозащищенность', value: 'IP65' },
     ],
-    features: [
-      'Технология «кремний на сапфире» обеспечивает высокую точность и долговременную стабильность',
-      'Широкий диапазон рабочих температур от -40 до +85°C',
-      'Высокая степень защиты корпуса IP65',
-      'Устойчивость к вибрационным и ударным нагрузкам',
-    ],
+    features: [],
   },
   'mida-15': {
     name: 'МИДА-15',
@@ -94,7 +86,7 @@ const lowerPressureRanges = {
 
 export default function Product() {
   const { id } = useParams<{ id: string }>();
-  const [activeTab, setActiveTab] = useState('description');
+  const [activeTab, setActiveTab] = useState('specs');
   const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
   
@@ -262,7 +254,7 @@ export default function Product() {
                 className="w-full h-auto object-contain max-h-96"
               />
             </div>
-            <div className="flex gap-2">
+            <div className="flex gap-2 mb-4">
               {images.map((img, index) => (
                 <button
                   key={index}
@@ -275,6 +267,26 @@ export default function Product() {
                 </button>
               ))}
             </div>
+
+            {id === 'mida-13p' && (
+              <Card className="overflow-hidden">
+                <CardContent className="p-0">
+                  <div className="relative rounded-lg overflow-hidden" style={{ paddingBottom: '56.25%' }}>
+                    <iframe
+                      src="https://rutube.ru/play/embed/869b65d10a3dcb9242d5d78a78a442c3"
+                      frameBorder="0"
+                      allow="clipboard-write; autoplay"
+                      allowFullScreen
+                      className="absolute inset-0 w-full h-full"
+                    />
+                  </div>
+                  <div className="p-4 bg-secondary">
+                    <h4 className="font-semibold mb-1">Видеообзор МИДА-13П</h4>
+                    <p className="text-sm text-muted-foreground">Подробный обзор датчика и его возможностей</p>
+                  </div>
+                </CardContent>
+              </Card>
+            )}
           </div>
 
           <div>
@@ -610,7 +622,7 @@ export default function Product() {
 
         <div className="mb-12">
           <div className="flex gap-2 border-b border-border mb-6">
-            {['description', 'specs', 'docs'].map((tab) => (
+            {['specs', 'docs'].map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
@@ -620,33 +632,18 @@ export default function Product() {
                     : 'text-muted-foreground hover:text-foreground'
                 }`}
               >
-                {tab === 'description' && 'Описание'}
                 {tab === 'specs' && 'Технические характеристики'}
                 {tab === 'docs' && 'Документация'}
               </button>
             ))}
           </div>
 
-          {activeTab === 'description' && (
-            <div className="prose max-w-none">
-              <h3 className="font-heading font-bold text-2xl mb-4">Преимущества</h3>
-              <ul className="space-y-3">
-                {product.features.map((feature, index) => (
-                  <li key={index} className="flex items-start gap-3">
-                    <Icon name="CheckCircle" size={20} className="text-primary mt-1 flex-shrink-0" />
-                    <span>{feature}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-
           {activeTab === 'specs' && (
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="space-y-4">
               {product.specs.map((spec, index) => (
-                <div key={index} className="flex justify-between items-center p-4 bg-secondary rounded-lg">
-                  <span className="font-medium">{spec.label}</span>
-                  <span className="text-muted-foreground">{spec.value}</span>
+                <div key={index} className="p-4 bg-secondary rounded-lg">
+                  <div className="font-semibold text-lg mb-2">{spec.label}</div>
+                  <div className="text-muted-foreground">{spec.value}</div>
                 </div>
               ))}
             </div>
