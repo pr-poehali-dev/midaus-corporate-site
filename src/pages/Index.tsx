@@ -115,6 +115,9 @@ export default function Index() {
             <a href="#solutions" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
               Решения
             </a>
+            <Link to="/software" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
+              Программное обеспечение
+            </Link>
             <a href="#about" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
               О компании
             </a>
@@ -160,10 +163,18 @@ export default function Index() {
             >
               Решения
             </a>
+            <Link 
+              to="/software" 
+              className="text-sm font-medium text-foreground hover:text-primary transition-colors animate-slide-up"
+              style={{ animationDelay: '150ms' }}
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Программное обеспечение
+            </Link>
             <a 
               href="#about" 
               className="text-sm font-medium text-foreground hover:text-primary transition-colors animate-slide-up"
-              style={{ animationDelay: '150ms' }}
+              style={{ animationDelay: '200ms' }}
               onClick={() => setMobileMenuOpen(false)}
             >
               О компании
@@ -171,7 +182,7 @@ export default function Index() {
             <a 
               href="#specialists" 
               className="text-sm font-medium text-foreground hover:text-primary transition-colors animate-slide-up"
-              style={{ animationDelay: '200ms' }}
+              style={{ animationDelay: '250ms' }}
               onClick={() => setMobileMenuOpen(false)}
             >
               Специалисты
@@ -179,7 +190,7 @@ export default function Index() {
             <a 
               href="#support" 
               className="text-sm font-medium text-foreground hover:text-primary transition-colors animate-slide-up"
-              style={{ animationDelay: '250ms' }}
+              style={{ animationDelay: '300ms' }}
               onClick={() => setMobileMenuOpen(false)}
             >
               Поддержка

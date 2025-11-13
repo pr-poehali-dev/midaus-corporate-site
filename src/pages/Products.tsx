@@ -52,6 +52,9 @@ export default function Products() {
             <Link to="/#solutions" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
               Решения
             </Link>
+            <Link to="/software" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
+              Программное обеспечение
+            </Link>
             <Link to="/#about" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
               О компании
             </Link>
