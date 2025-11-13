@@ -654,6 +654,26 @@ export default function Product() {
 
           {activeTab === 'docs' && (
             <div className="space-y-4">
+              {id === 'mida-13p' && (
+                <Card className="hover:shadow-md transition-shadow overflow-hidden">
+                  <CardContent className="p-0">
+                    <div className="relative rounded-lg overflow-hidden" style={{ paddingBottom: '56.25%' }}>
+                      <iframe
+                        src="https://rutube.ru/play/embed/869b65d10a3dcb9242d5d78a78a442c3"
+                        frameBorder="0"
+                        allow="clipboard-write; autoplay"
+                        allowFullScreen
+                        className="absolute inset-0 w-full h-full"
+                      />
+                    </div>
+                    <div className="p-4">
+                      <h4 className="font-semibold">Видеообзор МИДА-13П</h4>
+                      <p className="text-sm text-muted-foreground">Подробный обзор датчика и его возможностей</p>
+                    </div>
+                  </CardContent>
+                </Card>
+              )}
+              
               <Card className="hover:shadow-md transition-shadow">
                 <CardContent className="p-6 flex items-center justify-between">
                   <div className="flex items-center gap-4">
