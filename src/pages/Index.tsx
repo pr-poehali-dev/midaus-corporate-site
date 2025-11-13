@@ -17,6 +17,7 @@ export default function Index() {
   const [recommendedSeries, setRecommendedSeries] = useState<string[]>([]);
   const [visibleSections, setVisibleSections] = useState<Set<string>>(new Set());
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const sectionRefs = useRef<{ [key: string]: HTMLElement | null }>({});
 
   useEffect(() => {
@@ -127,10 +128,60 @@ export default function Index() {
           <Button variant="default" className="hidden md:flex">
             Заказать звонок
           </Button>
-          <Button variant="ghost" size="icon" className="md:hidden">
-            <Icon name="Menu" size={24} />
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            className="md:hidden"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            <Icon name={mobileMenuOpen ? "X" : "Menu"} size={24} />
           </Button>
         </div>
+        
+        {mobileMenuOpen && (
+          <div className="md:hidden border-t border-border bg-white">
+            <nav className="container mx-auto px-4 py-4 flex flex-col gap-4">
+              <a 
+                href="#products" 
+                className="text-sm font-medium text-foreground hover:text-primary transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Продукция
+              </a>
+              <a 
+                href="#solutions" 
+                className="text-sm font-medium text-foreground hover:text-primary transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Решения
+              </a>
+              <a 
+                href="#about" 
+                className="text-sm font-medium text-foreground hover:text-primary transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                О компании
+              </a>
+              <a 
+                href="#specialists" 
+                className="text-sm font-medium text-foreground hover:text-primary transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Специалисты
+              </a>
+              <a 
+                href="#support" 
+                className="text-sm font-medium text-foreground hover:text-primary transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Поддержка
+              </a>
+              <Button variant="default" className="w-full">
+                Заказать звонок
+              </Button>
+            </nav>
+          </div>
+        )}
       </header>
 
       <section className="relative h-[600px] flex items-center overflow-hidden">
