@@ -317,6 +317,14 @@ export default function Index() {
           <h2 className="font-heading font-bold text-3xl text-center mb-12">
             Преимущества МИДАУС
           </h2>
+          <div className="flex justify-center mb-12">
+            <img 
+              src="https://cdn.poehali.dev/files/64050177-094a-4f73-a943-ba1d3983b99e.jpg" 
+              alt="В реестре российской продукции Минпромторга" 
+              className="h-24 w-auto"
+            />
+          </div>
+
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-16">
             <div className="text-center">
               <div className="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
