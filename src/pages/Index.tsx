@@ -16,6 +16,7 @@ export default function Index() {
   const [explosionProtection, setExplosionProtection] = useState('');
   const [recommendedSeries, setRecommendedSeries] = useState<string[]>([]);
   const [visibleSections, setVisibleSections] = useState<Set<string>>(new Set());
+  const [showScrollTop, setShowScrollTop] = useState(false);
   const sectionRefs = useRef<{ [key: string]: HTMLElement | null }>({});
 
   useEffect(() => {
@@ -36,6 +37,19 @@ export default function Index() {
 
     return () => observer.disconnect();
   }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 400);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   const getSuitableSeries = () => {
     let series = ['МИДА-13П', 'МИДА-12', 'МИДА-15'];
@@ -883,6 +897,16 @@ export default function Index() {
           </div>
         </div>
       </section>
+      {showScrollTop && (
+        <Button
+          onClick={scrollToTop}
+          size="icon"
+          className="fixed bottom-8 right-8 z-50 w-12 h-12 rounded-full shadow-lg bg-primary hover:bg-primary/90 transition-all duration-300"
+          aria-label="Наверх"
+        >
+          <Icon name="ArrowUp" size={24} />
+        </Button>
+      )}
     </div>
   );
 }
