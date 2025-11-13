@@ -128,14 +128,6 @@ export default function Index() {
               </Button>
             </div>
           </div>
-          
-          <div className="absolute bottom-8 right-8 bg-white/95 backdrop-blur-sm p-3 rounded-lg shadow-lg">
-            <img 
-              src="https://cdn.poehali.dev/files/64050177-094a-4f73-a943-ba1d3983b99e.jpg" 
-              alt="В реестре российской продукции Минпромторга" 
-              className="h-40 w-auto"
-            />
-          </div>
         </div>
       </section>
 
