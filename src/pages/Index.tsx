@@ -266,13 +266,13 @@ export default function Index() {
                         />
                       </div>
                     )}
-                    <div className={`w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 transition-colors ${
+                    <div className={`w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 transition-all duration-300 group-hover:scale-110 group-hover:rotate-6 ${
                       index === 0 ? 'bg-primary' : 'bg-primary/10 group-hover:bg-primary'
                     }`}>
                       <Icon
                         name={category.icon}
                         size={32}
-                        className={`transition-colors ${
+                        className={`transition-all duration-300 ${
                           index === 0 ? 'text-white' : 'text-primary group-hover:text-white'
                         }`}
                       />
