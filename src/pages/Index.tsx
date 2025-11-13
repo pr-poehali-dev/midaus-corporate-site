@@ -105,24 +105,15 @@ export default function Index() {
             <img 
               src="https://cdn.poehali.dev/files/bf9d6490-da2b-41da-829f-65eea317fd60.png" 
               alt="МИДАУС" 
-              className="h-10 w-auto"
+              className="h-10 w-auto object-contain"
             />
           </div>
           <nav className="hidden md:flex items-center gap-8">
             <a href="#products" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
               Продукция
             </a>
-            <a href="#solutions" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
-              Решения
-            </a>
-            <Link to="/software" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
-              Программное обеспечение
-            </Link>
             <a href="#about" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
               О компании
-            </a>
-            <a href="#specialists" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
-              Специалисты
             </a>
             <a href="#support" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
               Поддержка
@@ -156,41 +147,17 @@ export default function Index() {
               Продукция
             </a>
             <a 
-              href="#solutions" 
-              className="text-sm font-medium text-foreground hover:text-primary transition-colors animate-slide-up"
-              style={{ animationDelay: '100ms' }}
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Решения
-            </a>
-            <Link 
-              to="/software" 
-              className="text-sm font-medium text-foreground hover:text-primary transition-colors animate-slide-up"
-              style={{ animationDelay: '150ms' }}
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Программное обеспечение
-            </Link>
-            <a 
               href="#about" 
               className="text-sm font-medium text-foreground hover:text-primary transition-colors animate-slide-up"
-              style={{ animationDelay: '200ms' }}
+              style={{ animationDelay: '100ms' }}
               onClick={() => setMobileMenuOpen(false)}
             >
               О компании
             </a>
             <a 
-              href="#specialists" 
-              className="text-sm font-medium text-foreground hover:text-primary transition-colors animate-slide-up"
-              style={{ animationDelay: '250ms' }}
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Специалисты
-            </a>
-            <a 
               href="#support" 
               className="text-sm font-medium text-foreground hover:text-primary transition-colors animate-slide-up"
-              style={{ animationDelay: '300ms' }}
+              style={{ animationDelay: '150ms' }}
               onClick={() => setMobileMenuOpen(false)}
             >
               Поддержка
@@ -973,7 +940,7 @@ export default function Index() {
               <h4 className="font-heading font-semibold mb-4">Поддержка</h4>
               <ul className="space-y-2 text-sm">
                 <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Документация</a></li>
-                <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Программы</a></li>
+                <li><Link to="/software" className="text-muted-foreground hover:text-primary transition-colors">Программное обеспечение</Link></li>
                 <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">FAQ</a></li>
                 <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Гарантия</a></li>
               </ul>

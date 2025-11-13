@@ -202,18 +202,12 @@ export default function Product() {
             <img 
               src="https://cdn.poehali.dev/files/bf9d6490-da2b-41da-829f-65eea317fd60.png" 
               alt="МИДАУС" 
-              className="h-10 w-auto"
+              className="h-10 w-auto object-contain"
             />
           </Link>
           <nav className="hidden md:flex items-center gap-8">
             <Link to="/#products" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
               Продукция
-            </Link>
-            <Link to="/#solutions" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
-              Решения
-            </Link>
-            <Link to="/software" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
-              Программное обеспечение
             </Link>
             <Link to="/#about" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
               О компании
@@ -823,7 +817,7 @@ export default function Product() {
               <h4 className="font-semibold mb-4">Компания</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li><a href="#" className="hover:text-primary">О нас</a></li>
-                <li><a href="#" className="hover:text-primary">Сертификаты</a></li>
+                <li><Link to="/software" className="hover:text-primary">Программное обеспечение</Link></li>
                 <li><a href="#" className="hover:text-primary">Контакты</a></li>
               </ul>
             </div>

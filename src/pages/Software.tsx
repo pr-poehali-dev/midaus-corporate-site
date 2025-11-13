@@ -69,20 +69,15 @@ export default function Software() {
       <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-border shadow-sm">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-xl">М</span>
-            </div>
-            <span className="font-heading font-bold text-xl">МИДА</span>
+            <img 
+              src="https://cdn.poehali.dev/files/bf9d6490-da2b-41da-829f-65eea317fd60.png" 
+              alt="МИДАУС" 
+              className="h-10 w-auto object-contain"
+            />
           </Link>
           <nav className="hidden md:flex items-center gap-6">
-            <Link to="/" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
-              Главная
-            </Link>
             <Link to="/products" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
               Продукция
-            </Link>
-            <Link to="/software" className="text-sm font-medium text-primary transition-colors">
-              Программное обеспечение
             </Link>
             <a href="/#about" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
               О компании
@@ -111,25 +106,11 @@ export default function Software() {
         >
           <nav className="container mx-auto px-4 py-4 flex flex-col gap-4">
             <Link 
-              to="/" 
-              className="text-sm font-medium text-foreground hover:text-primary transition-colors"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Главная
-            </Link>
-            <Link 
               to="/products" 
               className="text-sm font-medium text-foreground hover:text-primary transition-colors"
               onClick={() => setMobileMenuOpen(false)}
             >
               Продукция
-            </Link>
-            <Link 
-              to="/software" 
-              className="text-sm font-medium text-primary transition-colors"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Программное обеспечение
             </Link>
             <a 
               href="/#about" 
