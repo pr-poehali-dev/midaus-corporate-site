@@ -33,42 +33,26 @@ const productsData: Record<string, {
     description: 'Датчик давления для работы в условиях повышенной вибрации',
     price: '15 800',
     specs: [
-      { label: 'Диапазон измерений', value: '0...1 МПа' },
-      { label: 'Точность', value: '±0,1% от диапазона измерений' },
-      { label: 'Выходной сигнал', value: '4...20 мА' },
-      { label: 'Напряжение питания', value: '12...36 В' },
-      { label: 'Температура эксплуатации', value: '-50...+125 °C' },
-      { label: 'Степень защиты', value: 'IP67' },
-      { label: 'Присоединение к процессу', value: 'G1/2" (М20х1,5)' },
-      { label: 'Материал корпуса', value: 'Нержавеющая сталь 12Х18Н10Т' },
+      { label: 'Область применения', value: 'общепромышленные системы контроля и регулирования, в т. ч. атомная электроэнергетика' },
+      { label: 'Рабочая среда', value: 'жидкости и газы, неагрессивные к титановым сплавам и нержавеющим сталям' },
+      { label: 'Номер в Госреестре средств измерения РФ', value: '17636 - 17' },
+      { label: 'Межповерочный интервал', value: '5 лет' },
+      { label: 'Пылевлагозащищенность', value: 'IP67' },
     ],
-    features: [
-      'Усиленная конструкция для работы в условиях вибрации до 30g',
-      'Повышенная точность измерений ±0,1%',
-      'Расширенный диапазон рабочих температур до +125°C',
-      'Степень защиты IP67 для работы в тяжелых условиях',
-    ],
+    features: [],
   },
   'mida-12': {
     name: 'МИДА-12',
     description: 'Датчик давления для агрессивных сред',
     price: '18 200',
     specs: [
-      { label: 'Диапазон измерений', value: '0...10 МПа' },
-      { label: 'Точность', value: '±0,25% от диапазона измерений' },
-      { label: 'Выходной сигнал', value: '4...20 мА' },
-      { label: 'Напряжение питания', value: '12...36 В' },
-      { label: 'Температура эксплуатации', value: '-60...+150 °C' },
-      { label: 'Степень защиты', value: 'IP68' },
-      { label: 'Присоединение к процессу', value: 'G1/2" (М20х1,5)' },
-      { label: 'Материал корпуса', value: 'Титан / Нержавеющая сталь' },
+      { label: 'Область применения', value: 'общепромышленные системы контроля и регулирования, в т. ч. атомная электроэнергетика' },
+      { label: 'Рабочая среда', value: 'жидкости и газы, неагрессивные к титановым сплавам и нержавеющим сталям' },
+      { label: 'Номер в Госреестре средств измерения РФ', value: '17636 - 17' },
+      { label: 'Межповерочный интервал', value: '5 лет' },
+      { label: 'Пылевлагозащищенность', value: 'IP68' },
     ],
-    features: [
-      'Специальное покрытие для защиты от агрессивных химических сред',
-      'Корпус из титана или нержавеющей стали',
-      'Работа при экстремальных температурах от -60 до +150°C',
-      'Максимальная степень защиты IP68 для подводного применения',
-    ],
+    features: [],
   },
 };
 
@@ -282,6 +266,46 @@ export default function Product() {
                   </div>
                   <div className="p-4 bg-secondary">
                     <h4 className="font-semibold mb-1">Видеообзор МИДА-13П</h4>
+                    <p className="text-sm text-muted-foreground">Подробный обзор датчика и его возможностей</p>
+                  </div>
+                </CardContent>
+              </Card>
+            )}
+
+            {id === 'mida-15' && (
+              <Card className="overflow-hidden">
+                <CardContent className="p-0">
+                  <div className="relative rounded-lg overflow-hidden" style={{ paddingBottom: '56.25%' }}>
+                    <iframe
+                      src="https://rutube.ru/play/embed/e041fefdb90eb03e2785855147aac905"
+                      frameBorder="0"
+                      allow="clipboard-write; autoplay"
+                      allowFullScreen
+                      className="absolute inset-0 w-full h-full"
+                    />
+                  </div>
+                  <div className="p-4 bg-secondary">
+                    <h4 className="font-semibold mb-1">Видеообзор МИДА-15</h4>
+                    <p className="text-sm text-muted-foreground">Подробный обзор датчика и его возможностей</p>
+                  </div>
+                </CardContent>
+              </Card>
+            )}
+
+            {id === 'mida-12' && (
+              <Card className="overflow-hidden">
+                <CardContent className="p-0">
+                  <div className="relative rounded-lg overflow-hidden" style={{ paddingBottom: '56.25%' }}>
+                    <iframe
+                      src="https://rutube.ru/play/embed/bca0ffbb508aff480d9d5b71b5f61c0c"
+                      frameBorder="0"
+                      allow="clipboard-write; autoplay"
+                      allowFullScreen
+                      className="absolute inset-0 w-full h-full"
+                    />
+                  </div>
+                  <div className="p-4 bg-secondary">
+                    <h4 className="font-semibold mb-1">Видеообзор МИДА-12П</h4>
                     <p className="text-sm text-muted-foreground">Подробный обзор датчика и его возможностей</p>
                   </div>
                 </CardContent>
