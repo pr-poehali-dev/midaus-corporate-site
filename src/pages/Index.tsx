@@ -257,8 +257,13 @@ export default function Index() {
                 >
                   <CardContent className="p-6 text-center relative">
                     {index === 0 && (
-                      <div className="absolute -top-3 -right-3 bg-accent text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
-                        ОСНОВНОЙ
+                      <div className="absolute -top-3 -right-3 bg-white rounded-lg shadow-lg p-1">
+                        <img 
+                          src="https://cdn.poehali.dev/files/52691f8a-384c-41a9-90e3-9a8249ecd678.jpg"
+                          alt="В реестре Минпромторга"
+                          className="h-12 w-auto"
+                          title="В реестре российской продукции Минпромторга"
+                        />
                       </div>
                     )}
                     <div className={`w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 transition-colors ${
