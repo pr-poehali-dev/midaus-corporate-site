@@ -279,14 +279,17 @@ export default function Index() {
           <h2 className="font-heading font-bold text-3xl text-center mb-12">
             Отраслевые решения
           </h2>
-          <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-6">
+          <div className="grid md:grid-cols-3 lg:grid-cols-3 gap-6">
             {[
-              { icon: 'Fuel', title: 'Нефтегаз' },
-              { icon: 'Zap', title: 'Энергетика' },
               { icon: 'Building2', title: 'ЖКХ' },
-              { icon: 'Rocket', title: 'Космическая техника' },
-              { icon: 'Truck', title: 'Транспорт' },
-              { icon: 'Factory', title: 'Промышленность' },
+              { icon: 'Drill', title: 'Бурение' },
+              { icon: 'Package', title: 'Переработка полимеров' },
+              { icon: 'UtensilsCrossed', title: 'Пищевая промышленность' },
+              { icon: 'Waves', title: 'Измерение уровня' },
+              { icon: 'Gauge', title: 'Вакуумная техника' },
+              { icon: 'Car', title: 'Автомобильная промышленность' },
+              { icon: 'Plane', title: 'Авиационная промышленность' },
+              { icon: 'Flame', title: 'Газ' },
             ].map((solution, index) => (
               <div
                 key={index}
