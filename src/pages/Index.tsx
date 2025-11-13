@@ -250,15 +250,26 @@ export default function Index() {
             ].map((category, index) => (
               <Link to={category.link} key={index}>
                 <Card
-                  className="group hover:border-primary hover:shadow-lg transition-all duration-300 cursor-pointer animate-slide-up h-full"
+                  className={`group hover:border-primary hover:shadow-lg transition-all duration-300 cursor-pointer animate-slide-up h-full ${
+                    index === 0 ? 'border-2 border-primary shadow-md' : ''
+                  }`}
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
-                  <CardContent className="p-6 text-center">
-                    <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-primary transition-colors">
+                  <CardContent className="p-6 text-center relative">
+                    {index === 0 && (
+                      <div className="absolute -top-3 -right-3 bg-accent text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
+                        ОСНОВНОЙ
+                      </div>
+                    )}
+                    <div className={`w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 transition-colors ${
+                      index === 0 ? 'bg-primary' : 'bg-primary/10 group-hover:bg-primary'
+                    }`}>
                       <Icon
                         name={category.icon}
                         size={32}
-                        className="text-primary group-hover:text-white transition-colors"
+                        className={`transition-colors ${
+                          index === 0 ? 'text-white' : 'text-primary group-hover:text-white'
+                        }`}
                       />
                     </div>
                     <h3 className="font-heading font-semibold text-lg mb-2">
