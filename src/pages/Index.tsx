@@ -50,6 +50,7 @@ export default function Index() {
     { url: 'https://cdn.poehali.dev/files/48ace166-ee49-4617-b80f-a5ff3e3b8ac1.jpeg', title: '' },
     { url: 'https://cdn.poehali.dev/files/ac629dca-703c-49d9-a667-09393387e41f.jpeg', title: 'Калибровочная лаборатория' },
     { url: 'https://cdn.poehali.dev/files/b213b093-390b-4cde-af32-bfefe61767e7.jpg', title: 'Метрологическая лаборатория' },
+    { url: 'https://cdn.poehali.dev/files/b0816222-cfbd-4b3a-88c9-322faa989e45.jpg', title: 'Производственный корпус МИДАУС' },
   ];
 
   const nextSlide = () => {
