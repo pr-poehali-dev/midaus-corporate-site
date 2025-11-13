@@ -487,17 +487,17 @@ export default function Product() {
                       <SelectItem value="М14х1.5 открытая мембрана">М14х1.5 открытая мембрана</SelectItem>
                       <SelectItem value="М12х1.5 ГОСТ 2405">М12х1.5 ГОСТ 2405</SelectItem>
                       <SelectItem value="М12х1">М12х1</SelectItem>
-                      <SelectItem value="G3/4\" EN 837">G3/4" EN 837</SelectItem>
-                      <SelectItem value="G3/4\" DIN 3852">G3/4" DIN 3852</SelectItem>
-                      <SelectItem value="G3/4\" открытая мембрана">G3/4" открытая мембрана</SelectItem>
-                      <SelectItem value="G1/2\" EN 837">G1/2" EN 837</SelectItem>
-                      <SelectItem value="G1/2\" DIN 3852">G1/2" DIN 3852</SelectItem>
-                      <SelectItem value="G1/2\" открытая мембрана">G1/2" открытая мембрана</SelectItem>
-                      <SelectItem value="G1/4\" EN 837">G1/4" EN 837</SelectItem>
-                      <SelectItem value="G1/4\" DIN 3852">G1/4" DIN 3852</SelectItem>
-                      <SelectItem value="G1/4\" открытая мембрана">G1/4" открытая мембрана</SelectItem>
-                      <SelectItem value="1/2\" NPT">1/2" NPT</SelectItem>
-                      <SelectItem value="1/4\" NPT">1/4" NPT</SelectItem>
+                      <SelectItem value='G3/4" EN 837'>G3/4" EN 837</SelectItem>
+                      <SelectItem value='G3/4" DIN 3852'>G3/4" DIN 3852</SelectItem>
+                      <SelectItem value='G3/4" открытая мембрана'>G3/4" открытая мембрана</SelectItem>
+                      <SelectItem value='G1/2" EN 837'>G1/2" EN 837</SelectItem>
+                      <SelectItem value='G1/2" DIN 3852'>G1/2" DIN 3852</SelectItem>
+                      <SelectItem value='G1/2" открытая мембрана'>G1/2" открытая мембрана</SelectItem>
+                      <SelectItem value='G1/4" EN 837'>G1/4" EN 837</SelectItem>
+                      <SelectItem value='G1/4" DIN 3852'>G1/4" DIN 3852</SelectItem>
+                      <SelectItem value='G1/4" открытая мембрана'>G1/4" открытая мембрана</SelectItem>
+                      <SelectItem value='1/2" NPT'>1/2" NPT</SelectItem>
+                      <SelectItem value='1/4" NPT'>1/4" NPT</SelectItem>
                       <SelectItem value="другое">другое</SelectItem>
                     </SelectContent>
                   </Select>
