@@ -365,7 +365,7 @@ export default function Index() {
                 <div className="p-6">
                   <p className="text-white font-semibold text-lg">{productionImages[currentSlide].title}</p>
                   {currentSlide === 0 && (
-                    <p className="text-white/90 text-sm mt-1">г. Москва, ул. Производственная, д. 12</p>
+                    <p className="text-white/90 text-sm mt-1">г. Ульяновск, проезд Энергетиков, д. 4</p>
                   )}
                 </div>
               </div>
