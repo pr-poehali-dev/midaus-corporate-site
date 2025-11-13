@@ -196,9 +196,9 @@ export default function Products() {
             <div>
               <h3 className="font-heading font-semibold mb-4">Контакты</h3>
               <ul className="space-y-2 text-sm text-white/80">
-                <li>+7 (495) 123-45-67</li>
-                <li>info@midaus.ru</li>
-                <li>г. Москва, ул. Примерная, д. 10</li>
+                <li>8-800-200-03-04</li>
+                <li>info@midaus.com</li>
+                <li>г. Ульяновск, проезд Энергетиков, д. 4</li>
               </ul>
             </div>
             <div>
