@@ -711,7 +711,7 @@ export default function Product() {
           )}
 
           {activeTab === 'howto' && (
-            <div className="space-y-6">
+            <div className="max-w-3xl mx-auto space-y-6">
               <Card className="overflow-hidden">
                 <CardContent className="p-0">
                   <div className="relative rounded-lg overflow-hidden" style={{ paddingBottom: '56.25%' }}>
