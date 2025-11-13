@@ -707,6 +707,15 @@ export default function Product() {
           <h2 className="font-heading font-bold text-2xl mb-6 text-center">
             Остались вопросы?
           </h2>
+          <div className="flex flex-col items-center mb-8">
+            <img 
+              src="https://cdn.poehali.dev/files/a7ebcbd3-b9a4-4f43-b7ca-06feff68e589.png"
+              alt="Дмитрий Маланин"
+              className="w-32 h-32 rounded-full object-cover mb-4 border-4 border-white shadow-lg"
+            />
+            <p className="font-semibold text-lg">Дмитрий Маланин</p>
+            <p className="text-sm text-muted-foreground">Менеджер по продажам</p>
+          </div>
           <form className="max-w-xl mx-auto space-y-4">
             <div className="grid sm:grid-cols-2 gap-4">
               <div className="space-y-2">
