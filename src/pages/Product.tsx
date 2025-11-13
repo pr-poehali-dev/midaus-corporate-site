@@ -709,12 +709,12 @@ export default function Product() {
           </h2>
           <div className="flex flex-col items-center mb-8">
             <img 
-              src="https://cdn.poehali.dev/files/7d62bd22-19be-4dc5-99a6-e6fdc092c2e5.png"
-              alt="Дмитрий Маланин - Главный метролог"
+              src="https://cdn.poehali.dev/files/a7ebcbd3-b9a4-4f43-b7ca-06feff68e589.png"
+              alt="Дмитрий Маланин"
               className="w-32 h-32 rounded-full object-cover mb-4 border-4 border-white shadow-lg"
             />
             <p className="font-semibold text-lg">Дмитрий Маланин</p>
-            <p className="text-sm text-muted-foreground">Главный метролог</p>
+            <p className="text-sm text-muted-foreground">Менеджер по продажам</p>
           </div>
           <form className="max-w-xl mx-auto space-y-4">
             <div className="grid sm:grid-cols-2 gap-4">
