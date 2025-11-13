@@ -861,6 +861,76 @@ export default function Index() {
                 </Button>
               </CardContent>
             </Card>
+
+            <div className="mt-12">
+              <h3 className="font-heading font-bold text-2xl text-center mb-6 text-white">
+                Обучающие материалы
+              </h3>
+              <div className="grid md:grid-cols-3 gap-6">
+                <Card className="bg-white overflow-hidden hover:shadow-lg transition-shadow">
+                  <CardContent className="p-0">
+                    <div className="relative" style={{ paddingBottom: '56.25%' }}>
+                      <iframe
+                        src="https://rutube.ru/play/embed/869b65d10a3dcb9242d5d78a78a442c3"
+                        frameBorder="0"
+                        allow="clipboard-write; autoplay"
+                        allowFullScreen
+                        className="absolute inset-0 w-full h-full"
+                      />
+                    </div>
+                    <div className="p-4">
+                      <h4 className="font-semibold text-foreground mb-1">МИДА-13П</h4>
+                      <p className="text-sm text-muted-foreground">Обзор датчика давления</p>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-white overflow-hidden hover:shadow-lg transition-shadow">
+                  <CardContent className="p-0">
+                    <div className="relative" style={{ paddingBottom: '56.25%' }}>
+                      <iframe
+                        src="https://rutube.ru/play/embed/e041fefdb90eb03e2785855147aac905"
+                        frameBorder="0"
+                        allow="clipboard-write; autoplay"
+                        allowFullScreen
+                        className="absolute inset-0 w-full h-full"
+                      />
+                    </div>
+                    <div className="p-4">
+                      <h4 className="font-semibold text-foreground mb-1">МИДА-15</h4>
+                      <p className="text-sm text-muted-foreground">Обзор датчика давления</p>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-white overflow-hidden hover:shadow-lg transition-shadow">
+                  <CardContent className="p-0">
+                    <div className="relative" style={{ paddingBottom: '56.25%' }}>
+                      <iframe
+                        src="https://rutube.ru/play/embed/bca0ffbb508aff480d9d5b71b5f61c0c"
+                        frameBorder="0"
+                        allow="clipboard-write; autoplay"
+                        allowFullScreen
+                        className="absolute inset-0 w-full h-full"
+                      />
+                    </div>
+                    <div className="p-4">
+                      <h4 className="font-semibold text-foreground mb-1">МИДА-12П</h4>
+                      <p className="text-sm text-muted-foreground">Обзор датчика давления</p>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+
+              <div className="text-center mt-6">
+                <Button asChild variant="outline" className="bg-white hover:bg-white/90">
+                  <a href="https://rutube.ru/channel/30623596" target="_blank" rel="noopener noreferrer">
+                    <Icon name="Youtube" size={20} className="mr-2" />
+                    Смотреть все видео на RuTube
+                  </a>
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
       </section>
