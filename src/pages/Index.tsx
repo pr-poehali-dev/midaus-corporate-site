@@ -10,6 +10,35 @@ import { Link } from 'react-router-dom';
 export default function Index() {
   const [selectedRange, setSelectedRange] = useState('');
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [pressureRange, setPressureRange] = useState('');
+  const [signalType, setSignalType] = useState('');
+  const [temperature, setTemperature] = useState('');
+  const [explosionProtection, setExplosionProtection] = useState('');
+  const [recommendedSeries, setRecommendedSeries] = useState<string[]>([]);
+
+  const getSuitableSeries = () => {
+    let series = ['МИДА-13П', 'МИДА-12', 'МИДА-15'];
+
+    if (pressureRange === 'over160') {
+      series = ['МИДА-15'];
+    }
+
+    if (signalType === 'digital') {
+      series = series.filter(s => s === 'МИДА-15');
+    }
+
+    if (temperature === 'high') {
+      series = series.filter(s => s === 'МИДА-12');
+    } else if (temperature === 'low') {
+      series = series.filter(s => s !== 'МИДА-12');
+    }
+
+    if (explosionProtection === 'shell') {
+      series = series.filter(s => s === 'МИДА-13П' || s === 'МИДА-15');
+    }
+
+    setRecommendedSeries(series);
+  };
 
   const productionImages = [
     { url: 'https://cdn.poehali.dev/files/1b6c8ea8-5bea-48db-b363-50ae180491ca.jpeg', title: 'Механический цех' },
@@ -103,68 +132,80 @@ export default function Index() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <h2 className="font-heading font-bold text-3xl text-center mb-8">
-              Подбор датчика давления
+              Подбор серии датчика МИДА
             </h2>
             <Card>
               <CardContent className="p-6">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <Label htmlFor="industry">Отрасль применения</Label>
+                    <Label htmlFor="pressure">Величина измеряемого давления</Label>
                     <select
-                      id="industry"
-                      className="w-full px-3 py-2 border border-input rounded-md bg-background"
-                    >
-                      <option value="">Выберите отрасль</option>
-                      <option value="oil">Нефтегазовая промышленность</option>
-                      <option value="energy">Энергетика</option>
-                      <option value="chem">Химическая промышленность</option>
-                      <option value="water">Водоподготовка</option>
-                      <option value="metal">Металлургия</option>
-                      <option value="machine">Машиностроение</option>
-                    </select>
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="range">Диапазон измерений</Label>
-                    <select
-                      id="range"
-                      value={selectedRange}
-                      onChange={(e) => setSelectedRange(e.target.value)}
+                      id="pressure"
+                      value={pressureRange}
+                      onChange={(e) => setPressureRange(e.target.value)}
                       className="w-full px-3 py-2 border border-input rounded-md bg-background"
                     >
                       <option value="">Выберите диапазон</option>
-                      <option value="low">0-1 МПа</option>
-                      <option value="medium">0-10 МПа</option>
-                      <option value="high">0-100 МПа</option>
-                      <option value="ultra">Более 100 МПа</option>
+                      <option value="up160">До 160 МПа включительно</option>
+                      <option value="over160">Более 160 МПа</option>
                     </select>
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="accuracy">Точность</Label>
+                    <Label htmlFor="signal">Вид выходного сигнала</Label>
                     <select
-                      id="accuracy"
+                      id="signal"
+                      value={signalType}
+                      onChange={(e) => setSignalType(e.target.value)}
                       className="w-full px-3 py-2 border border-input rounded-md bg-background"
                     >
-                      <option value="">Выберите точность</option>
-                      <option value="standard">±0.5%</option>
-                      <option value="high">±0.25%</option>
-                      <option value="ultra">±0.1%</option>
+                      <option value="">Выберите тип сигнала</option>
+                      <option value="analog">Аналоговый</option>
+                      <option value="digital">Цифровой</option>
                     </select>
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="protection">Взрывозащита</Label>
+                    <Label htmlFor="temperature">Температура измеряемой среды</Label>
+                    <select
+                      id="temperature"
+                      value={temperature}
+                      onChange={(e) => setTemperature(e.target.value)}
+                      className="w-full px-3 py-2 border border-input rounded-md bg-background"
+                    >
+                      <option value="">Выберите диапазон</option>
+                      <option value="low">До 150°C</option>
+                      <option value="high">От 150°C до 400°C</option>
+                    </select>
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="protection">Вид взрывозащиты</Label>
                     <select
                       id="protection"
+                      value={explosionProtection}
+                      onChange={(e) => setExplosionProtection(e.target.value)}
                       className="w-full px-3 py-2 border border-input rounded-md bg-background"
                     >
                       <option value="">Не требуется</option>
-                      <option value="ex">Требуется Ex</option>
+                      <option value="safe">Искробезопасная цепь</option>
+                      <option value="shell">Взрывонепроницаемая оболочка</option>
                     </select>
                   </div>
                 </div>
-                <Button className="w-full mt-6 bg-accent hover:bg-accent/90">
+                <Button onClick={getSuitableSeries} className="w-full mt-6 bg-accent hover:bg-accent/90">
                   <Icon name="Search" size={20} className="mr-2" />
-                  Найти подходящие модели
+                  Подобрать серию датчика
                 </Button>
+                {recommendedSeries.length > 0 && (
+                  <div className="mt-6 p-4 bg-primary/5 rounded-lg border border-primary/20">
+                    <h3 className="font-semibold text-lg mb-3 text-center">Подходящие серии:</h3>
+                    <div className="flex flex-wrap gap-3 justify-center">
+                      {recommendedSeries.map((series, index) => (
+                        <div key={index} className="px-6 py-3 bg-primary text-white rounded-lg font-semibold text-lg">
+                          {series}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </CardContent>
             </Card>
           </div>
