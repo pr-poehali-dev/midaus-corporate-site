@@ -630,11 +630,11 @@ export default function Index() {
             <Card className="overflow-hidden hover:shadow-lg transition-shadow md:col-span-2 lg:col-span-1">
               <CardContent className="p-0">
                 <div className="bg-gradient-to-br from-primary/10 to-primary/5 p-8 text-center">
-                  <div className="w-40 h-40 mx-auto mb-4 rounded-full overflow-hidden bg-muted border-4 border-white shadow-lg">
+                  <div className="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden bg-muted border-4 border-white shadow-lg">
                     <img 
                       src="https://cdn.poehali.dev/files/7d62bd22-19be-4dc5-99a6-e6fdc092c2e5.png"
                       alt="Маланин Михаил"
-                      className="w-full h-full object-cover scale-125"
+                      className="w-full h-full object-cover"
                     />
                   </div>
                   <h3 className="font-heading font-bold text-xl mb-1">
