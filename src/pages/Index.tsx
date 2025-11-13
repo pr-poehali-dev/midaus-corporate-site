@@ -362,7 +362,12 @@ export default function Index() {
                 style={{ filter: 'sepia(0.15) saturate(1.1) brightness(0.95)' }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
-                <p className="text-white font-semibold text-lg p-6">{productionImages[currentSlide].title}</p>
+                <div className="p-6">
+                  <p className="text-white font-semibold text-lg">{productionImages[currentSlide].title}</p>
+                  {currentSlide === 0 && (
+                    <p className="text-white/90 text-sm mt-1">г. Москва, ул. Производственная, д. 12</p>
+                  )}
+                </div>
               </div>
               <button
                 onClick={prevSlide}
