@@ -102,9 +102,9 @@ export default function Product() {
 
   const productImages: Record<string, string[]> = {
     'mida-13p': [
-      'https://cdn.poehali.dev/projects/821a1e50-8ec8-4e2a-91f3-24ac4fed203b/files/c3162aaa-ab1f-4acd-a983-57efb8f29b37.jpg',
-      'https://cdn.poehali.dev/projects/821a1e50-8ec8-4e2a-91f3-24ac4fed203b/files/c3162aaa-ab1f-4acd-a983-57efb8f29b37.jpg',
-      'https://cdn.poehali.dev/projects/821a1e50-8ec8-4e2a-91f3-24ac4fed203b/files/c3162aaa-ab1f-4acd-a983-57efb8f29b37.jpg',
+      'https://cdn.poehali.dev/files/b6fbb7ec-4f53-4d1f-b905-fd7e4106c1e9.JPG',
+      'https://cdn.poehali.dev/files/b6fbb7ec-4f53-4d1f-b905-fd7e4106c1e9.JPG',
+      'https://cdn.poehali.dev/files/b6fbb7ec-4f53-4d1f-b905-fd7e4106c1e9.JPG',
     ],
     'mida-15': [
       'https://cdn.poehali.dev/projects/821a1e50-8ec8-4e2a-91f3-24ac4fed203b/files/b7ca30c5-ae77-4f0d-8ffc-1ba4030437b9.jpg',

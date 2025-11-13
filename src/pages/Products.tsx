@@ -10,7 +10,7 @@ export default function Products() {
       name: 'МИДА-13П',
       description: 'Общепромышленный датчик давления с унифицированным выходным сигналом',
       price: '12 500',
-      image: 'https://cdn.poehali.dev/projects/821a1e50-8ec8-4e2a-91f3-24ac4fed203b/files/c3162aaa-ab1f-4acd-a983-57efb8f29b37.jpg',
+      image: 'https://cdn.poehali.dev/files/b6fbb7ec-4f53-4d1f-b905-fd7e4106c1e9.JPG',
       specs: ['0...0,1 МПа', '±0,25%', '4...20 мА', 'IP65'],
       inStock: true,
     },
