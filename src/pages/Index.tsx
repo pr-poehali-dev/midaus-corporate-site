@@ -422,6 +422,21 @@ export default function Index() {
               </p>
             </div>
           </div>
+
+          <div className="max-w-4xl mx-auto mb-12">
+            <h3 className="font-heading font-bold text-2xl text-center mb-6">
+              О нашем производстве
+            </h3>
+            <div className="relative rounded-lg overflow-hidden shadow-xl" style={{ paddingBottom: '56.25%' }}>
+              <iframe
+                src="https://rutube.ru/play/embed/5f1d55ec80dbb1bb62cd4ea52458caeb"
+                frameBorder="0"
+                allow="clipboard-write; autoplay"
+                allowFullScreen
+                className="absolute inset-0 w-full h-full"
+              />
+            </div>
+          </div>
           
           <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
             <div className="relative h-96 bg-muted rounded-lg overflow-hidden shadow-xl group">
