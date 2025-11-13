@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -15,6 +15,27 @@ export default function Index() {
   const [temperature, setTemperature] = useState('');
   const [explosionProtection, setExplosionProtection] = useState('');
   const [recommendedSeries, setRecommendedSeries] = useState<string[]>([]);
+  const [visibleSections, setVisibleSections] = useState<Set<string>>(new Set());
+  const sectionRefs = useRef<{ [key: string]: HTMLElement | null }>({});
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setVisibleSections((prev) => new Set(prev).add(entry.target.id));
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    Object.values(sectionRefs.current).forEach((ref) => {
+      if (ref) observer.observe(ref);
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   const getSuitableSeries = () => {
     let series = ['МИДА-13П', 'МИДА-12', 'МИДА-15'];
@@ -216,7 +237,13 @@ export default function Index() {
         </div>
       </section>
 
-      <section className="py-16" id="products">
+      <section 
+        className={`py-16 transition-all duration-1000 ${
+          visibleSections.has('products') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}
+        id="products"
+        ref={(el) => (sectionRefs.current['products'] = el)}
+      >
         <div className="container mx-auto px-4">
           <h2 className="font-heading font-bold text-3xl text-center mb-12">
             Категории продукции
@@ -291,7 +318,13 @@ export default function Index() {
         </div>
       </section>
 
-      <section className="py-16 bg-secondary" id="solutions">
+      <section 
+        className={`py-16 bg-secondary transition-all duration-1000 ${
+          visibleSections.has('solutions') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}
+        id="solutions"
+        ref={(el) => (sectionRefs.current['solutions'] = el)}
+      >
         <div className="container mx-auto px-4">
           <h2 className="font-heading font-bold text-3xl text-center mb-12">
             Отраслевые решения
@@ -328,7 +361,13 @@ export default function Index() {
         </div>
       </section>
 
-      <section className="py-16" id="about">
+      <section 
+        className={`py-16 transition-all duration-1000 ${
+          visibleSections.has('about') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}
+        id="about"
+        ref={(el) => (sectionRefs.current['about'] = el)}
+      >
         <div className="container mx-auto px-4">
           <h2 className="font-heading font-bold text-3xl text-center mb-12">
             Преимущества МИДАУС
@@ -445,7 +484,13 @@ export default function Index() {
         </div>
       </section>
 
-      <section className="py-16 bg-white" id="specialists">
+      <section 
+        className={`py-16 bg-white transition-all duration-1000 ${
+          visibleSections.has('specialists') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}
+        id="specialists"
+        ref={(el) => (sectionRefs.current['specialists'] = el)}
+      >
         <div className="container mx-auto px-4">
           <h2 className="font-heading font-bold text-3xl text-center mb-4">
             Вопросы к специалистам
@@ -738,7 +783,13 @@ export default function Index() {
         </div>
       </section>
 
-      <section className="py-16 bg-gradient-to-br from-primary to-primary/80 text-white" id="support">
+      <section 
+        className={`py-16 bg-gradient-to-br from-primary to-primary/80 text-white transition-all duration-1000 ${
+          visibleSections.has('support') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}
+        id="support"
+        ref={(el) => (sectionRefs.current['support'] = el)}
+      >
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <h2 className="font-heading font-bold text-3xl text-center mb-4">
