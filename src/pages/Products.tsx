@@ -28,7 +28,7 @@ export default function Products() {
       name: 'МИДА-12',
       description: 'Датчик давления для агрессивных сред с защитой от коррозии',
       price: '18 200',
-      image: 'https://cdn.poehali.dev/projects/821a1e50-8ec8-4e2a-91f3-24ac4fed203b/files/c6d52949-8ae1-4275-80f9-d91e31e18619.jpg',
+      image: 'https://cdn.poehali.dev/files/c10af49a-98c2-485f-bf8b-3ccf239ce5fb.JPG',
       specs: ['0...10 МПа', '±0,25%', '4...20 мА', 'IP68'],
       inStock: true,
     },
