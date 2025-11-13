@@ -43,6 +43,7 @@ export default function Index() {
   };
 
   const productionImages = [
+    { url: 'https://cdn.poehali.dev/files/b0816222-cfbd-4b3a-88c9-322faa989e45.jpg', title: 'Производственный корпус МИДАУС' },
     { url: 'https://cdn.poehali.dev/files/1b6c8ea8-5bea-48db-b363-50ae180491ca.jpeg', title: 'Механический цех' },
     { url: 'https://cdn.poehali.dev/files/af3b298d-3b96-4d06-a1b7-72ee38bac03e.jpeg', title: 'Производственные линии' },
     { url: 'https://cdn.poehali.dev/files/43259228-92ef-472c-9023-4dd7e597f24d.jpeg', title: 'Токарное производство' },
@@ -50,7 +51,6 @@ export default function Index() {
     { url: 'https://cdn.poehali.dev/files/48ace166-ee49-4617-b80f-a5ff3e3b8ac1.jpeg', title: '' },
     { url: 'https://cdn.poehali.dev/files/ac629dca-703c-49d9-a667-09393387e41f.jpeg', title: 'Калибровочная лаборатория' },
     { url: 'https://cdn.poehali.dev/files/b213b093-390b-4cde-af32-bfefe61767e7.jpg', title: 'Метрологическая лаборатория' },
-    { url: 'https://cdn.poehali.dev/files/b0816222-cfbd-4b3a-88c9-322faa989e45.jpg', title: 'Производственный корпус МИДАУС' },
   ];
 
   const nextSlide = () => {
@@ -359,6 +359,7 @@ export default function Index() {
                 src={productionImages[currentSlide].url}
                 alt={productionImages[currentSlide].title}
                 className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
+                style={{ filter: 'sepia(0.15) saturate(1.1) brightness(0.95)' }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
                 <p className="text-white font-semibold text-lg p-6">{productionImages[currentSlide].title}</p>
