@@ -138,50 +138,57 @@ export default function Index() {
           </Button>
         </div>
         
-        {mobileMenuOpen && (
-          <div className="md:hidden border-t border-border bg-white">
-            <nav className="container mx-auto px-4 py-4 flex flex-col gap-4">
-              <a 
-                href="#products" 
-                className="text-sm font-medium text-foreground hover:text-primary transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Продукция
-              </a>
-              <a 
-                href="#solutions" 
-                className="text-sm font-medium text-foreground hover:text-primary transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Решения
-              </a>
-              <a 
-                href="#about" 
-                className="text-sm font-medium text-foreground hover:text-primary transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                О компании
-              </a>
-              <a 
-                href="#specialists" 
-                className="text-sm font-medium text-foreground hover:text-primary transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Специалисты
-              </a>
-              <a 
-                href="#support" 
-                className="text-sm font-medium text-foreground hover:text-primary transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Поддержка
-              </a>
-              <Button variant="default" className="w-full">
+        <div 
+          className={`md:hidden border-t border-border bg-white overflow-hidden transition-all duration-300 ease-in-out ${
+            mobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+          }`}
+        >
+          <nav className="container mx-auto px-4 py-4 flex flex-col gap-4">
+            <a 
+              href="#products" 
+              className="text-sm font-medium text-foreground hover:text-primary transition-colors animate-slide-up"
+              style={{ animationDelay: '50ms' }}
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Продукция
+            </a>
+            <a 
+              href="#solutions" 
+              className="text-sm font-medium text-foreground hover:text-primary transition-colors animate-slide-up"
+              style={{ animationDelay: '100ms' }}
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Решения
+            </a>
+            <a 
+              href="#about" 
+              className="text-sm font-medium text-foreground hover:text-primary transition-colors animate-slide-up"
+              style={{ animationDelay: '150ms' }}
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              О компании
+            </a>
+            <a 
+              href="#specialists" 
+              className="text-sm font-medium text-foreground hover:text-primary transition-colors animate-slide-up"
+              style={{ animationDelay: '200ms' }}
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Специалисты
+            </a>
+            <a 
+              href="#support" 
+              className="text-sm font-medium text-foreground hover:text-primary transition-colors animate-slide-up"
+              style={{ animationDelay: '250ms' }}
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Поддержка
+            </a>
+            <Button variant="default" className="w-full animate-slide-up" style={{ animationDelay: '300ms' }}>
                 Заказать звонок
               </Button>
-            </nav>
-          </div>
-        )}
+          </nav>
+        </div>
       </header>
 
       <section className="relative h-[600px] flex items-center overflow-hidden">
