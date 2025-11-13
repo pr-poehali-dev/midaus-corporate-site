@@ -742,8 +742,8 @@ export default function Product() {
                     />
                   </div>
                   <div className="p-4 bg-secondary">
-                    <h4 className="font-semibold mb-1">Видео 2: Настройка и калибровка датчиков</h4>
-                    <p className="text-sm text-muted-foreground">Пошаговая инструкция по настройке параметров</p>
+                    <h4 className="font-semibold mb-1">Монтаж электрического кабеля датчиков давления МИДА</h4>
+                    <p className="text-sm text-muted-foreground">Правильное подключение электрической части датчиков</p>
                   </div>
                 </CardContent>
               </Card>
@@ -760,8 +760,8 @@ export default function Product() {
                     />
                   </div>
                   <div className="p-4 bg-secondary">
-                    <h4 className="font-semibold mb-1">Видео 3: Обслуживание и диагностика</h4>
-                    <p className="text-sm text-muted-foreground">Рекомендации по эксплуатации и решению проблем</p>
+                    <h4 className="font-semibold mb-1">Корректировка "нуля" и ВПИ датчиков давления МИДА</h4>
+                    <p className="text-sm text-muted-foreground">Настройка нулевого уровня и верхнего предела измерения</p>
                   </div>
                 </CardContent>
               </Card>
