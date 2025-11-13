@@ -206,9 +206,9 @@ export default function Product() {
     : isUpperLimitEnabled && (config.upperLimit !== '' || config.upperLimitCustom !== '');
   const isOutputSignalEnabled = isAccuracyEnabled && config.accuracy !== '';
   const isMechanicalConnectionEnabled = isOutputSignalEnabled && config.outputSignal !== '';
-  const isElectricalConnectionEnabled = isMechanicalConnectionEnabled && config.mechanicalConnection !== '';
-  const isExplosionProtectionEnabled = isElectricalConnectionEnabled && config.electricalConnection !== '';
-  const isMembraneMaterialEnabled = isExplosionProtectionEnabled && config.explosionProtection !== '';
+  const isExplosionProtectionEnabled = isMechanicalConnectionEnabled && config.mechanicalConnection !== '';
+  const isElectricalConnectionEnabled = isExplosionProtectionEnabled && config.explosionProtection !== '';
+  const isMembraneMaterialEnabled = isElectricalConnectionEnabled && config.electricalConnection !== '';
 
   return (
     <div className="min-h-screen bg-background">
@@ -479,23 +479,26 @@ export default function Product() {
                       <SelectValue placeholder="Выберите тип присоединения" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="G1/2">G1/2</SelectItem>
-                      <SelectItem value="M20x1.5">M20x1.5</SelectItem>
-                      <SelectItem value="NPT1/2">NPT1/2</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="electricalConnection" className={!isElectricalConnectionEnabled ? 'text-muted-foreground' : ''}>Электрическое присоединение</Label>
-                  <Select value={config.electricalConnection} onValueChange={(value) => setConfig({...config, electricalConnection: value})} disabled={!isElectricalConnectionEnabled}>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Выберите тип присоединения" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="DIN 43650">DIN 43650</SelectItem>
+                      <SelectItem value="М20х1.5 ГОСТ 2405">М20х1.5 ГОСТ 2405</SelectItem>
+                      <SelectItem value="М20х1.5 DIN 3852">М20х1.5 DIN 3852</SelectItem>
+                      <SelectItem value="М20х1.5 открытая мембрана">М20х1.5 открытая мембрана</SelectItem>
+                      <SelectItem value="М14х1.5 ГОСТ 2405">М14х1.5 ГОСТ 2405</SelectItem>
+                      <SelectItem value="М14х1.5 DIN 3852">М14х1.5 DIN 3852</SelectItem>
+                      <SelectItem value="М14х1.5 открытая мембрана">М14х1.5 открытая мембрана</SelectItem>
+                      <SelectItem value="М12х1.5 ГОСТ 2405">М12х1.5 ГОСТ 2405</SelectItem>
                       <SelectItem value="М12х1">М12х1</SelectItem>
-                      <SelectItem value="Кабель">Кабель</SelectItem>
+                      <SelectItem value="G3/4\" EN 837">G3/4" EN 837</SelectItem>
+                      <SelectItem value="G3/4\" DIN 3852">G3/4" DIN 3852</SelectItem>
+                      <SelectItem value="G3/4\" открытая мембрана">G3/4" открытая мембрана</SelectItem>
+                      <SelectItem value="G1/2\" EN 837">G1/2" EN 837</SelectItem>
+                      <SelectItem value="G1/2\" DIN 3852">G1/2" DIN 3852</SelectItem>
+                      <SelectItem value="G1/2\" открытая мембрана">G1/2" открытая мембрана</SelectItem>
+                      <SelectItem value="G1/4\" EN 837">G1/4" EN 837</SelectItem>
+                      <SelectItem value="G1/4\" DIN 3852">G1/4" DIN 3852</SelectItem>
+                      <SelectItem value="G1/4\" открытая мембрана">G1/4" открытая мембрана</SelectItem>
+                      <SelectItem value="1/2\" NPT">1/2" NPT</SelectItem>
+                      <SelectItem value="1/4\" NPT">1/4" NPT</SelectItem>
+                      <SelectItem value="другое">другое</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -508,8 +511,39 @@ export default function Product() {
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="Без взрывозащиты">Без взрывозащиты</SelectItem>
-                      <SelectItem value="ExiaIICT6">ExiaIICT6</SelectItem>
-                      <SelectItem value="ExdIICT6">ExdIICT6</SelectItem>
+                      <SelectItem value="Искробезопасная цепь (Іа)">Искробезопасная цепь (Іа)</SelectItem>
+                      <SelectItem value="Взрывонепроницаемая оболочка (Вн)">Взрывонепроницаемая оболочка (Вн)</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="electricalConnection" className={!isElectricalConnectionEnabled ? 'text-muted-foreground' : ''}>Электрическое присоединение</Label>
+                  <Select value={config.electricalConnection} onValueChange={(value) => setConfig({...config, electricalConnection: value})} disabled={!isElectricalConnectionEnabled}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Выберите тип присоединения" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="DIN 43650А (код G)">DIN 43650А (код G)</SelectItem>
+                      <SelectItem value="Кабельный ввод прямой пластиковый (код ПП)">Кабельный ввод (прямой пластиковый) код ПП</SelectItem>
+                      <SelectItem value="Кабельный ввод прямой металлический (код ПМ)">Кабельный ввод (прямой металлический) код ПМ</SelectItem>
+                      <SelectItem value="Кабельный ввод угловой пластиковый (код УП)">Кабельный ввод (угловой пластиковый) код УП</SelectItem>
+                      <SelectItem value="Кабельный ввод угловой металлический (код УМ)">Кабельный ввод (угловой металлический) код УМ</SelectItem>
+                      <SelectItem value="Кабельный ввод прямой под металлорукав (код ПММ)">Кабельный ввод (прямой под металлорукав) код ПММ</SelectItem>
+                      <SelectItem value="Кабельный ввод угловой под металлорукав (код УММ)">Кабельный ввод (угловой под металлорукав) код УММ</SelectItem>
+                      <SelectItem value="Кабельный ввод прямой под металлопластиковый рукав (код УММ-15)">Кабельный ввод (прямой под металлопластиковый рукав) код УММ-15</SelectItem>
+                      <SelectItem value="Кабельный ввод примой металлический с усиленным корпусом (код ПМ1)">Кабельный ввод (примой металлический с усиленным корпусом) код ПМ1</SelectItem>
+                      <SelectItem value="Кабельный ввод прямой под бронекабель (код ПБ)">Кабельный ввод (прямой под бронекабель) код ПБ</SelectItem>
+                      <SelectItem value="Кабельный ввод угловой под бронекабель (код УБ)">Кабельный ввод (угловой под бронекабель) код УБ</SelectItem>
+                      <SelectItem value="Кабельный ввод угловой трубный (код УТ)">Кабельный ввод (угловой трубный) код УТ</SelectItem>
+                      <SelectItem value="Кабельный ввод прямой трубный (код ПТ)">Кабельный ввод (прямой трубный) код ПТ</SelectItem>
+                      <SelectItem value="Разъем РСГ4ТВ (код ПР)">Разъем РСГ4ТВ код ПР</SelectItem>
+                      <SelectItem value="Разъем РСГ7ТВ (код Р)">Разъем РСГ7ТВ код Р</SelectItem>
+                      <SelectItem value="Разъем 2РМТ22 (код УР2)">Разъем 2РМТ22 код УР2</SelectItem>
+                      <SelectItem value="Разъем 2РМТ14 (код УР3)">Разъем 2РМТ14 код УР3</SelectItem>
+                      <SelectItem value="Разъем 2РМГ14 (код УР4)">Разъем 2РМГ14 код УР4</SelectItem>
+                      <SelectItem value="Разъем 2РМГ22 (код УР5)">Разъем 2РМГ22 код УР5</SelectItem>
+                      <SelectItem value="другое">другое</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
