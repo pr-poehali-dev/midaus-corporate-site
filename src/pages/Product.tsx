@@ -693,6 +693,26 @@ export default function Product() {
                   </CardContent>
                 </Card>
               )}
+
+              {id === 'mida-12' && (
+                <Card className="hover:shadow-md transition-shadow overflow-hidden">
+                  <CardContent className="p-0">
+                    <div className="relative rounded-lg overflow-hidden" style={{ paddingBottom: '56.25%' }}>
+                      <iframe
+                        src="https://rutube.ru/play/embed/bca0ffbb508aff480d9d5b71b5f61c0c"
+                        frameBorder="0"
+                        allow="clipboard-write; autoplay"
+                        allowFullScreen
+                        className="absolute inset-0 w-full h-full"
+                      />
+                    </div>
+                    <div className="p-4">
+                      <h4 className="font-semibold">Видеообзор МИДА-12П</h4>
+                      <p className="text-sm text-muted-foreground">Подробный обзор датчика и его возможностей</p>
+                    </div>
+                  </CardContent>
+                </Card>
+              )}
               
               <Card className="hover:shadow-md transition-shadow">
                 <CardContent className="p-6 flex items-center justify-between">
