@@ -107,9 +107,9 @@ export default function Product() {
       'https://cdn.poehali.dev/files/b6fbb7ec-4f53-4d1f-b905-fd7e4106c1e9.JPG',
     ],
     'mida-15': [
-      'https://cdn.poehali.dev/projects/821a1e50-8ec8-4e2a-91f3-24ac4fed203b/files/b7ca30c5-ae77-4f0d-8ffc-1ba4030437b9.jpg',
-      'https://cdn.poehali.dev/projects/821a1e50-8ec8-4e2a-91f3-24ac4fed203b/files/b7ca30c5-ae77-4f0d-8ffc-1ba4030437b9.jpg',
-      'https://cdn.poehali.dev/projects/821a1e50-8ec8-4e2a-91f3-24ac4fed203b/files/b7ca30c5-ae77-4f0d-8ffc-1ba4030437b9.jpg',
+      'https://cdn.poehali.dev/files/f6170bf3-77d4-4804-ba4c-3a0939d5b87c.JPG',
+      'https://cdn.poehali.dev/files/f6170bf3-77d4-4804-ba4c-3a0939d5b87c.JPG',
+      'https://cdn.poehali.dev/files/f6170bf3-77d4-4804-ba4c-3a0939d5b87c.JPG',
     ],
     'mida-12': [
       'https://cdn.poehali.dev/projects/821a1e50-8ec8-4e2a-91f3-24ac4fed203b/files/c6d52949-8ae1-4275-80f9-d91e31e18619.jpg',

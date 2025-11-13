@@ -19,7 +19,7 @@ export default function Products() {
       name: 'МИДА-15',
       description: 'Датчик давления для работы в условиях повышенной вибрации',
       price: '15 800',
-      image: 'https://cdn.poehali.dev/projects/821a1e50-8ec8-4e2a-91f3-24ac4fed203b/files/b7ca30c5-ae77-4f0d-8ffc-1ba4030437b9.jpg',
+      image: 'https://cdn.poehali.dev/files/f6170bf3-77d4-4804-ba4c-3a0939d5b87c.JPG',
       specs: ['0...1 МПа', '±0,1%', '4...20 мА', 'IP67'],
       inStock: true,
     },
