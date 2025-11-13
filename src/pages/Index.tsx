@@ -50,7 +50,7 @@ export default function Index() {
     { url: 'https://cdn.poehali.dev/files/91785d28-cc14-47e5-87bd-58d73f18171a.jpeg', title: '' },
     { url: 'https://cdn.poehali.dev/files/48ace166-ee49-4617-b80f-a5ff3e3b8ac1.jpeg', title: '' },
     { url: 'https://cdn.poehali.dev/files/ac629dca-703c-49d9-a667-09393387e41f.jpeg', title: 'Калибровочная лаборатория' },
-    { url: 'https://cdn.poehali.dev/files/b213b093-390b-4cde-af32-bfefe61767e7.jpg', title: 'Метрологическая лаборатория' },
+    { url: 'https://cdn.poehali.dev/files/ddaf71d8-5625-4d64-a187-6246be0b06d8.jpg', title: 'Метрологическая лаборатория' },
   ];
 
   const nextSlide = () => {
