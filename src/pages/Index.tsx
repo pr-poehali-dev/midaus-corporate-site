@@ -31,6 +31,8 @@ export default function Index() {
       series = series.filter(s => s === 'МИДА-12');
     } else if (temperature === 'low') {
       series = series.filter(s => s !== 'МИДА-12');
+    } else if (temperature === 'cryo') {
+      series = series.filter(s => s === 'МИДА-12');
     }
 
     if (explosionProtection === 'shell') {
@@ -172,6 +174,7 @@ export default function Index() {
                       className="w-full px-3 py-2 border border-input rounded-md bg-background"
                     >
                       <option value="">Выберите диапазон</option>
+                      <option value="cryo">От -197°C до 100°C (криогенное исполнение)</option>
                       <option value="low">До 150°C</option>
                       <option value="high">От 150°C до 400°C</option>
                     </select>
