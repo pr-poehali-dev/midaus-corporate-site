@@ -724,8 +724,8 @@ export default function Product() {
                     />
                   </div>
                   <div className="p-4 bg-secondary">
-                    <h4 className="font-semibold mb-1">Видео 1: Основы работы с датчиками давления</h4>
-                    <p className="text-sm text-muted-foreground">Введение в принципы работы и подключения датчиков</p>
+                    <h4 className="font-semibold mb-1">Механическое подключение датчиков давления МИДА</h4>
+                    <p className="text-sm text-muted-foreground">Подробная инструкция по механическому монтажу и подключению</p>
                   </div>
                 </CardContent>
               </Card>
