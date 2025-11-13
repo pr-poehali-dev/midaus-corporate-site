@@ -100,19 +100,19 @@ export default function Product() {
 
   const productImages: Record<string, string[]> = {
     'mida-13p': [
-      'https://cdn.poehali.dev/files/a3f1681a-52dc-44d0-8385-7592e1e0db2e.JPG',
-      'https://cdn.poehali.dev/files/a3f1681a-52dc-44d0-8385-7592e1e0db2e.JPG',
-      'https://cdn.poehali.dev/files/a3f1681a-52dc-44d0-8385-7592e1e0db2e.JPG',
+      'https://cdn.poehali.dev/projects/821a1e50-8ec8-4e2a-91f3-24ac4fed203b/files/c3162aaa-ab1f-4acd-a983-57efb8f29b37.jpg',
+      'https://cdn.poehali.dev/projects/821a1e50-8ec8-4e2a-91f3-24ac4fed203b/files/c3162aaa-ab1f-4acd-a983-57efb8f29b37.jpg',
+      'https://cdn.poehali.dev/projects/821a1e50-8ec8-4e2a-91f3-24ac4fed203b/files/c3162aaa-ab1f-4acd-a983-57efb8f29b37.jpg',
     ],
     'mida-15': [
-      'https://cdn.poehali.dev/files/7a89d217-d4c2-4e24-a104-517e6812f925.JPG',
-      'https://cdn.poehali.dev/files/7a89d217-d4c2-4e24-a104-517e6812f925.JPG',
-      'https://cdn.poehali.dev/files/7a89d217-d4c2-4e24-a104-517e6812f925.JPG',
+      'https://cdn.poehali.dev/projects/821a1e50-8ec8-4e2a-91f3-24ac4fed203b/files/b7ca30c5-ae77-4f0d-8ffc-1ba4030437b9.jpg',
+      'https://cdn.poehali.dev/projects/821a1e50-8ec8-4e2a-91f3-24ac4fed203b/files/b7ca30c5-ae77-4f0d-8ffc-1ba4030437b9.jpg',
+      'https://cdn.poehali.dev/projects/821a1e50-8ec8-4e2a-91f3-24ac4fed203b/files/b7ca30c5-ae77-4f0d-8ffc-1ba4030437b9.jpg',
     ],
     'mida-12': [
-      'https://cdn.poehali.dev/files/be011901-0128-4730-b5b2-1583c9ceb051.JPG',
-      'https://cdn.poehali.dev/files/be011901-0128-4730-b5b2-1583c9ceb051.JPG',
-      'https://cdn.poehali.dev/files/be011901-0128-4730-b5b2-1583c9ceb051.JPG',
+      'https://cdn.poehali.dev/projects/821a1e50-8ec8-4e2a-91f3-24ac4fed203b/files/c6d52949-8ae1-4275-80f9-d91e31e18619.jpg',
+      'https://cdn.poehali.dev/projects/821a1e50-8ec8-4e2a-91f3-24ac4fed203b/files/c6d52949-8ae1-4275-80f9-d91e31e18619.jpg',
+      'https://cdn.poehali.dev/projects/821a1e50-8ec8-4e2a-91f3-24ac4fed203b/files/c6d52949-8ae1-4275-80f9-d91e31e18619.jpg',
     ],
   };
 
@@ -607,31 +607,9 @@ export default function Product() {
               )}
             </div>
 
-            <div className="flex items-center gap-4 mb-6">
-              <div className="flex items-center border border-border rounded-lg">
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                >
-                  <Icon name="Minus" size={16} />
-                </Button>
-                <span className="px-6 py-2 font-semibold">{quantity}</span>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={() => setQuantity(quantity + 1)}
-                >
-                  <Icon name="Plus" size={16} />
-                </Button>
-              </div>
-              <div className="flex-1">
-                <p className="text-sm text-muted-foreground">Цена за единицу</p>
-                <p className="font-heading font-bold text-2xl">{product.price} ₽</p>
-              </div>
-            </div>
 
-            <div className="flex flex-col sm:flex-row gap-3">
+
+            <div className="flex flex-col sm:flex-row gap-3 mt-6">
               <Button className="flex-1" size="lg">
                 <Icon name="ShoppingCart" size={20} className="mr-2" />
                 Добавить в корзину

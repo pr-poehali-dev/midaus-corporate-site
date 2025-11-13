@@ -10,7 +10,7 @@ export default function Products() {
       name: 'МИДА-13П',
       description: 'Общепромышленный датчик давления с унифицированным выходным сигналом',
       price: '12 500',
-      image: 'https://cdn.poehali.dev/files/a3f1681a-52dc-44d0-8385-7592e1e0db2e.JPG',
+      image: 'https://cdn.poehali.dev/projects/821a1e50-8ec8-4e2a-91f3-24ac4fed203b/files/c3162aaa-ab1f-4acd-a983-57efb8f29b37.jpg',
       specs: ['0...0,1 МПа', '±0,25%', '4...20 мА', 'IP65'],
       inStock: true,
     },
@@ -19,7 +19,7 @@ export default function Products() {
       name: 'МИДА-15',
       description: 'Датчик давления для работы в условиях повышенной вибрации',
       price: '15 800',
-      image: 'https://cdn.poehali.dev/files/7a89d217-d4c2-4e24-a104-517e6812f925.JPG',
+      image: 'https://cdn.poehali.dev/projects/821a1e50-8ec8-4e2a-91f3-24ac4fed203b/files/b7ca30c5-ae77-4f0d-8ffc-1ba4030437b9.jpg',
       specs: ['0...1 МПа', '±0,1%', '4...20 мА', 'IP67'],
       inStock: true,
     },
@@ -28,7 +28,7 @@ export default function Products() {
       name: 'МИДА-12',
       description: 'Датчик давления для агрессивных сред с защитой от коррозии',
       price: '18 200',
-      image: 'https://cdn.poehali.dev/files/be011901-0128-4730-b5b2-1583c9ceb051.JPG',
+      image: 'https://cdn.poehali.dev/projects/821a1e50-8ec8-4e2a-91f3-24ac4fed203b/files/c6d52949-8ae1-4275-80f9-d91e31e18619.jpg',
       specs: ['0...10 МПа', '±0,25%', '4...20 мА', 'IP68'],
       inStock: true,
     },
@@ -130,10 +130,7 @@ export default function Products() {
                     ))}
                   </div>
 
-                  <div className="flex items-baseline gap-2 mb-4">
-                    <span className="text-2xl font-bold text-primary">от {product.price} ₽</span>
-                    <span className="text-xs text-muted-foreground">с НДС</span>
-                  </div>
+
 
                   <div className="flex gap-2">
                     <Button asChild className="flex-1 bg-accent hover:bg-accent/90">
