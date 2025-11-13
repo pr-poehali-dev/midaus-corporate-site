@@ -611,8 +611,8 @@ export default function Product() {
 
             <div className="flex flex-col sm:flex-row gap-3 mt-6">
               <Button className="flex-1" size="lg">
-                <Icon name="ShoppingCart" size={20} className="mr-2" />
-                Добавить в корзину
+                <Icon name="DollarSign" size={20} className="mr-2" />
+                Запросить цену
               </Button>
               <Button variant="outline" size="lg">
                 <Icon name="MessageSquare" size={20} className="mr-2" />
