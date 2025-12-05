@@ -392,7 +392,7 @@ export default function Index() {
           <h2 className="font-heading font-bold text-3xl text-center mb-12">
             Отраслевые решения
           </h2>
-          <div className="grid md:grid-cols-3 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
             {[
               { icon: 'Building2', title: 'ЖКХ' },
               { icon: 'Drill', title: 'Бурение' },
@@ -406,16 +406,16 @@ export default function Index() {
             ].map((solution, index) => (
               <div
                 key={index}
-                className="group flex flex-col items-center p-6 bg-white rounded-lg hover:shadow-md transition-all cursor-pointer"
+                className="group flex flex-col items-center p-4 bg-white rounded-lg hover:shadow-md transition-all cursor-pointer"
               >
-                <div className="w-16 h-16 bg-secondary rounded-full flex items-center justify-center mb-3 group-hover:bg-primary transition-colors">
+                <div className="w-12 h-12 bg-secondary rounded-full flex items-center justify-center mb-2 group-hover:bg-primary transition-colors group-hover:scale-110 duration-300">
                   <Icon
                     name={solution.icon}
-                    size={28}
+                    size={22}
                     className="text-primary group-hover:text-white transition-colors"
                   />
                 </div>
-                <span className="font-medium text-sm text-center group-hover:text-primary transition-colors">
+                <span className="font-medium text-xs text-center group-hover:text-primary transition-colors leading-tight">
                   {solution.title}
                 </span>
               </div>
