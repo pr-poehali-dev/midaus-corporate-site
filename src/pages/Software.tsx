@@ -79,16 +79,24 @@ export default function Software() {
             <Link to="/products" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
               Продукция
             </Link>
-            <a href="/#about" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
+            <Link to="/about" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
               О компании
-            </a>
-            <a href="/#support" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
-              Поддержка
-            </a>
+            </Link>
+            <Link to="/laboratory" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
+              Метрологическая лаборатория
+            </Link>
+            <Link to="/software" className="text-sm font-medium text-primary transition-colors">
+              Программное обеспечение
+            </Link>
+            <Link to="/news" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
+              Новости
+            </Link>
           </nav>
-          <Button variant="default" className="hidden md:flex">
-            Заказать звонок
-          </Button>
+          <Link to="/">
+            <Button variant="default" className="hidden md:flex">
+              Главная
+            </Button>
+          </Link>
           <Button 
             variant="ghost" 
             size="icon" 
@@ -112,23 +120,39 @@ export default function Software() {
             >
               Продукция
             </Link>
-            <a 
-              href="/#about" 
+            <Link 
+              to="/about" 
               className="text-sm font-medium text-foreground hover:text-primary transition-colors"
               onClick={() => setMobileMenuOpen(false)}
             >
               О компании
-            </a>
-            <a 
-              href="/#support" 
+            </Link>
+            <Link 
+              to="/laboratory" 
               className="text-sm font-medium text-foreground hover:text-primary transition-colors"
               onClick={() => setMobileMenuOpen(false)}
             >
-              Поддержка
-            </a>
-            <Button variant="default" className="w-full">
-              Заказать звонок
-            </Button>
+              Метрологическая лаборатория
+            </Link>
+            <Link 
+              to="/software" 
+              className="text-sm font-medium text-primary transition-colors"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Программное обеспечение
+            </Link>
+            <Link 
+              to="/news" 
+              className="text-sm font-medium text-foreground hover:text-primary transition-colors"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Новости
+            </Link>
+            <Link to="/">
+              <Button variant="default" className="w-full">
+                Главная
+              </Button>
+            </Link>
           </nav>
         </div>
       </header>
@@ -203,53 +227,54 @@ export default function Software() {
         </div>
       </section>
 
-      <footer className="border-t border-border bg-secondary/20 py-12">
+      <footer className="bg-secondary py-12 mt-16">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
-              <div className="flex items-center gap-2 mb-4">
-                <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                  <span className="text-primary-foreground font-bold">М</span>
-                </div>
-                <span className="font-heading font-bold">МИДА</span>
-              </div>
+              <img 
+                src="https://cdn.poehali.dev/files/bf9d6490-da2b-41da-829f-65eea317fd60.png" 
+                alt="МИДАУС" 
+                className="h-10 w-auto mb-4 object-contain"
+              />
               <p className="text-sm text-muted-foreground">
-                Российский производитель датчиков давления промышленного класса
+                Производство датчиков давления и систем измерения для промышленности
               </p>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">Компания</h4>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li><Link to="/about" className="hover:text-primary">О компании</Link></li>
+                <li><Link to="/laboratory" className="hover:text-primary">Метрологическая лаборатория</Link></li>
+                <li><Link to="/news" className="hover:text-primary">Новости</Link></li>
+              </ul>
             </div>
             <div>
               <h4 className="font-semibold mb-4">Продукция</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><Link to="/products" className="hover:text-primary transition-colors">Все датчики</Link></li>
-                <li><Link to="/product/mida-13p" className="hover:text-primary transition-colors">МИДА-13П</Link></li>
-                <li><Link to="/product/mida-12" className="hover:text-primary transition-colors">МИДА-12</Link></li>
-                <li><Link to="/product/mida-15" className="hover:text-primary transition-colors">МИДА-15</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4">Информация</h4>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="/#about" className="hover:text-primary transition-colors">О компании</a></li>
-                <li><Link to="/software" className="hover:text-primary transition-colors">Программное обеспечение</Link></li>
-                <li><a href="/#support" className="hover:text-primary transition-colors">Поддержка</a></li>
+                <li><Link to="/products" className="hover:text-primary">Датчики давления</Link></li>
+                <li><Link to="/software" className="hover:text-primary">Программное обеспечение</Link></li>
               </ul>
             </div>
             <div>
               <h4 className="font-semibold mb-4">Контакты</h4>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li className="flex items-center gap-2">
+              <div className="space-y-2 text-sm text-muted-foreground">
+                <div className="flex items-center gap-2">
+                  <Icon name="MapPin" size={16} />
+                  <span>г. Ульяновск</span>
+                </div>
+                <div className="flex items-center gap-2">
                   <Icon name="Phone" size={16} />
-                  +7 (495) 123-45-67
-                </li>
-                <li className="flex items-center gap-2">
+                  <span>+7 (8422) 123-45-67</span>
+                </div>
+                <div className="flex items-center gap-2">
                   <Icon name="Mail" size={16} />
-                  info@mida.ru
-                </li>
-              </ul>
+                  <span>info@midaus.ru</span>
+                </div>
+              </div>
             </div>
           </div>
-          <div className="border-t border-border mt-8 pt-8 text-center text-sm text-muted-foreground">
-            <p>© 2024 МИДА. Все права защищены.</p>
+          <div className="border-t border-border pt-8">
+            <p className="text-sm text-muted-foreground text-center">© 2024 МИДАУС. Все права защищены.</p>
           </div>
         </div>
       </footer>

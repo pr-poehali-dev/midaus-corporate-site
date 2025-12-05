@@ -46,19 +46,27 @@ export default function Products() {
             />
           </Link>
           <nav className="hidden md:flex items-center gap-8">
-            <Link to="/#products" className="text-sm font-medium text-primary">
+            <Link to="/products" className="text-sm font-medium text-primary transition-colors">
               Продукция
             </Link>
-            <Link to="/#about" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
+            <Link to="/about" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
               О компании
             </Link>
-            <Link to="/#support" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
-              Поддержка
+            <Link to="/laboratory" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
+              Метрологическая лаборатория
+            </Link>
+            <Link to="/software" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
+              Программное обеспечение
+            </Link>
+            <Link to="/news" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
+              Новости
             </Link>
           </nav>
-          <Button variant="default" className="hidden md:flex">
-            Заказать звонок
-          </Button>
+          <Link to="/">
+            <Button variant="default" className="hidden md:flex">
+              Главная
+            </Button>
+          </Link>
           <Button variant="ghost" size="icon" className="md:hidden">
             <Icon name="Menu" size={24} />
           </Button>
@@ -169,46 +177,56 @@ export default function Products() {
         </section>
       </div>
 
-      <footer className="bg-primary text-white py-12 mt-16">
+      <footer className="bg-secondary py-12 mt-16">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
               <img 
                 src="https://cdn.poehali.dev/files/bf9d6490-da2b-41da-829f-65eea317fd60.png" 
                 alt="МИДАУС" 
-                className="h-10 w-auto mb-4 brightness-0 invert"
+                className="h-10 w-auto mb-4 object-contain"
               />
-              <p className="text-white/80 text-sm">
-                Российский производитель датчиков давления с 1992 года
+              <p className="text-sm text-muted-foreground">
+                Производство датчиков давления и систем измерения для промышленности
               </p>
             </div>
             <div>
-              <h3 className="font-heading font-semibold mb-4">Продукция</h3>
-              <ul className="space-y-2 text-sm text-white/80">
-                <li><a href="#" className="hover:text-white">Датчики давления</a></li>
-                <li><a href="#" className="hover:text-white">Модули давления</a></li>
-                <li><a href="#" className="hover:text-white">Источники питания</a></li>
+              <h4 className="font-semibold mb-4">Компания</h4>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li><Link to="/about" className="hover:text-primary">О компании</Link></li>
+                <li><Link to="/laboratory" className="hover:text-primary">Метрологическая лаборатория</Link></li>
+                <li><Link to="/news" className="hover:text-primary">Новости</Link></li>
               </ul>
             </div>
             <div>
-              <h3 className="font-heading font-semibold mb-4">Контакты</h3>
-              <ul className="space-y-2 text-sm text-white/80">
-                <li>8-800-200-03-04</li>
-                <li>info@midaus.com</li>
-                <li>г. Ульяновск, проезд Энергетиков, д. 4</li>
+              <h4 className="font-semibold mb-4">Продукция</h4>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li><Link to="/products" className="hover:text-primary">Датчики давления</Link></li>
+                <li><Link to="/software" className="hover:text-primary">Программное обеспечение</Link></li>
               </ul>
             </div>
             <div>
-              <h3 className="font-heading font-semibold mb-4">Документы</h3>
-              <ul className="space-y-2 text-sm text-white/80">
-                <li><a href="#" className="hover:text-white">Сертификаты</a></li>
-                <li><Link to="/software" className="hover:text-white">Программное обеспечение</Link></li>
-                <li><a href="#" className="hover:text-white">Политика конфиденциальности</a></li>
-              </ul>
+              <h4 className="font-semibold mb-4">Контакты</h4>
+              <div className="space-y-2 text-sm text-muted-foreground">
+                <div className="flex items-center gap-2">
+                  <Icon name="MapPin" size={16} />
+                  <span>г. Ульяновск</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Icon name="Phone" size={16} />
+                  <span>+7 (8422) 123-45-67</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Icon name="Mail" size={16} />
+                  <span>info@midaus.ru</span>
+                </div>
+              </div>
             </div>
           </div>
-          <div className="border-t border-white/20 mt-8 pt-8 text-center text-sm text-white/60">
-            © 2024 МИДАУС. Все права защищены.
+          <div className="border-t border-border pt-8 mt-8">
+            <p className="text-sm text-muted-foreground text-center">
+              © 2024 МИДАУС. Все права защищены.
+            </p>
           </div>
         </div>
       </footer>

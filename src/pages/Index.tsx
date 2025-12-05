@@ -110,15 +110,21 @@ export default function Index() {
             />
           </div>
           <nav className="hidden md:flex items-center gap-8">
-            <a href="#products" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
+            <Link to="/products" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
               Продукция
-            </a>
-            <a href="#about" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
+            </Link>
+            <Link to="/about" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
               О компании
-            </a>
-            <a href="#support" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
-              Поддержка
-            </a>
+            </Link>
+            <Link to="/laboratory" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
+              Метрологическая лаборатория
+            </Link>
+            <Link to="/software" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
+              Программное обеспечение
+            </Link>
+            <Link to="/news" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
+              Новости
+            </Link>
           </nav>
           <Button variant="default" className="hidden md:flex" onClick={() => setShowCallModal(true)}>
             Заказать звонок
@@ -139,30 +145,46 @@ export default function Index() {
           }`}
         >
           <nav className="container mx-auto px-4 py-4 flex flex-col gap-4">
-            <a 
-              href="#products" 
+            <Link 
+              to="/products" 
               className="text-sm font-medium text-foreground hover:text-primary transition-colors animate-slide-up"
               style={{ animationDelay: '50ms' }}
               onClick={() => setMobileMenuOpen(false)}
             >
               Продукция
-            </a>
-            <a 
-              href="#about" 
+            </Link>
+            <Link 
+              to="/about" 
               className="text-sm font-medium text-foreground hover:text-primary transition-colors animate-slide-up"
               style={{ animationDelay: '100ms' }}
               onClick={() => setMobileMenuOpen(false)}
             >
               О компании
-            </a>
-            <a 
-              href="#support" 
+            </Link>
+            <Link 
+              to="/laboratory" 
               className="text-sm font-medium text-foreground hover:text-primary transition-colors animate-slide-up"
               style={{ animationDelay: '150ms' }}
               onClick={() => setMobileMenuOpen(false)}
             >
-              Поддержка
-            </a>
+              Метрологическая лаборатория
+            </Link>
+            <Link 
+              to="/software" 
+              className="text-sm font-medium text-foreground hover:text-primary transition-colors animate-slide-up"
+              style={{ animationDelay: '200ms' }}
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Программное обеспечение
+            </Link>
+            <Link 
+              to="/news" 
+              className="text-sm font-medium text-foreground hover:text-primary transition-colors animate-slide-up"
+              style={{ animationDelay: '250ms' }}
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Новости
+            </Link>
             <Button variant="default" className="w-full animate-slide-up" style={{ animationDelay: '300ms' }} onClick={() => { setShowCallModal(true); setMobileMenuOpen(false); }}>
                 Заказать звонок
               </Button>
@@ -1009,6 +1031,60 @@ export default function Index() {
           </Card>
         </div>
       )}
+
+      <footer className="bg-secondary py-12 mt-16">
+        <div className="container mx-auto px-4">
+          <div className="grid md:grid-cols-4 gap-8 mb-8">
+            <div>
+              <img 
+                src="https://cdn.poehali.dev/files/bf9d6490-da2b-41da-829f-65eea317fd60.png" 
+                alt="МИДАУС" 
+                className="h-10 w-auto mb-4 object-contain"
+              />
+              <p className="text-sm text-muted-foreground">
+                Производство датчиков давления и систем измерения для промышленности
+              </p>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">Компания</h4>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li><Link to="/about" className="hover:text-primary">О компании</Link></li>
+                <li><Link to="/laboratory" className="hover:text-primary">Метрологическая лаборатория</Link></li>
+                <li><Link to="/news" className="hover:text-primary">Новости</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">Продукция</h4>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li><Link to="/products" className="hover:text-primary">Датчики давления</Link></li>
+                <li><Link to="/software" className="hover:text-primary">Программное обеспечение</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">Контакты</h4>
+              <div className="space-y-2 text-sm text-muted-foreground">
+                <div className="flex items-center gap-2">
+                  <Icon name="MapPin" size={16} />
+                  <span>г. Ульяновск</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Icon name="Phone" size={16} />
+                  <span>+7 (8422) 123-45-67</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Icon name="Mail" size={16} />
+                  <span>info@midaus.ru</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="border-t border-border pt-8">
+            <p className="text-sm text-muted-foreground text-center">
+              © 2024 МИДАУС. Все права защищены.
+            </p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }

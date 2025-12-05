@@ -206,19 +206,27 @@ export default function Product() {
             />
           </Link>
           <nav className="hidden md:flex items-center gap-8">
-            <Link to="/#products" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
+            <Link to="/products" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
               Продукция
             </Link>
-            <Link to="/#about" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
+            <Link to="/about" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
               О компании
             </Link>
-            <Link to="/#support" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
-              Поддержка
+            <Link to="/laboratory" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
+              Метрологическая лаборатория
+            </Link>
+            <Link to="/software" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
+              Программное обеспечение
+            </Link>
+            <Link to="/news" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
+              Новости
             </Link>
           </nav>
-          <Button variant="default" className="hidden md:flex">
-            Заказать звонок
-          </Button>
+          <Link to="/">
+            <Button variant="default" className="hidden md:flex">
+              Главная
+            </Button>
+          </Link>
           <Button variant="ghost" size="icon" className="md:hidden">
             <Icon name="Menu" size={24} />
           </Button>
@@ -806,28 +814,36 @@ export default function Product() {
               </p>
             </div>
             <div>
-              <h4 className="font-semibold mb-4">Продукция</h4>
+              <h4 className="font-semibold mb-4">Компания</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="#" className="hover:text-primary">Датчики давления</a></li>
-                <li><a href="#" className="hover:text-primary">Манометры</a></li>
-                <li><a href="#" className="hover:text-primary">Преобразователи</a></li>
+                <li><Link to="/about" className="hover:text-primary">О компании</Link></li>
+                <li><Link to="/laboratory" className="hover:text-primary">Метрологическая лаборатория</Link></li>
+                <li><Link to="/news" className="hover:text-primary">Новости</Link></li>
               </ul>
             </div>
             <div>
-              <h4 className="font-semibold mb-4">Компания</h4>
+              <h4 className="font-semibold mb-4">Продукция</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="#" className="hover:text-primary">О нас</a></li>
+                <li><Link to="/products" className="hover:text-primary">Датчики давления</Link></li>
                 <li><Link to="/software" className="hover:text-primary">Программное обеспечение</Link></li>
-                <li><a href="#" className="hover:text-primary">Контакты</a></li>
               </ul>
             </div>
             <div>
               <h4 className="font-semibold mb-4">Контакты</h4>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li>8-800-200-03-04</li>
-                <li>info@midaus.com</li>
-                <li>г. Ульяновск, проезд Энергетиков, д. 4</li>
-              </ul>
+              <div className="space-y-2 text-sm text-muted-foreground">
+                <div className="flex items-center gap-2">
+                  <Icon name="MapPin" size={16} />
+                  <span>г. Ульяновск</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Icon name="Phone" size={16} />
+                  <span>+7 (8422) 123-45-67</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Icon name="Mail" size={16} />
+                  <span>info@midaus.ru</span>
+                </div>
+              </div>
             </div>
           </div>
           <div className="pt-8 border-t border-border text-center text-sm text-muted-foreground">
