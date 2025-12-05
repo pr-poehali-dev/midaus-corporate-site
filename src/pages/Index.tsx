@@ -299,7 +299,7 @@ export default function Index() {
           <h2 className="font-heading font-bold text-3xl text-center mb-12">
             Категории продукции
           </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               {
                 icon: 'Gauge',
@@ -323,6 +323,18 @@ export default function Index() {
                 icon: 'Shield',
                 title: 'Средства защиты',
                 description: 'Барьеры искрозащиты и блоки грозозащиты',
+                link: '#',
+              },
+              {
+                icon: 'Monitor',
+                title: 'Аппаратура обработки и индикации',
+                description: 'Системы обработки и отображения данных',
+                link: '#',
+              },
+              {
+                icon: 'Wrench',
+                title: 'Монтажная арматура и комплектующие',
+                description: 'Крепежи, переходники и монтажные элементы',
                 link: '#',
               },
             ].map((category, index) => (
