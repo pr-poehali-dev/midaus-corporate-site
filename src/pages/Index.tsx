@@ -18,6 +18,7 @@ export default function Index() {
   const [visibleSections, setVisibleSections] = useState<Set<string>>(new Set());
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [showCallModal, setShowCallModal] = useState(false);
   const sectionRefs = useRef<{ [key: string]: HTMLElement | null }>({});
 
   useEffect(() => {
@@ -119,7 +120,7 @@ export default function Index() {
               Поддержка
             </a>
           </nav>
-          <Button variant="default" className="hidden md:flex">
+          <Button variant="default" className="hidden md:flex" onClick={() => setShowCallModal(true)}>
             Заказать звонок
           </Button>
           <Button 
@@ -162,7 +163,7 @@ export default function Index() {
             >
               Поддержка
             </a>
-            <Button variant="default" className="w-full animate-slide-up" style={{ animationDelay: '300ms' }}>
+            <Button variant="default" className="w-full animate-slide-up" style={{ animationDelay: '300ms' }} onClick={() => { setShowCallModal(true); setMobileMenuOpen(false); }}>
                 Заказать звонок
               </Button>
           </nav>
@@ -960,6 +961,41 @@ export default function Index() {
         >
           <Icon name="ArrowUp" size={24} />
         </Button>
+      )}
+
+      {showCallModal && (
+        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4" onClick={() => setShowCallModal(false)}>
+          <Card className="max-w-md w-full" onClick={(e) => e.stopPropagation()}>
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="font-heading font-bold text-xl">Заказать звонок</h3>
+                <Button variant="ghost" size="icon" onClick={() => setShowCallModal(false)}>
+                  <Icon name="X" size={20} />
+                </Button>
+              </div>
+              <p className="text-sm text-muted-foreground mb-6">
+                Оставьте свои контакты, и мы перезвоним вам в течение рабочего дня
+              </p>
+              <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); setShowCallModal(false); }}>
+                <div className="space-y-2">
+                  <Label htmlFor="call-name">Имя *</Label>
+                  <Input id="call-name" placeholder="Ваше имя" required />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="call-phone">Телефон *</Label>
+                  <Input id="call-phone" type="tel" placeholder="+7 (___) ___-__-__" required />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="call-comment">Комментарий</Label>
+                  <Textarea id="call-comment" placeholder="Опишите ваш вопрос или задачу" rows={3} />
+                </div>
+                <Button type="submit" className="w-full" size="lg">
+                  Отправить заявку
+                </Button>
+              </form>
+            </CardContent>
+          </Card>
+        </div>
       )}
     </div>
   );
