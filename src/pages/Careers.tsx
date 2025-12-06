@@ -1,9 +1,18 @@
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { Label } from '@/components/ui/label';
 import Icon from '@/components/ui/icon';
 import { Link } from 'react-router-dom';
 
 export default function Careers() {
+  const [showApplicationModal, setShowApplicationModal] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="min-h-screen bg-background">
       <header className="bg-white border-b border-border sticky top-0 z-50">
@@ -164,7 +173,7 @@ export default function Careers() {
                     </a>
                     {' '}с указанием названия вакансии в теме письма.
                   </p>
-                  <Button size="lg" className="w-full sm:w-auto">
+                  <Button size="lg" className="w-full sm:w-auto" onClick={() => setShowApplicationModal(true)}>
                     <Icon name="Send" size={20} className="mr-2" />
                     Отправить резюме
                   </Button>
@@ -191,6 +200,64 @@ export default function Careers() {
           </Card>
         </div>
       </div>
+
+      {showApplicationModal && (
+        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4" onClick={() => setShowApplicationModal(false)}>
+          <Card className="max-w-2xl w-full max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="font-heading font-bold text-xl">Откликнуться на вакансию</h3>
+                <Button variant="ghost" size="icon" onClick={() => setShowApplicationModal(false)}>
+                  <Icon name="X" size={20} />
+                </Button>
+              </div>
+              <p className="text-sm text-muted-foreground mb-6">
+                Заполните форму, и мы свяжемся с вами для обсуждения вакансии
+              </p>
+              <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); setShowApplicationModal(false); }}>
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="app-name">Имя *</Label>
+                    <Input id="app-name" placeholder="Иван Иванов" required />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="app-phone">Телефон *</Label>
+                    <Input id="app-phone" type="tel" placeholder="+7 (___) ___-__-__" required />
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="app-email">Email *</Label>
+                  <Input id="app-email" type="email" placeholder="email@example.com" required />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="app-experience">Опыт работы</Label>
+                  <Textarea id="app-experience" placeholder="Расскажите о вашем опыте работы и навыках..." rows={4} />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="app-education">Образование</Label>
+                  <Input id="app-education" placeholder="Укажите ваше образование" />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="app-message">Дополнительная информация</Label>
+                  <Textarea id="app-message" placeholder="Расскажите, почему вы хотите работать в МИДАУС..." rows={3} />
+                </div>
+                <div className="bg-secondary p-4 rounded-lg">
+                  <p className="text-sm text-muted-foreground">
+                    <Icon name="Paperclip" size={16} className="inline mr-1" />
+                    Для прикрепления резюме отправьте заявку на{' '}
+                    <a href="mailto:info@midaus.com" className="text-primary hover:underline font-semibold">
+                      info@midaus.com
+                    </a>
+                  </p>
+                </div>
+                <Button type="submit" className="w-full" size="lg">
+                  Отправить заявку
+                </Button>
+              </form>
+            </CardContent>
+          </Card>
+        </div>
+      )}
 
       <footer className="bg-secondary py-12 mt-16">
         <div className="container mx-auto px-4">
