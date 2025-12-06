@@ -229,7 +229,7 @@ export default function Index() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <h2 className="font-heading font-bold text-3xl text-center mb-8">
-              Подбор серии датчика МИДА
+              Подбор серии датчиков давления МИДА
             </h2>
             <Card>
               <CardContent className="p-6">
@@ -290,7 +290,7 @@ export default function Index() {
                 </div>
                 <Button onClick={getSuitableSeries} className="w-full mt-6 bg-accent hover:bg-accent/90">
                   <Icon name="Search" size={20} className="mr-2" />
-                  Подобрать серию датчика
+                  Подобрать серию датчиков МИДА
                 </Button>
                 {recommendedSeries.length > 0 && (
                   <div className="mt-6 p-4 bg-primary/5 rounded-lg border border-primary/20">
