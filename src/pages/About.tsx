@@ -1,44 +1,12 @@
-import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import Icon from '@/components/ui/icon';
 import { Link } from 'react-router-dom';
+import Header from '@/components/Header';
 
 export default function About() {
   return (
     <div className="min-h-screen bg-background">
-      <header className="bg-white border-b border-border sticky top-0 z-50">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2">
-            <img 
-              src="https://cdn.poehali.dev/files/bf9d6490-da2b-41da-829f-65eea317fd60.png" 
-              alt="МИДАУС" 
-              className="h-10 w-auto object-contain"
-            />
-          </Link>
-          <nav className="hidden md:flex items-center gap-8">
-            <Link to="/products" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
-              Продукция
-            </Link>
-            <Link to="/about" className="text-sm font-medium text-primary transition-colors">
-              О компании
-            </Link>
-            <Link to="/laboratory" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
-              Метрологическая лаборатория
-            </Link>
-            <Link to="/software" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
-              Программное обеспечение
-            </Link>
-            <Link to="/news" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
-              Новости
-            </Link>
-          </nav>
-          <Link to="/">
-            <Button variant="default" className="hidden md:flex">
-              Главная
-            </Button>
-          </Link>
-        </div>
-      </header>
+      <Header />
 
       <section className="relative h-[400px] flex items-center overflow-hidden">
         <div

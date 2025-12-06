@@ -2,7 +2,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import Icon from '@/components/ui/icon';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import Header from '@/components/Header';
 
 export default function Software() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -66,96 +66,7 @@ export default function Software() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-secondary/20">
-      <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-border shadow-sm">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2">
-            <img 
-              src="https://cdn.poehali.dev/files/bf9d6490-da2b-41da-829f-65eea317fd60.png" 
-              alt="МИДАУС" 
-              className="h-10 w-auto object-contain"
-            />
-          </Link>
-          <nav className="hidden md:flex items-center gap-6">
-            <Link to="/products" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
-              Продукция
-            </Link>
-            <Link to="/about" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
-              О компании
-            </Link>
-            <Link to="/laboratory" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
-              Метрологическая лаборатория
-            </Link>
-            <Link to="/software" className="text-sm font-medium text-primary transition-colors">
-              Программное обеспечение
-            </Link>
-            <Link to="/news" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
-              Новости
-            </Link>
-          </nav>
-          <Link to="/">
-            <Button variant="default" className="hidden md:flex">
-              Главная
-            </Button>
-          </Link>
-          <Button 
-            variant="ghost" 
-            size="icon" 
-            className="md:hidden"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          >
-            <Icon name={mobileMenuOpen ? "X" : "Menu"} size={24} />
-          </Button>
-        </div>
-        
-        <div 
-          className={`md:hidden border-t border-border bg-white overflow-hidden transition-all duration-300 ease-in-out ${
-            mobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-          }`}
-        >
-          <nav className="container mx-auto px-4 py-4 flex flex-col gap-4">
-            <Link 
-              to="/products" 
-              className="text-sm font-medium text-foreground hover:text-primary transition-colors"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Продукция
-            </Link>
-            <Link 
-              to="/about" 
-              className="text-sm font-medium text-foreground hover:text-primary transition-colors"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              О компании
-            </Link>
-            <Link 
-              to="/laboratory" 
-              className="text-sm font-medium text-foreground hover:text-primary transition-colors"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Метрологическая лаборатория
-            </Link>
-            <Link 
-              to="/software" 
-              className="text-sm font-medium text-primary transition-colors"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Программное обеспечение
-            </Link>
-            <Link 
-              to="/news" 
-              className="text-sm font-medium text-foreground hover:text-primary transition-colors"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Новости
-            </Link>
-            <Link to="/">
-              <Button variant="default" className="w-full">
-                Главная
-              </Button>
-            </Link>
-          </nav>
-        </div>
-      </header>
+      <Header />
 
       <section className="pt-32 pb-20">
         <div className="container mx-auto px-4">
