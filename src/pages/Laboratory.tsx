@@ -1,9 +1,19 @@
+import { useState, useEffect } from 'react';
+import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { Label } from '@/components/ui/label';
 import Icon from '@/components/ui/icon';
 import { Link } from 'react-router-dom';
 import Header from '@/components/Header';
 
 export default function Laboratory() {
+  const [showVerificationModal, setShowVerificationModal] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -22,7 +32,7 @@ export default function Laboratory() {
             Метрологическая лаборатория
           </h1>
           <p className="text-lg text-white/90 max-w-2xl">
-            Аккредитованная лаборатория с современным оборудованием для калибровки и поверки
+            Аккредитованная лаборатория с современным оборудованием для поверки средств измерения давления
           </p>
         </div>
       </section>
@@ -36,9 +46,8 @@ export default function Laboratory() {
               оснащена современным высокоточным оборудованием ведущих мировых производителей.
             </p>
             <p className="text-muted-foreground mb-4">
-              Мы выполняем калибровку, поверку и метрологическую аттестацию датчиков давления, 
-              манометров и другого измерительного оборудования в соответствии с требованиями 
-              ГОСТ и международных стандартов.
+              Мы выполняем поверку датчиков давления, манометров и других средств измерения 
+              давления в соответствии с требованиями ГОСТ и аттестованными методиками поверки.
             </p>
             <p className="text-muted-foreground">
               Лаборатория поддерживает эталонную базу с прослеживаемостью к государственным 
@@ -59,24 +68,19 @@ export default function Laboratory() {
           <div className="grid md:grid-cols-2 gap-6">
             {[
               {
-                icon: 'Gauge',
-                title: 'Калибровка датчиков давления',
-                description: 'Первичная и периодическая калибровка с выдачей протокола'
+                icon: 'ClipboardCheck',
+                title: 'Поверка датчиков давления',
+                description: 'Первичная и периодическая поверка датчиков давления с выдачей свидетельства'
               },
               {
-                icon: 'ClipboardCheck',
-                title: 'Поверка средств измерений',
-                description: 'Метрологическая поверка в соответствии с методиками ГОСТ'
+                icon: 'Gauge',
+                title: 'Поверка манометров',
+                description: 'Метрологическая поверка манометров в соответствии с методиками ГОСТ'
               },
               {
                 icon: 'Settings',
                 title: 'Настройка и регулировка',
-                description: 'Настройка нуля и диапазона измерения датчиков'
-              },
-              {
-                icon: 'FileText',
-                title: 'Аттестация методик',
-                description: 'Разработка и аттестация методик калибровки и измерений'
+                description: 'Настройка нуля и диапазона измерения датчиков давления'
               },
               {
                 icon: 'Wrench',
@@ -87,6 +91,11 @@ export default function Laboratory() {
                 icon: 'GraduationCap',
                 title: 'Консультации',
                 description: 'Метрологическое сопровождение и технические консультации'
+              },
+              {
+                icon: 'FileText',
+                title: 'Документация',
+                description: 'Полный комплект документов по результатам поверки'
               }
             ].map((service, index) => (
               <div key={index} className="flex gap-4 bg-white p-4 rounded-lg">
@@ -109,7 +118,7 @@ export default function Laboratory() {
                 <Icon name="Target" size={32} className="text-primary" />
               </div>
               <h3 className="font-heading font-semibold text-xl mb-2">±0.05%</h3>
-              <p className="text-sm text-muted-foreground">точность калибровки</p>
+              <p className="text-sm text-muted-foreground">точность поверки</p>
             </CardContent>
           </Card>
           <Card>
@@ -138,12 +147,12 @@ export default function Laboratory() {
             {[
               {
                 title: 'Грузопоршневые манометры',
-                description: 'Первичные эталоны для калибровки высокого класса точности',
+                description: 'Первичные эталоны для поверки высокого класса точности',
                 image: 'https://cdn.poehali.dev/files/ac629dca-703c-49d9-a667-09393387e41f.jpeg'
               },
               {
                 title: 'Климатические камеры',
-                description: 'Для калибровки в широком диапазоне температур',
+                description: 'Для поверки в широком диапазоне температур',
                 image: 'https://cdn.poehali.dev/files/ddaf71d8-5625-4d64-a187-6246be0b06d8.jpg'
               }
             ].map((equipment, index) => (
@@ -161,6 +170,139 @@ export default function Laboratory() {
             ))}
           </div>
         </div>
+
+        <div className="grid md:grid-cols-2 gap-6 mb-16">
+          <Card className="hover:shadow-lg transition-shadow">
+            <CardContent className="p-6">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                  <Icon name="FileText" size={24} className="text-primary" />
+                </div>
+                <h3 className="font-heading font-semibold text-lg">Аттестат аккредитации</h3>
+              </div>
+              <p className="text-sm text-muted-foreground mb-4">
+                Лаборатория аккредитована в национальной системе аккредитации Росаккредитации
+              </p>
+              <Button variant="outline" className="w-full" asChild>
+                <a href="#" download>
+                  <Icon name="Download" size={16} className="mr-2" />
+                  Скачать аттестат
+                </a>
+              </Button>
+            </CardContent>
+          </Card>
+
+          <Card className="hover:shadow-lg transition-shadow">
+            <CardContent className="p-6">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                  <Icon name="ClipboardList" size={24} className="text-primary" />
+                </div>
+                <h3 className="font-heading font-semibold text-lg">Область аккредитации</h3>
+              </div>
+              <p className="text-sm text-muted-foreground mb-4">
+                Перечень средств измерений, поверку которых выполняет лаборатория
+              </p>
+              <Button variant="outline" className="w-full" asChild>
+                <a href="#" download>
+                  <Icon name="Download" size={16} className="mr-2" />
+                  Скачать область аккредитации
+                </a>
+              </Button>
+            </CardContent>
+          </Card>
+        </div>
+
+        <Card className="bg-gradient-to-br from-primary to-primary/80 text-white">
+          <CardContent className="p-8">
+            <div className="text-center mb-6">
+              <Icon name="ClipboardCheck" size={48} className="text-white mx-auto mb-4" />
+              <h2 className="font-heading font-bold text-3xl mb-2">
+                Заказать поверку средств измерения
+              </h2>
+              <p className="text-white/90 text-lg">
+                Оставьте заявку, и наши специалисты свяжутся с вами для уточнения деталей
+              </p>
+            </div>
+            <Button 
+              size="lg" 
+              className="w-full bg-white text-primary hover:bg-white/90"
+              onClick={() => setShowVerificationModal(true)}
+            >
+              <Icon name="Send" size={20} className="mr-2" />
+              Оставить заявку на поверку
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
+
+      {showVerificationModal && (
+        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4" onClick={() => setShowVerificationModal(false)}>
+          <Card className="max-w-2xl w-full max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="font-heading font-bold text-xl">Заявка на поверку СИ давления</h3>
+                <Button variant="ghost" size="icon" onClick={() => setShowVerificationModal(false)}>
+                  <Icon name="X" size={20} />
+                </Button>
+              </div>
+              <p className="text-sm text-muted-foreground mb-6">
+                Заполните форму, и мы свяжемся с вами для согласования сроков и стоимости поверки
+              </p>
+              <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); setShowVerificationModal(false); }}>
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="ver-company">Организация *</Label>
+                    <Input id="ver-company" placeholder="ООО Компания" required />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="ver-inn">ИНН</Label>
+                    <Input id="ver-inn" placeholder="1234567890" />
+                  </div>
+                </div>
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="ver-contact">Контактное лицо *</Label>
+                    <Input id="ver-contact" placeholder="Иван Иванов" required />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="ver-phone">Телефон *</Label>
+                    <Input id="ver-phone" type="tel" placeholder="+7 (___) ___-__-__" required />
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="ver-email">Email *</Label>
+                  <Input id="ver-email" type="email" placeholder="email@example.com" required />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="ver-equipment">Перечень СИ для поверки *</Label>
+                  <Textarea 
+                    id="ver-equipment" 
+                    placeholder="Укажите наименование, тип, заводской номер и диапазон измерения средств измерения..." 
+                    rows={4}
+                    required
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="ver-quantity">Количество приборов</Label>
+                  <Input id="ver-quantity" type="number" placeholder="1" min="1" />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="ver-deadline">Желаемые сроки</Label>
+                  <Input id="ver-deadline" type="date" />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="ver-comment">Дополнительная информация</Label>
+                  <Textarea id="ver-comment" placeholder="Особые требования, адрес доставки и т.д." rows={3} />
+                </div>
+                <Button type="submit" className="w-full" size="lg">
+                  Отправить заявку
+                </Button>
+              </form>
+            </CardContent>
+          </Card>
+        </div>
+      )}
       </div>
 
       <footer className="bg-secondary py-12 mt-16">
