@@ -624,7 +624,7 @@ export default function Index() {
                     </div>
                     <div className="flex items-center justify-center gap-1">
                       <Icon name="Phone" size={12} />
-                      <span className="text-xs">360 363 доб. 104</span>
+                      <span className="text-xs">доб. 104</span>
                     </div>
                   </div>
                 </div>
@@ -656,7 +656,7 @@ export default function Index() {
                     </div>
                     <div className="flex items-center justify-center gap-1">
                       <Icon name="Phone" size={12} />
-                      <span className="text-xs">360 363 доб. 106</span>
+                      <span className="text-xs">доб. 106</span>
                     </div>
                   </div>
                 </div>
@@ -691,7 +691,7 @@ export default function Index() {
                     </div>
                     <div className="flex items-center justify-center gap-1">
                       <Icon name="Phone" size={12} />
-                      <span className="text-xs">360 363 доб. 154</span>
+                      <span className="text-xs">доб. 154</span>
                     </div>
                   </div>
                 </div>
@@ -723,7 +723,7 @@ export default function Index() {
                     </div>
                     <div className="flex items-center justify-center gap-1">
                       <Icon name="Phone" size={12} />
-                      <span className="text-xs">360 363 доб. 103</span>
+                      <span className="text-xs">доб. 103</span>
                     </div>
                   </div>
                 </div>
@@ -755,7 +755,7 @@ export default function Index() {
                     </div>
                     <div className="flex items-center justify-center gap-1">
                       <Icon name="Phone" size={12} />
-                      <span className="text-xs">360 363 доб. 161</span>
+                      <span className="text-xs">доб. 161</span>
                     </div>
                   </div>
                 </div>
@@ -787,7 +787,7 @@ export default function Index() {
                     </div>
                     <div className="flex items-center justify-center gap-1">
                       <Icon name="Phone" size={12} />
-                      <span className="text-xs">360 363 доб. 134</span>
+                      <span className="text-xs">доб. 134</span>
                     </div>
                   </div>
                 </div>
@@ -819,7 +819,7 @@ export default function Index() {
                     </div>
                     <div className="flex items-center justify-center gap-1">
                       <Icon name="Phone" size={12} />
-                      <span className="text-xs">360 363 доб. 155</span>
+                      <span className="text-xs">доб. 155</span>
                     </div>
                   </div>
                 </div>
