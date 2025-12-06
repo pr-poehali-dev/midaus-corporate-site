@@ -12,7 +12,7 @@ export default function Products() {
       description: 'Общепромышленный датчик давления с унифицированным выходным сигналом',
       price: '12 500',
       image: 'https://cdn.poehali.dev/files/b6fbb7ec-4f53-4d1f-b905-fd7e4106c1e9.JPG',
-      specs: ['0...160 МПа', '±0,25%', '4...20 мА', 'IP65'],
+      specs: ['0...160 МПа', 'от ±0,15%', '4...20 мА', 'IP65'],
     },
     {
       id: 'mida-15',
@@ -20,7 +20,7 @@ export default function Products() {
       description: 'Датчик давления для работы в условиях повышенной вибрации',
       price: '15 800',
       image: 'https://cdn.poehali.dev/files/f6170bf3-77d4-4804-ba4c-3a0939d5b87c.JPG',
-      specs: ['0...250 МПа', '±0,1%', '4...20 мА', 'IP67'],
+      specs: ['0...250 МПа', 'от ±0,05%', '4...20 мА', 'IP67'],
     },
     {
       id: 'mida-12',
@@ -28,7 +28,7 @@ export default function Products() {
       description: 'Датчик давления для агрессивных сред с защитой от коррозии',
       price: '18 200',
       image: 'https://cdn.poehali.dev/files/c10af49a-98c2-485f-bf8b-3ccf239ce5fb.JPG',
-      specs: ['0...10 МПа', '±0,25%', '4...20 мА', 'IP68'],
+      specs: ['0...160 МПа', 'от ±0,25%', '4...20 мА', 'IP68'],
     },
   ];
 
