@@ -111,23 +111,14 @@ export default function Laboratory() {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6 mb-16">
+        <div className="grid md:grid-cols-2 gap-6 mb-16 max-w-3xl mx-auto">
           <Card>
             <CardContent className="p-6 text-center">
               <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
                 <Icon name="Target" size={32} className="text-primary" />
               </div>
-              <h3 className="font-heading font-semibold text-xl mb-2">±0.05%</h3>
-              <p className="text-sm text-muted-foreground">точность поверки</p>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardContent className="p-6 text-center">
-              <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                <Icon name="Thermometer" size={32} className="text-primary" />
-              </div>
-              <h3 className="font-heading font-semibold text-xl mb-2">-40...+150°C</h3>
-              <p className="text-sm text-muted-foreground">диапазон температур</p>
+              <h3 className="font-heading font-semibold text-xl mb-2">от 0.05%</h3>
+              <p className="text-sm text-muted-foreground">основная погрешность поверяемых датчиков</p>
             </CardContent>
           </Card>
           <Card>
@@ -135,7 +126,7 @@ export default function Laboratory() {
               <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
                 <Icon name="Gauge" size={32} className="text-primary" />
               </div>
-              <h3 className="font-heading font-semibold text-xl mb-2">0...100 МПа</h3>
+              <h3 className="font-heading font-semibold text-xl mb-2">0...250 МПа</h3>
               <p className="text-sm text-muted-foreground">диапазон давлений</p>
             </CardContent>
           </Card>
@@ -148,7 +139,7 @@ export default function Laboratory() {
               {
                 title: 'Грузопоршневые манометры',
                 description: 'Первичные эталоны для поверки высокого класса точности',
-                image: 'https://cdn.poehali.dev/files/ac629dca-703c-49d9-a667-09393387e41f.jpeg'
+                image: 'https://cdn.poehali.dev/files/20250924_153212.jpg'
               },
               {
                 title: 'Климатические камеры',
