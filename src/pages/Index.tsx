@@ -19,6 +19,7 @@ export default function Index() {
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showCallModal, setShowCallModal] = useState(false);
+  const [productsMenuOpen, setProductsMenuOpen] = useState(false);
   const sectionRefs = useRef<{ [key: string]: HTMLElement | null }>({});
 
   useEffect(() => {
@@ -145,14 +146,61 @@ export default function Index() {
           }`}
         >
           <nav className="container mx-auto px-4 py-4 flex flex-col gap-4">
-            <Link 
-              to="/products" 
-              className="text-sm font-medium text-foreground hover:text-primary transition-colors animate-slide-up"
-              style={{ animationDelay: '50ms' }}
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Продукция
-            </Link>
+            <div className="animate-slide-up" style={{ animationDelay: '50ms' }}>
+              <button
+                onClick={() => setProductsMenuOpen(!productsMenuOpen)}
+                className="text-sm font-medium text-foreground hover:text-primary transition-colors flex items-center justify-between w-full"
+              >
+                Продукция
+                <Icon name={productsMenuOpen ? "ChevronUp" : "ChevronDown"} size={16} />
+              </button>
+              {productsMenuOpen && (
+                <div className="ml-4 mt-2 space-y-2">
+                  <Link
+                    to="/products"
+                    className="block text-sm text-muted-foreground hover:text-primary transition-colors"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Датчики давления
+                  </Link>
+                  <a
+                    href="#"
+                    className="block text-sm text-muted-foreground hover:text-primary transition-colors"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Сенсоры давления
+                  </a>
+                  <a
+                    href="#"
+                    className="block text-sm text-muted-foreground hover:text-primary transition-colors"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Источники питания
+                  </a>
+                  <a
+                    href="#"
+                    className="block text-sm text-muted-foreground hover:text-primary transition-colors"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Средства защиты
+                  </a>
+                  <a
+                    href="#"
+                    className="block text-sm text-muted-foreground hover:text-primary transition-colors"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Устройства настройки и индикации
+                  </a>
+                  <a
+                    href="#"
+                    className="block text-sm text-muted-foreground hover:text-primary transition-colors"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Монтажная арматура
+                  </a>
+                </div>
+              )}
+            </div>
             <Link 
               to="/about" 
               className="text-sm font-medium text-foreground hover:text-primary transition-colors animate-slide-up"
@@ -172,7 +220,7 @@ export default function Index() {
             <Link 
               to="/software" 
               className="text-sm font-medium text-foreground hover:text-primary transition-colors animate-slide-up"
-              style={{ animationDelay: '200ms' }}
+              style={{ animationDelay: '250ms' }}
               onClick={() => setMobileMenuOpen(false)}
             >
               Программное обеспечение
@@ -180,12 +228,12 @@ export default function Index() {
             <Link 
               to="/news" 
               className="text-sm font-medium text-foreground hover:text-primary transition-colors animate-slide-up"
-              style={{ animationDelay: '250ms' }}
+              style={{ animationDelay: '300ms' }}
               onClick={() => setMobileMenuOpen(false)}
             >
               Новости
             </Link>
-            <Button variant="default" className="w-full animate-slide-up" style={{ animationDelay: '300ms' }} onClick={() => { setShowCallModal(true); setMobileMenuOpen(false); }}>
+            <Button variant="default" className="w-full animate-slide-up" style={{ animationDelay: '350ms' }} onClick={() => { setShowCallModal(true); setMobileMenuOpen(false); }}>
                 Заказать звонок
               </Button>
           </nav>
@@ -974,7 +1022,7 @@ export default function Index() {
                 <li><a href="#" className="hover:text-primary">Сенсоры давления</a></li>
                 <li><a href="#" className="hover:text-primary">Источники питания</a></li>
                 <li><a href="#" className="hover:text-primary">Средства защиты</a></li>
-                <li><a href="#" className="hover:text-primary">Устройства настройки</a></li>
+                <li><a href="#" className="hover:text-primary">Устройства настройки и индикации</a></li>
                 <li><a href="#" className="hover:text-primary">Монтажная арматура</a></li>
                 <li><Link to="/software" className="hover:text-primary">Программное обеспечение</Link></li>
               </ul>
