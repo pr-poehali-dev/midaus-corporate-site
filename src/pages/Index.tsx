@@ -900,56 +900,6 @@ export default function Index() {
         </div>
       </section>
 
-      <section className="py-12 bg-secondary">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-4 gap-8">
-            <div className="md:col-span-2">
-              <div className="flex items-center mb-4">
-                <img 
-                  src="https://cdn.poehali.dev/files/bf9d6490-da2b-41da-829f-65eea317fd60.png" 
-                  alt="МИДАУС" 
-                  className="h-10 w-auto"
-                />
-              </div>
-              <p className="text-muted-foreground text-sm mb-4">
-                ООО «МИДАУС» — разработка и производство высокоточных датчиков давления по технологии «кремний на сапфире» для промышленности.
-              </p>
-              <div className="flex gap-3">
-                <a href="mailto:info@midaus.com" className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-colors" aria-label="Email">
-                  <Icon name="Mail" size={20} />
-                </a>
-                <a href="tel:+88002000304" className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-colors" aria-label="Телефон">
-                  <Icon name="Phone" size={20} />
-                </a>
-                <a href="https://rutube.ru/channel/30623596" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-colors" aria-label="RuTube канал">
-                  <Icon name="Youtube" size={20} />
-                </a>
-              </div>
-            </div>
-            <div>
-              <h4 className="font-heading font-semibold mb-4">Компания</h4>
-              <ul className="space-y-2 text-sm">
-                <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">О нас</a></li>
-                <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Производство</a></li>
-                <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Сертификаты</a></li>
-                <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Контакты</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-heading font-semibold mb-4">Поддержка</h4>
-              <ul className="space-y-2 text-sm">
-                <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Документация</a></li>
-                <li><Link to="/software" className="text-muted-foreground hover:text-primary transition-colors">Программное обеспечение</Link></li>
-                <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">FAQ</a></li>
-                <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Гарантия</a></li>
-              </ul>
-            </div>
-          </div>
-          <div className="border-t border-border mt-8 pt-8 text-center text-sm text-muted-foreground">
-            © 2024 ООО "МИДАУС". Все права защищены.
-          </div>
-        </div>
-      </section>
       {showScrollTop && (
         <Button
           onClick={scrollToTop}
