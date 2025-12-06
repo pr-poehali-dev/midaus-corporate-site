@@ -158,7 +158,7 @@ export default function Index() {
                 <div className="ml-4 mt-2 space-y-2">
                   <Link
                     to="/products"
-                    className="block text-sm text-muted-foreground hover:text-primary transition-colors"
+                    className="block text-sm text-muted-foreground hover:text-primary transition-colors font-semibold"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     Датчики давления
@@ -219,7 +219,7 @@ export default function Index() {
             </Link>
             <Link 
               to="/software" 
-              className="text-sm font-medium text-foreground hover:text-primary transition-colors animate-slide-up"
+              className="text-sm font-semibold text-foreground hover:text-primary transition-colors animate-slide-up"
               style={{ animationDelay: '250ms' }}
               onClick={() => setMobileMenuOpen(false)}
             >
@@ -1018,13 +1018,13 @@ export default function Index() {
             <div>
               <h4 className="font-semibold mb-4">Продукция</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><Link to="/products" className="hover:text-primary">Датчики давления</Link></li>
+                <li><Link to="/products" className="hover:text-primary font-semibold">Датчики давления</Link></li>
                 <li><a href="#" className="hover:text-primary">Сенсоры давления</a></li>
                 <li><a href="#" className="hover:text-primary">Источники питания</a></li>
                 <li><a href="#" className="hover:text-primary">Средства защиты</a></li>
                 <li><a href="#" className="hover:text-primary">Устройства настройки и индикации</a></li>
                 <li><a href="#" className="hover:text-primary">Монтажная арматура</a></li>
-                <li><Link to="/software" className="hover:text-primary">Программное обеспечение</Link></li>
+                <li><Link to="/software" className="hover:text-primary font-semibold">Программное обеспечение</Link></li>
               </ul>
             </div>
             <div>
