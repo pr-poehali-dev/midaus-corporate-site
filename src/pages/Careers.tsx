@@ -151,6 +151,134 @@ export default function Careers() {
             </CardContent>
           </Card>
 
+          <Card className="mb-8">
+            <CardContent className="p-8">
+              <div className="flex items-start gap-4 mb-6">
+                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                  <Icon name="Ruler" size={32} className="text-primary" />
+                </div>
+                <div className="flex-1">
+                  <h2 className="font-heading font-bold text-2xl mb-2">
+                    Инженер-конструктор (разработка датчиков давления)
+                  </h2>
+                  <div className="flex flex-wrap gap-3 text-sm text-muted-foreground">
+                    <div className="flex items-center gap-1">
+                      <Icon name="MapPin" size={16} />
+                      <span>г. Ульяновск</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <Icon name="Clock" size={16} />
+                      <span>Полная занятость</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <Icon name="Calendar" size={16} />
+                      <span>График 5/2</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="space-y-6">
+                <div>
+                  <h3 className="font-heading font-semibold text-lg mb-3 flex items-center gap-2">
+                    <Icon name="ClipboardList" size={20} className="text-primary" />
+                    Основные обязанности:
+                  </h3>
+                  <ul className="space-y-2 text-muted-foreground ml-7">
+                    <li className="flex items-start gap-2">
+                      <span className="text-primary mt-1">•</span>
+                      <span>Разработка 3D-моделей и конструкторской документации деталей, сборок и корпусов для датчиков давления</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-primary mt-1">•</span>
+                      <span>Полное оформление чертежей и спецификаций в строгом соответствии со стандартами ЕСКД</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-primary mt-1">•</span>
+                      <span>Расчеты на прочность и герметичность, подбор материалов и уплотнений</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-primary mt-1">•</span>
+                      <span>Тесное взаимодействие с разработчиками электроники и технологами для оптимизации конструкции под производство</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-primary mt-1">•</span>
+                      <span>Поддержка и актуализация документации на существующие изделия</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h3 className="font-heading font-semibold text-lg mb-3 flex items-center gap-2">
+                    <Icon name="UserCheck" size={20} className="text-primary" />
+                    Наши требования:
+                  </h3>
+                  <ul className="space-y-2 text-muted-foreground ml-7">
+                    <li className="flex items-start gap-2">
+                      <span className="text-primary mt-1">•</span>
+                      <span>Опыт конструкторской работы в приборостроении, машиностроении или смежных отраслях</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-primary mt-1">•</span>
+                      <span>Обязательное уверенное владение системой автоматизированного проектирования Компас-3D</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-primary mt-1">•</span>
+                      <span>Глубокое знание стандартов ЕСКД и опыт выпуска полного комплекта КД «в металл»</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-primary mt-1">•</span>
+                      <span>Понимание технологий изготовления деталей (механообработка, литье)</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-primary mt-1">•</span>
+                      <span>Внимательность к деталям, исполнительность и умение работать в команде</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h3 className="font-heading font-semibold text-lg mb-3 flex items-center gap-2">
+                    <Icon name="Star" size={20} className="text-primary" />
+                    Условия:
+                  </h3>
+                  <ul className="space-y-2 text-muted-foreground ml-7">
+                    <li className="flex items-start gap-2">
+                      <span className="text-primary mt-1">•</span>
+                      <span>Оформление по ТК РФ</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-primary mt-1">•</span>
+                      <span>График: 5/2, пн-чт с 8:00 до 17:00, пт с 8:00 до 16:00</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-primary mt-1">•</span>
+                      <span>Работа в команде опытных специалистов</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="bg-secondary p-6 rounded-lg">
+                  <h3 className="font-heading font-semibold text-lg mb-3 flex items-center gap-2">
+                    <Icon name="Mail" size={20} className="text-primary" />
+                    Контактная информация:
+                  </h3>
+                  <p className="text-muted-foreground mb-4">
+                    Для рассмотрения вашей кандидатуры просим направлять резюме на адрес{' '}
+                    <a href="mailto:info@midaus.com" className="text-primary hover:underline font-semibold">
+                      info@midaus.com
+                    </a>
+                    {' '}с указанием названия вакансии в теме письма.
+                  </p>
+                  <Button size="lg" className="w-full sm:w-auto" onClick={() => setShowApplicationModal(true)}>
+                    <Icon name="Send" size={20} className="mr-2" />
+                    Отправить резюме
+                  </Button>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
           <Card className="bg-gradient-to-br from-primary/5 to-primary/10 border-primary/20">
             <CardContent className="p-8 text-center">
               <Icon name="Users" size={48} className="text-primary mx-auto mb-4" />
