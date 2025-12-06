@@ -12,8 +12,7 @@ export default function Products() {
       description: 'Общепромышленный датчик давления с унифицированным выходным сигналом',
       price: '12 500',
       image: 'https://cdn.poehali.dev/files/b6fbb7ec-4f53-4d1f-b905-fd7e4106c1e9.JPG',
-      specs: ['0...0,1 МПа', '±0,25%', '4...20 мА', 'IP65'],
-      inStock: true,
+      specs: ['0...160 МПа', '±0,25%', '4...20 мА', 'IP65'],
     },
     {
       id: 'mida-15',
@@ -21,8 +20,7 @@ export default function Products() {
       description: 'Датчик давления для работы в условиях повышенной вибрации',
       price: '15 800',
       image: 'https://cdn.poehali.dev/files/f6170bf3-77d4-4804-ba4c-3a0939d5b87c.JPG',
-      specs: ['0...1 МПа', '±0,1%', '4...20 мА', 'IP67'],
-      inStock: true,
+      specs: ['0...250 МПа', '±0,1%', '4...20 мА', 'IP67'],
     },
     {
       id: 'mida-12',
@@ -31,7 +29,6 @@ export default function Products() {
       price: '18 200',
       image: 'https://cdn.poehali.dev/files/c10af49a-98c2-485f-bf8b-3ccf239ce5fb.JPG',
       specs: ['0...10 МПа', '±0,25%', '4...20 мА', 'IP68'],
-      inStock: true,
     },
   ];
 
@@ -69,17 +66,6 @@ export default function Products() {
                 </div>
                 <div className="p-6">
                   <div className="flex items-center gap-2 mb-3">
-                    {product.inStock ? (
-                      <span className="inline-flex items-center gap-1 text-xs bg-green-100 text-green-700 px-2 py-1 rounded">
-                        <Icon name="CheckCircle2" size={14} />
-                        В наличии
-                      </span>
-                    ) : (
-                      <span className="inline-flex items-center gap-1 text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">
-                        <Icon name="Clock" size={14} />
-                        Под заказ
-                      </span>
-                    )}
                     <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded">
                       🇷🇺 Россия
                     </span>
@@ -103,17 +89,12 @@ export default function Products() {
 
 
 
-                  <div className="flex gap-2">
-                    <Button asChild className="flex-1 bg-accent hover:bg-accent/90">
-                      <Link to={`/product/${product.id}`}>
-                        Подробнее
-                        <Icon name="ArrowRight" size={16} className="ml-2" />
-                      </Link>
-                    </Button>
-                    <Button variant="outline" size="icon">
-                      <Icon name="Heart" size={20} />
-                    </Button>
-                  </div>
+                  <Button asChild className="w-full bg-accent hover:bg-accent/90">
+                    <Link to={`/product/${product.id}`}>
+                      Подробнее
+                      <Icon name="ArrowRight" size={16} className="ml-2" />
+                    </Link>
+                  </Button>
                 </div>
               </CardContent>
             </Card>
