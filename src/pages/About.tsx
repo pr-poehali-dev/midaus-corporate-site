@@ -28,39 +28,27 @@ export default function About() {
       </section>
 
       <div className="container mx-auto px-4 py-16">
-        <div className="grid md:grid-cols-2 gap-12 mb-16">
-          <div>
-            <h2 className="font-heading font-bold text-3xl mb-6">История компании</h2>
-            <p className="text-muted-foreground mb-4">
-              ООО «МИДАУС» основано в 2005 году в городе Ульяновске. За годы работы компания стала 
-              одним из ведущих российских производителей датчиков давления для промышленности.
+        <div className="max-w-6xl mx-auto mb-16">
+          <div className="prose prose-lg max-w-none">
+            <p className="text-lg text-muted-foreground mb-6">
+              ООО «МИДАУС» — ведущий российский разработчик и производитель высокоточных датчиков давления на базе уникальной технологии «кремний на сапфире» (КНС).
             </p>
-            <p className="text-muted-foreground mb-4">
-              Мы специализируемся на разработке и производстве датчиков давления по уникальной 
-              технологии «кремний на сапфире», которая обеспечивает высокую точность, стабильность 
-              и долговечность измерений.
+            <p className="text-muted-foreground mb-6">
+              С 1991 года мы создаём надёжные и инновационные решения для самых требовательных отраслей: нефтегазовой промышленности, энергетики, ЖКХ, космической и транспортной техники. Наша продукция работает в экстремальных условиях — при температурах от –197°C до +500°C, вибрациях и в агрессивных средах.
             </p>
-            <p className="text-muted-foreground">
-              Наша продукция включена в реестр российской продукции Минпромторга РФ и широко 
-              применяется в различных отраслях промышленности.
+            <p className="text-muted-foreground mb-6">
+              Наш потенциал — это команда. Над совершенствованием технологий и созданием новых продуктов работает сплочённый коллектив опытных инженеров, конструкторов и учёных, включая кандидатов наук в области разработки датчиков. Это сочетание глубокой научной базы и практического опыта позволяет нам вести постоянные работы по улучшению метрологических характеристик и надёжности приборов.
             </p>
-          </div>
-          <div>
-            <img 
-              src="https://cdn.poehali.dev/files/b0816222-cfbd-4b3a-88c9-322faa989e45.jpg"
-              alt="Производственный корпус"
-              className="rounded-lg shadow-lg w-full h-auto"
-            />
           </div>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6 mb-16">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
           <Card>
             <CardContent className="p-6 text-center">
               <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                <Icon name="Award" size={32} className="text-primary" />
+                <Icon name="Calendar" size={32} className="text-primary" />
               </div>
-              <h3 className="font-heading font-semibold text-xl mb-2">18+ лет</h3>
+              <h3 className="font-heading font-semibold text-xl mb-2">С 1991 года</h3>
               <p className="text-sm text-muted-foreground">на рынке датчиков давления</p>
             </CardContent>
           </Card>
@@ -69,8 +57,17 @@ export default function About() {
               <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
                 <Icon name="Users" size={32} className="text-primary" />
               </div>
-              <h3 className="font-heading font-semibold text-xl mb-2">200+</h3>
-              <p className="text-sm text-muted-foreground">квалифицированных специалистов</p>
+              <h3 className="font-heading font-semibold text-xl mb-2">1000+</h3>
+              <p className="text-sm text-muted-foreground">промышленных клиентов</p>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardContent className="p-6 text-center">
+              <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                <Icon name="Globe" size={32} className="text-primary" />
+              </div>
+              <h3 className="font-heading font-semibold text-xl mb-2">Экспорт</h3>
+              <p className="text-sm text-muted-foreground">Китай, Индия, страны СНГ</p>
             </CardContent>
           </Card>
           <Card>
@@ -78,35 +75,35 @@ export default function About() {
               <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
                 <Icon name="Factory" size={32} className="text-primary" />
               </div>
-              <h3 className="font-heading font-semibold text-xl mb-2">5000+ м²</h3>
-              <p className="text-sm text-muted-foreground">производственных площадей</p>
+              <h3 className="font-heading font-semibold text-xl mb-2">Полный цикл</h3>
+              <p className="text-sm text-muted-foreground">производства в России</p>
             </CardContent>
           </Card>
         </div>
 
         <div className="bg-secondary p-8 rounded-lg mb-16">
-          <h2 className="font-heading font-bold text-3xl mb-8 text-center">Наши преимущества</h2>
+          <h2 className="font-heading font-bold text-3xl mb-8 text-center">Ключевые принципы нашей работы</h2>
           <div className="grid md:grid-cols-2 gap-6">
             {[
               {
-                icon: 'CheckCircle2',
-                title: 'Собственное производство',
-                description: 'Полный цикл производства от разработки до выпуска готовой продукции'
+                icon: 'Flag',
+                title: 'Отечественная технология',
+                description: 'Используем собственные разработки и полный производственный цикл в России, что гарантирует независимость, контроль качества и стабильность поставок'
               },
               {
-                icon: 'Shield',
-                title: 'Контроль качества',
-                description: 'Метрологическая лаборатория и многоступенчатый контроль качества'
+                icon: 'Package',
+                title: 'Комплексные решения',
+                description: 'Производим не только датчики, но и всю необходимую периферию: источники питания, средства защиты, устройства индикации и настройки'
               },
               {
-                icon: 'Truck',
-                title: 'Быстрая поставка',
-                description: 'Склад готовой продукции и оперативная отгрузка по всей России'
+                icon: 'Users',
+                title: 'Сильная команда',
+                description: 'Ключевые разработки и производство ведут опытные специалисты — инженеры и конструкторы с многолетним стажем'
               },
               {
-                icon: 'Headphones',
-                title: 'Техническая поддержка',
-                description: 'Квалифицированная поддержка на всех этапах эксплуатации'
+                icon: 'Award',
+                title: 'Доказанная надёжность',
+                description: 'Нашими клиентами являются более 1000 промышленных компаний. Продукция поставляется как по России, так и на экспорт'
               }
             ].map((item, index) => (
               <div key={index} className="flex gap-4">
@@ -120,6 +117,12 @@ export default function About() {
               </div>
             ))}
           </div>
+        </div>
+
+        <div className="bg-gradient-to-br from-primary/5 to-primary/10 p-8 rounded-lg mb-16">
+          <p className="text-lg text-center text-muted-foreground max-w-4xl mx-auto">
+            Сегодня МИДАУС — это современное предприятие с замкнутым технологическим циклом, сильной инженерной командой и фокусом на создание конкурентоспособной, высокотехнологичной продукции для точного измерения давления.
+          </p>
         </div>
 
         <div>
