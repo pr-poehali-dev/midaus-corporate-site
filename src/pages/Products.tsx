@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import Icon from '@/components/ui/icon';
@@ -5,30 +6,35 @@ import { Link } from 'react-router-dom';
 import Header from '@/components/Header';
 
 export default function Products() {
+  const [showDevModal, setShowDevModal] = useState(false);
+
   const products = [
     {
       id: 'mida-13p',
       name: 'МИДА-13П',
-      description: 'Общепромышленный датчик давления с унифицированным выходным сигналом',
+      description: 'Общепромышленные датчики с аналоговым стандартным сигналом для измерения давления в обычном и взрывозащищённом (-Ех и -Exd) исполнениях',
       price: '12 500',
       image: 'https://cdn.poehali.dev/files/b6fbb7ec-4f53-4d1f-b905-fd7e4106c1e9.JPG',
       specs: ['0...160 МПа', 'от ±0,15%', 'Аналоговый', '-60...+80 °C'],
+      gosreestr: '№ 17636-17',
     },
     {
       id: 'mida-15',
       name: 'МИДА-15',
-      description: 'Датчик давления для работы в условиях повышенной вибрации',
+      description: 'Малогаборитные общепромышленные датчики с аналоговым и цифровым выходным сигналом, в том числе с низким энергопотреблением и с взрывозащищённым исполнением -Ех, Exd',
       price: '15 800',
       image: 'https://cdn.poehali.dev/files/f6170bf3-77d4-4804-ba4c-3a0939d5b87c.JPG',
       specs: ['0...250 МПа', 'от ±0,05%', 'Аналоговый/Цифровой', '-40...+125 °C'],
+      gosreestr: '№ 50730-17',
     },
     {
       id: 'mida-12',
-      name: 'МИДА-12',
-      description: 'Датчик давления для агрессивных сред с защитой от коррозии',
+      name: 'МИДА-12П',
+      description: 'Датчики давления высокотемпературных и низкотемпературных сред, есть взрывозащита Ex',
       price: '18 200',
       image: 'https://cdn.poehali.dev/files/c10af49a-98c2-485f-bf8b-3ccf239ce5fb.JPG',
       specs: ['0...160 МПа', 'от ±0,25%', 'Аналоговый/Цифровой', '-197...+500 °C'],
+      gosreestr: '№ 17635-03',
     },
   ];
 
@@ -65,9 +71,12 @@ export default function Products() {
                   />
                 </div>
                 <div className="p-6">
-                  <div className="flex items-center gap-2 mb-3">
+                  <div className="flex items-center gap-2 mb-3 flex-wrap">
                     <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded">
                       🇷🇺 Россия
+                    </span>
+                    <span className="text-xs bg-secondary text-foreground px-2 py-1 rounded font-medium">
+                      Госреестр СИ {product.gosreestr}
                     </span>
                   </div>
                   
@@ -75,7 +84,7 @@ export default function Products() {
                     {product.name}
                   </h3>
                   
-                  <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
+                  <p className="text-sm text-muted-foreground mb-4 line-clamp-3">
                     {product.description}
                   </p>
 
@@ -87,13 +96,12 @@ export default function Products() {
                     ))}
                   </div>
 
-
-
-                  <Button asChild className="w-full bg-accent hover:bg-accent/90">
-                    <Link to={`/product/${product.id}`}>
-                      Подробнее
-                      <Icon name="ArrowRight" size={16} className="ml-2" />
-                    </Link>
+                  <Button 
+                    onClick={() => setShowDevModal(true)}
+                    className="w-full bg-accent hover:bg-accent/90"
+                  >
+                    Подробнее
+                    <Icon name="ArrowRight" size={16} className="ml-2" />
                   </Button>
                 </div>
               </CardContent>
@@ -123,6 +131,32 @@ export default function Products() {
           </div>
         </section>
       </div>
+
+      {showDevModal && (
+        <div 
+          className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4" 
+          onClick={() => setShowDevModal(false)}
+        >
+          <Card className="max-w-md w-full" onClick={(e) => e.stopPropagation()}>
+            <CardContent className="p-8 text-center">
+              <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                <Icon name="Construction" size={40} className="text-primary" />
+              </div>
+              <h3 className="font-heading font-bold text-2xl mb-3">В РАЗРАБОТКЕ</h3>
+              <p className="text-muted-foreground mb-6">
+                Страница с подробной информацией о датчике находится в разработке. 
+                Пожалуйста, свяжитесь с нами для получения детальной информации.
+              </p>
+              <Button 
+                onClick={() => setShowDevModal(false)}
+                className="w-full"
+              >
+                Понятно
+              </Button>
+            </CardContent>
+          </Card>
+        </div>
+      )}
 
       <footer className="bg-secondary py-12 mt-16">
         <div className="container mx-auto px-4">
