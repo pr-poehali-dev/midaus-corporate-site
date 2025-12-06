@@ -459,7 +459,7 @@ export default function Index() {
 
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-16">
             <div className="text-center">
-              <div className="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto mb-4 transition-all duration-500 hover:scale-110 hover:rotate-12 hover:shadow-xl">
                 <Icon name="Gem" size={36} className="text-white" />
               </div>
               <h3 className="font-heading font-semibold text-xl mb-3">
@@ -470,7 +470,7 @@ export default function Index() {
               </p>
             </div>
             <div className="text-center">
-              <div className="w-20 h-20 bg-accent rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="w-20 h-20 bg-accent rounded-full flex items-center justify-center mx-auto mb-4 transition-all duration-500 hover:scale-110 hover:rotate-12 hover:shadow-xl">
                 <Icon name="Factory" size={36} className="text-white" />
               </div>
               <h3 className="font-heading font-semibold text-xl mb-3">
@@ -481,8 +481,8 @@ export default function Index() {
               </p>
             </div>
             <div className="text-center">
-              <div className="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
-                <Icon name="Globe" size={36} className="text-white" />
+              <div className="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto mb-4 transition-all duration-500 hover:scale-110 hover:rotate-12 hover:shadow-xl">
+                <Icon name="Award" size={36} className="text-white" />
               </div>
               <h3 className="font-heading font-semibold text-xl mb-3">
                 Более 30 лет на рынке
