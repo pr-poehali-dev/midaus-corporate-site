@@ -6,6 +6,8 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import Icon from '@/components/ui/icon';
 import { Link } from 'react-router-dom';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 export default function Index() {
   const [selectedRange, setSelectedRange] = useState('');
@@ -17,9 +19,6 @@ export default function Index() {
   const [recommendedSeries, setRecommendedSeries] = useState<string[]>([]);
   const [visibleSections, setVisibleSections] = useState<Set<string>>(new Set());
   const [showScrollTop, setShowScrollTop] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [showCallModal, setShowCallModal] = useState(false);
-  const [productsMenuOpen, setProductsMenuOpen] = useState(false);
   const sectionRefs = useRef<{ [key: string]: HTMLElement | null }>({});
 
   useEffect(() => {
@@ -101,144 +100,7 @@ export default function Index() {
 
   return (
     <div className="min-h-screen bg-background">
-      <header className="bg-white border-b border-border sticky top-0 z-50">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <img 
-              src="https://cdn.poehali.dev/files/bf9d6490-da2b-41da-829f-65eea317fd60.png" 
-              alt="МИДАУС" 
-              className="h-10 w-auto object-contain"
-            />
-          </div>
-          <nav className="hidden lg:flex items-center gap-6">
-            <Link to="/products" className="text-sm font-medium text-foreground hover:text-primary transition-colors whitespace-nowrap">
-              Продукция
-            </Link>
-            <Link to="/about" className="text-sm font-medium text-foreground hover:text-primary transition-colors whitespace-nowrap">
-              О компании
-            </Link>
-            <Link to="/laboratory" className="text-sm font-medium text-foreground hover:text-primary transition-colors whitespace-nowrap">
-              Лаборатория
-            </Link>
-            <Link to="/software" className="text-sm font-medium text-foreground hover:text-primary transition-colors whitespace-nowrap">
-              ПО
-            </Link>
-            <Link to="/news" className="text-sm font-medium text-foreground hover:text-primary transition-colors whitespace-nowrap">
-              Новости
-            </Link>
-          </nav>
-          <Button variant="default" className="hidden lg:flex" onClick={() => setShowCallModal(true)}>
-            Заказать звонок
-          </Button>
-          <Button 
-            variant="ghost" 
-            size="icon" 
-            className="lg:hidden"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          >
-            <Icon name={mobileMenuOpen ? "X" : "Menu"} size={24} />
-          </Button>
-        </div>
-        
-        <div 
-          className={`lg:hidden border-t border-border bg-white overflow-hidden transition-all duration-300 ease-in-out ${
-            mobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-          }`}
-        >
-          <nav className="container mx-auto px-4 py-4 flex flex-col gap-4">
-            <div className="animate-slide-up" style={{ animationDelay: '50ms' }}>
-              <button
-                onClick={() => setProductsMenuOpen(!productsMenuOpen)}
-                className="text-sm font-medium text-foreground hover:text-primary transition-colors flex items-center justify-between w-full"
-              >
-                Продукция
-                <Icon name={productsMenuOpen ? "ChevronUp" : "ChevronDown"} size={16} />
-              </button>
-              {productsMenuOpen && (
-                <div className="ml-4 mt-2 space-y-2">
-                  <Link
-                    to="/products"
-                    className="block text-sm text-muted-foreground hover:text-primary transition-colors font-semibold"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    Датчики давления
-                  </Link>
-                  <a
-                    href="#"
-                    className="block text-sm text-muted-foreground hover:text-primary transition-colors"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    Сенсоры давления
-                  </a>
-                  <a
-                    href="#"
-                    className="block text-sm text-muted-foreground hover:text-primary transition-colors"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    Источники питания
-                  </a>
-                  <a
-                    href="#"
-                    className="block text-sm text-muted-foreground hover:text-primary transition-colors"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    Средства защиты
-                  </a>
-                  <a
-                    href="#"
-                    className="block text-sm text-muted-foreground hover:text-primary transition-colors"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    Устройства настройки и индикации
-                  </a>
-                  <a
-                    href="#"
-                    className="block text-sm text-muted-foreground hover:text-primary transition-colors"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    Монтажная арматура
-                  </a>
-                </div>
-              )}
-            </div>
-            <Link 
-              to="/about" 
-              className="text-sm font-medium text-foreground hover:text-primary transition-colors animate-slide-up"
-              style={{ animationDelay: '100ms' }}
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              О компании
-            </Link>
-            <Link 
-              to="/laboratory" 
-              className="text-sm font-medium text-foreground hover:text-primary transition-colors animate-slide-up"
-              style={{ animationDelay: '150ms' }}
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Метрологическая лаборатория
-            </Link>
-            <Link 
-              to="/software" 
-              className="text-sm font-semibold text-foreground hover:text-primary transition-colors animate-slide-up"
-              style={{ animationDelay: '250ms' }}
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Программное обеспечение
-            </Link>
-            <Link 
-              to="/news" 
-              className="text-sm font-medium text-foreground hover:text-primary transition-colors animate-slide-up"
-              style={{ animationDelay: '300ms' }}
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Новости
-            </Link>
-            <Button variant="default" className="w-full animate-slide-up" style={{ animationDelay: '350ms' }} onClick={() => { setShowCallModal(true); setMobileMenuOpen(false); }}>
-                Заказать звонок
-              </Button>
-          </nav>
-        </div>
-      </header>
+      <Header />
 
       <section className="relative h-[600px] flex items-center overflow-hidden">
         <div
@@ -994,69 +856,7 @@ export default function Index() {
         </div>
       )}
 
-      <footer className="bg-secondary py-12 mt-16">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-4 gap-8 mb-8">
-            <div>
-              <img 
-                src="https://cdn.poehali.dev/files/bf9d6490-da2b-41da-829f-65eea317fd60.png" 
-                alt="МИДАУС" 
-                className="h-10 w-auto mb-4 object-contain"
-              />
-              <p className="text-sm text-muted-foreground">
-                ООО «МИДАУС» — разработка и производство высокоточных датчиков давления по технологии «кремний на сапфире» для промышленности
-              </p>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4">Компания</h4>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><Link to="/about" className="hover:text-primary">О компании</Link></li>
-                <li><Link to="/laboratory" className="hover:text-primary">Метрологическая лаборатория</Link></li>
-                <li><Link to="/news" className="hover:text-primary">Новости</Link></li>
-                <li><Link to="/careers" className="hover:text-primary font-semibold">Вакансии</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4">Продукция</h4>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><Link to="/products" className="hover:text-primary font-semibold">Датчики давления</Link></li>
-                <li><a href="#" className="hover:text-primary">Сенсоры давления</a></li>
-                <li><a href="#" className="hover:text-primary">Источники питания</a></li>
-                <li><a href="#" className="hover:text-primary">Средства защиты</a></li>
-                <li><a href="#" className="hover:text-primary">Устройства настройки и индикации</a></li>
-                <li><a href="#" className="hover:text-primary">Монтажная арматура</a></li>
-                <li><Link to="/software" className="hover:text-primary font-semibold">Программное обеспечение</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4">Контакты</h4>
-              <div className="space-y-2 text-sm text-muted-foreground">
-                <div className="flex items-start gap-2">
-                  <Icon name="MapPin" size={16} className="mt-0.5 flex-shrink-0" />
-                  <span>г. Ульяновск, проезд Энергетиков, д. 4</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Icon name="Phone" size={16} />
-                  <span>+7 8422 360 363</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Icon name="Phone" size={16} />
-                  <span>8-800-200-03-04 (бесплатно по РФ)</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Icon name="Mail" size={16} />
-                  <span>info@midaus.ru</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="border-t border-border pt-8">
-            <p className="text-sm text-muted-foreground text-center">
-              © 2025 МИДАУС. Все права защищены.
-            </p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

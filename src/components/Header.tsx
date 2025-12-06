@@ -23,30 +23,12 @@ export default function Header() {
               className="h-10 w-auto object-contain"
             />
           </Link>
-          <nav className="hidden lg:flex items-center gap-6">
-            <Link to="/products" className="text-sm font-medium text-foreground hover:text-primary transition-colors whitespace-nowrap">
-              Продукция
-            </Link>
-            <Link to="/about" className="text-sm font-medium text-foreground hover:text-primary transition-colors whitespace-nowrap">
-              О компании
-            </Link>
-            <Link to="/laboratory" className="text-sm font-medium text-foreground hover:text-primary transition-colors whitespace-nowrap">
-              Лаборатория
-            </Link>
-            <Link to="/software" className="text-sm font-medium text-foreground hover:text-primary transition-colors whitespace-nowrap">
-              ПО
-            </Link>
-            <Link to="/news" className="text-sm font-medium text-foreground hover:text-primary transition-colors whitespace-nowrap">
-              Новости
-            </Link>
-          </nav>
-          <Button variant="default" className="hidden lg:flex" onClick={() => setShowCallModal(true)}>
+          <Button variant="default" className="hidden md:flex" onClick={() => setShowCallModal(true)}>
             Заказать звонок
           </Button>
           <Button 
             variant="ghost" 
             size="icon" 
-            className="lg:hidden"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             <Icon name={mobileMenuOpen ? "X" : "Menu"} size={24} />
@@ -54,8 +36,8 @@ export default function Header() {
         </div>
         
         <div 
-          className={`lg:hidden border-t border-border bg-white overflow-hidden transition-all duration-300 ease-in-out ${
-            mobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+          className={`border-t border-border bg-white overflow-hidden transition-all duration-300 ease-in-out ${
+            mobileMenuOpen ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'
           }`}
         >
           <nav className="container mx-auto px-4 py-4 flex flex-col gap-4">
