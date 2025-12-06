@@ -319,7 +319,7 @@ export default function Index() {
       >
         <div className="container mx-auto px-4">
           <h2 className="font-heading font-bold text-3xl text-center mb-12">
-            Категории продукции
+            Наша продукция
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
@@ -331,7 +331,7 @@ export default function Index() {
               },
               {
                 icon: 'Cpu',
-                title: 'Модули давления',
+                title: 'Сенсоры давления',
                 description: 'С температурной компенсацией и без нее',
                 link: '#',
               },
@@ -424,7 +424,6 @@ export default function Index() {
               { icon: 'Gauge', title: 'Вакуумная техника' },
               { icon: 'Car', title: 'Автомобильная промышленность' },
               { icon: 'Plane', title: 'Авиационная промышленность' },
-              { icon: 'Flame', title: 'Газ' },
             ].map((solution, index) => (
               <div
                 key={index}
@@ -467,7 +466,7 @@ export default function Index() {
                 Технология КНС
               </h3>
               <p className="text-muted-foreground">
-                Уникальная технология «кремний на сапфире» обеспечивает точность и стабильность от –197°C до +500°C
+                Наши датчики работают в широчайшем температурном диапазоне (от –197°C до +500°C), устойчивы к сильным вибрациям и агрессивным средам
               </p>
             </div>
             <div className="text-center">
@@ -486,10 +485,10 @@ export default function Index() {
                 <Icon name="Globe" size={36} className="text-white" />
               </div>
               <h3 className="font-heading font-semibold text-xl mb-3">
-                Крупные заказчики
+                Широкий ассортимент для любых задач
               </h3>
               <p className="text-muted-foreground">
-                СИБУР, РАСКО-Газэлектроника, Газпром. География поставок: Россия, Китай, Индия, страны СНГ
+                Мы предлагаем комплексные решения: от первичных преобразователей (модулей давления) и готовых датчиков с различными выходными сигналами до источников питания и средств защиты, покрывая все потребности в создании измерительной точки
               </p>
             </div>
           </div>
