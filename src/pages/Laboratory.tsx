@@ -22,7 +22,7 @@ export default function Laboratory() {
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: `url('https://cdn.poehali.dev/files/ddaf71d8-5625-4d64-a187-6246be0b06d8.jpg')`,
+            backgroundImage: `url('https://cdn.poehali.dev/files/Img_190321083531617-1.jpg')`,
           }}
         >
           <div className="absolute inset-0 bg-gradient-to-r from-primary/90 to-primary/60"></div>
@@ -72,11 +72,7 @@ export default function Laboratory() {
                 title: 'Поверка датчиков давления',
                 description: 'Первичная и периодическая поверка датчиков давления с выдачей свидетельства'
               },
-              {
-                icon: 'Gauge',
-                title: 'Поверка манометров',
-                description: 'Метрологическая поверка манометров в соответствии с методиками ГОСТ'
-              },
+
               {
                 icon: 'Settings',
                 title: 'Настройка и регулировка',
@@ -96,6 +92,11 @@ export default function Laboratory() {
                 icon: 'FileText',
                 title: 'Документация',
                 description: 'Полный комплект документов по результатам поверки'
+              },
+              {
+                icon: 'Database',
+                title: 'Загрузка в ФГИС АРШИН',
+                description: 'Загрузка сведений о поверке в ФГИС АРШИН в день поверки'
               }
             ].map((service, index) => (
               <div key={index} className="flex gap-4 bg-white p-4 rounded-lg">
