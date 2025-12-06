@@ -97,13 +97,13 @@ export default function Header() {
                   >
                     Средства защиты
                   </a>
-                  <a
-                    href="#"
-                    className="block text-sm text-muted-foreground hover:text-primary transition-colors"
+                  <Link
+                    to="/devices"
+                    className="block text-sm text-muted-foreground hover:text-primary transition-colors font-semibold"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     Устройства настройки и индикации
-                  </a>
+                  </Link>
                   <a
                     href="#"
                     className="block text-sm text-muted-foreground hover:text-primary transition-colors"
