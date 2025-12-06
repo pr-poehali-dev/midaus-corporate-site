@@ -109,30 +109,30 @@ export default function Index() {
               className="h-10 w-auto object-contain"
             />
           </div>
-          <nav className="hidden md:flex items-center gap-8">
-            <Link to="/products" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
+          <nav className="hidden lg:flex items-center gap-6">
+            <Link to="/products" className="text-sm font-medium text-foreground hover:text-primary transition-colors whitespace-nowrap">
               Продукция
             </Link>
-            <Link to="/about" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
+            <Link to="/about" className="text-sm font-medium text-foreground hover:text-primary transition-colors whitespace-nowrap">
               О компании
             </Link>
-            <Link to="/laboratory" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
-              Метрологическая лаборатория
+            <Link to="/laboratory" className="text-sm font-medium text-foreground hover:text-primary transition-colors whitespace-nowrap">
+              Лаборатория
             </Link>
-            <Link to="/software" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
-              Программное обеспечение
+            <Link to="/software" className="text-sm font-medium text-foreground hover:text-primary transition-colors whitespace-nowrap">
+              ПО
             </Link>
-            <Link to="/news" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
+            <Link to="/news" className="text-sm font-medium text-foreground hover:text-primary transition-colors whitespace-nowrap">
               Новости
             </Link>
           </nav>
-          <Button variant="default" className="hidden md:flex" onClick={() => setShowCallModal(true)}>
+          <Button variant="default" className="hidden lg:flex" onClick={() => setShowCallModal(true)}>
             Заказать звонок
           </Button>
           <Button 
             variant="ghost" 
             size="icon" 
-            className="md:hidden"
+            className="lg:hidden"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             <Icon name={mobileMenuOpen ? "X" : "Menu"} size={24} />
@@ -140,7 +140,7 @@ export default function Index() {
         </div>
         
         <div 
-          className={`md:hidden border-t border-border bg-white overflow-hidden transition-all duration-300 ease-in-out ${
+          className={`lg:hidden border-t border-border bg-white overflow-hidden transition-all duration-300 ease-in-out ${
             mobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
           }`}
         >
@@ -956,7 +956,7 @@ export default function Index() {
                 className="h-10 w-auto mb-4 object-contain"
               />
               <p className="text-sm text-muted-foreground">
-                Производство датчиков давления и систем измерения для промышленности
+                ООО «МИДАУС» — разработка и производство высокоточных датчиков давления по технологии «кремний на сапфире» для промышленности
               </p>
             </div>
             <div>
@@ -971,19 +971,28 @@ export default function Index() {
               <h4 className="font-semibold mb-4">Продукция</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li><Link to="/products" className="hover:text-primary">Датчики давления</Link></li>
+                <li><a href="#" className="hover:text-primary">Сенсоры давления</a></li>
+                <li><a href="#" className="hover:text-primary">Источники питания</a></li>
+                <li><a href="#" className="hover:text-primary">Средства защиты</a></li>
+                <li><a href="#" className="hover:text-primary">Устройства настройки</a></li>
+                <li><a href="#" className="hover:text-primary">Монтажная арматура</a></li>
                 <li><Link to="/software" className="hover:text-primary">Программное обеспечение</Link></li>
               </ul>
             </div>
             <div>
               <h4 className="font-semibold mb-4">Контакты</h4>
               <div className="space-y-2 text-sm text-muted-foreground">
-                <div className="flex items-center gap-2">
-                  <Icon name="MapPin" size={16} />
-                  <span>г. Ульяновск</span>
+                <div className="flex items-start gap-2">
+                  <Icon name="MapPin" size={16} className="mt-0.5 flex-shrink-0" />
+                  <span>г. Ульяновск, проезд Энергетиков, д. 4</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Icon name="Phone" size={16} />
-                  <span>+7 (8422) 123-45-67</span>
+                  <span>+7 8422 360 363</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Icon name="Phone" size={16} />
+                  <span>8-800-200-03-04 (бесплатно по РФ)</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Icon name="Mail" size={16} />
@@ -994,7 +1003,7 @@ export default function Index() {
           </div>
           <div className="border-t border-border pt-8">
             <p className="text-sm text-muted-foreground text-center">
-              © 2024 МИДАУС. Все права защищены.
+              © 2025 МИДАУС. Все права защищены.
             </p>
           </div>
         </div>
