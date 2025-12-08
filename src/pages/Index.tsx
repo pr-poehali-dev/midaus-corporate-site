@@ -522,8 +522,11 @@ export default function Index() {
                   <h3 className="font-heading font-semibold text-sm mb-0.5">
                     Бушев Константин
                   </h3>
-                  <p className="text-primary text-xs font-medium mb-2">
+                  <p className="text-primary text-xs font-medium mb-1">
                     Генеральный директор
+                  </p>
+                  <p className="text-[10px] text-muted-foreground mb-2">
+                    Общие вопросы, партнерство
                   </p>
                   <div className="space-y-1 text-xs text-muted-foreground">
                     <div className="flex items-center justify-center gap-1">
@@ -554,8 +557,11 @@ export default function Index() {
                   <h3 className="font-heading font-semibold text-sm mb-0.5">
                     Купырин Владимир
                   </h3>
-                  <p className="text-primary text-xs font-medium mb-2">
+                  <p className="text-primary text-xs font-medium mb-1">
                     Технический директор
+                  </p>
+                  <p className="text-[10px] text-muted-foreground mb-2">
+                    Технические вопросы, разработка
                   </p>
                   <div className="space-y-1 text-xs text-muted-foreground">
                     <div className="flex items-center justify-center gap-1">
@@ -589,8 +595,8 @@ export default function Index() {
                   <p className="text-primary text-xs font-medium mb-1">
                     Директор по развитию
                   </p>
-                  <p className="text-[10px] text-muted-foreground italic mb-2">
-                    Кандидат техн. наук
+                  <p className="text-[10px] text-muted-foreground mb-2">
+                    Маркетинг, к.т.н.
                   </p>
                   <div className="space-y-1 text-xs text-muted-foreground">
                     <div className="flex items-center justify-center gap-1">
@@ -621,8 +627,11 @@ export default function Index() {
                   <h3 className="font-heading font-semibold text-sm mb-0.5">
                     Алашеев Валентин
                   </h3>
-                  <p className="text-primary text-xs font-medium mb-2">
+                  <p className="text-primary text-xs font-medium mb-1">
                     Главный конструктор
+                  </p>
+                  <p className="text-[10px] text-muted-foreground mb-2">
+                    Конструкторские вопросы
                   </p>
                   <div className="space-y-1 text-xs text-muted-foreground">
                     <div className="flex items-center justify-center gap-1">
@@ -653,8 +662,11 @@ export default function Index() {
                   <h3 className="font-heading font-semibold text-sm mb-0.5">
                     Мартынова Людмила
                   </h3>
-                  <p className="text-primary text-xs font-medium mb-2">
+                  <p className="text-primary text-xs font-medium mb-1">
                     Начальник отдела продаж
+                  </p>
+                  <p className="text-[10px] text-muted-foreground mb-2">
+                    Коммерческие вопросы, продажи
                   </p>
                   <div className="space-y-1 text-xs text-muted-foreground">
                     <div className="flex items-center justify-center gap-1">
@@ -685,8 +697,11 @@ export default function Index() {
                   <h3 className="font-heading font-semibold text-sm mb-0.5">
                     Маланин Михаил
                   </h3>
-                  <p className="text-primary text-xs font-medium mb-2">
+                  <p className="text-primary text-xs font-medium mb-1">
                     Главный метролог
+                  </p>
+                  <p className="text-[10px] text-muted-foreground mb-2">
+                    Метрология, поверка
                   </p>
                   <div className="space-y-1 text-xs text-muted-foreground">
                     <div className="flex items-center justify-center gap-1">
@@ -717,8 +732,11 @@ export default function Index() {
                   <h3 className="font-heading font-semibold text-sm mb-0.5">
                     Лукьянов Сергей
                   </h3>
-                  <p className="text-primary text-xs font-medium mb-2">
+                  <p className="text-primary text-xs font-medium mb-1">
                     Начальник группы качества
+                  </p>
+                  <p className="text-[10px] text-muted-foreground mb-2">
+                    Контроль качества, рекламации
                   </p>
                   <div className="space-y-1 text-xs text-muted-foreground">
                     <div className="flex items-center justify-center gap-1">
