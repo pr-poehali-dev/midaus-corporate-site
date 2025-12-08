@@ -593,10 +593,10 @@ export default function Index() {
                     Савченко Евгений
                   </h3>
                   <p className="text-primary text-xs font-medium mb-1">
-                    Директор по развитию
+                    Директор по развитию и науке
                   </p>
                   <p className="text-[10px] text-muted-foreground mb-2">
-                    Маркетинг, к.т.н.
+                    НИР, НИОКР, публикации, к.т.н.
                   </p>
                   <div className="space-y-1 text-xs text-muted-foreground">
                     <div className="flex items-center justify-center gap-1">
@@ -631,7 +631,7 @@ export default function Index() {
                     Главный конструктор
                   </p>
                   <p className="text-[10px] text-muted-foreground mb-2">
-                    Конструкторские вопросы
+                    Подбор датчиков, спецразработки
                   </p>
                   <div className="space-y-1 text-xs text-muted-foreground">
                     <div className="flex items-center justify-center gap-1">
