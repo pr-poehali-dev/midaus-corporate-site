@@ -7,6 +7,8 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import Icon from '@/components/ui/icon';
 import { Link, useParams } from 'react-router-dom';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 const productsData: Record<string, {
   name: string;
@@ -196,37 +198,7 @@ export default function Product() {
 
   return (
     <div className="min-h-screen bg-background">
-      <header className="bg-white border-b border-border sticky top-0 z-50">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2">
-            <img 
-              src="https://cdn.poehali.dev/files/bf9d6490-da2b-41da-829f-65eea317fd60.png" 
-              alt="МИДАУС" 
-              className="h-10 w-auto"
-            />
-          </Link>
-          <nav className="hidden md:flex items-center gap-8">
-            <Link to="/#products" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
-              Продукция
-            </Link>
-            <Link to="/#solutions" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
-              Решения
-            </Link>
-            <Link to="/#about" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
-              О компании
-            </Link>
-            <Link to="/#support" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
-              Поддержка
-            </Link>
-          </nav>
-          <Button variant="default" className="hidden md:flex">
-            Заказать звонок
-          </Button>
-          <Button variant="ghost" size="icon" className="md:hidden">
-            <Icon name="Menu" size={24} />
-          </Button>
-        </div>
-      </header>
+      <Header />
 
       <div className="container mx-auto px-4 py-8">
         <nav className="flex items-center gap-2 text-sm text-muted-foreground mb-8">
@@ -711,7 +683,7 @@ export default function Product() {
           )}
 
           {activeTab === 'howto' && (
-            <div className="space-y-6">
+            <div className="max-w-3xl mx-auto space-y-6">
               <Card className="overflow-hidden">
                 <CardContent className="p-0">
                   <div className="relative rounded-lg overflow-hidden" style={{ paddingBottom: '56.25%' }}>
@@ -795,49 +767,7 @@ export default function Product() {
         </div>
       </div>
 
-      <footer className="bg-secondary mt-16 py-12">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-4 gap-8 mb-8">
-            <div>
-              <img 
-                src="https://cdn.poehali.dev/files/bf9d6490-da2b-41da-829f-65eea317fd60.png" 
-                alt="МИДАУС" 
-                className="h-10 w-auto mb-4"
-              />
-              <p className="text-sm text-muted-foreground">
-                Производство датчиков давления и систем измерения для промышленности
-              </p>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4">Продукция</h4>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="#" className="hover:text-primary">Датчики давления</a></li>
-                <li><a href="#" className="hover:text-primary">Манометры</a></li>
-                <li><a href="#" className="hover:text-primary">Преобразователи</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4">Компания</h4>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="#" className="hover:text-primary">О нас</a></li>
-                <li><a href="#" className="hover:text-primary">Сертификаты</a></li>
-                <li><a href="#" className="hover:text-primary">Контакты</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4">Контакты</h4>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li>8-800-200-03-04</li>
-                <li>info@midaus.com</li>
-                <li>г. Ульяновск, проезд Энергетиков, д. 4</li>
-              </ul>
-            </div>
-          </div>
-          <div className="pt-8 border-t border-border text-center text-sm text-muted-foreground">
-            © 2024 МИДАУС. Все права защищены.
-          </div>
-        </div>
-      </footer>
+      <Footer />
 
       {showPriceModal && (
         <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4" onClick={() => setShowPriceModal(false)}>
