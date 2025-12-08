@@ -144,13 +144,22 @@ export default function Devices() {
                   </div>
                 )}
 
-                <Button 
-                  onClick={() => setShowDevModal(true)}
-                  className="w-full bg-accent hover:bg-accent/90"
-                >
-                  Подробнее
-                  <Icon name="ArrowRight" size={16} className="ml-2" />
-                </Button>
+                {device.id === 'mida-ic-202-ex' ? (
+                  <Link to="/device/mida-ic-202-ex" className="block">
+                    <Button className="w-full bg-accent hover:bg-accent/90">
+                      Подробнее
+                      <Icon name="ArrowRight" size={16} className="ml-2" />
+                    </Button>
+                  </Link>
+                ) : (
+                  <Button 
+                    onClick={() => setShowDevModal(true)}
+                    className="w-full bg-accent hover:bg-accent/90"
+                  >
+                    Подробнее
+                    <Icon name="ArrowRight" size={16} className="ml-2" />
+                  </Button>
+                )}
               </CardContent>
             </Card>
           ))}
