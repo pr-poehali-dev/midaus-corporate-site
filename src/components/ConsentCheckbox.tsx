@@ -1,5 +1,3 @@
-import { Link } from 'react-router-dom';
-
 interface ConsentCheckboxProps {
   checked: boolean;
   onChange: (checked: boolean) => void;
@@ -19,13 +17,13 @@ export default function ConsentCheckbox({ checked, onChange, id = 'consent' }: C
       />
       <label htmlFor={id} className="text-sm text-muted-foreground cursor-pointer flex-1">
         Я согласен на{' '}
-        <Link to="/privacy" className="text-primary hover:underline" target="_blank">
+        <a href="/privacy" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">
           обработку персональных данных
-        </Link>
+        </a>
         {' '}в соответствии с Федеральным законом №152-ФЗ и{' '}
-        <Link to="/privacy" className="text-primary hover:underline" target="_blank">
+        <a href="/privacy" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">
           Политикой конфиденциальности
-        </Link>
+        </a>
       </label>
     </div>
   );
