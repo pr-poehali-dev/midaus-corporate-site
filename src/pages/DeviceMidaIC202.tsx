@@ -8,10 +8,13 @@ import Icon from '@/components/ui/icon';
 import { Link } from 'react-router-dom';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import ConsentCheckbox from '@/components/ConsentCheckbox';
 
 export default function DeviceMidaIC202() {
   const [activeTab, setActiveTab] = useState('specs');
   const [showPriceModal, setShowPriceModal] = useState(false);
+  const [consentChecked, setConsentChecked] = useState(false);
+  const [modalConsentChecked, setModalConsentChecked] = useState(false);
 
   const specs = [
     { label: 'Диапазон индикации', value: '0-100% ВПИ датчика' },
@@ -226,7 +229,12 @@ export default function DeviceMidaIC202() {
               <Label htmlFor="message">Сообщение</Label>
               <Textarea id="message" placeholder="Ваш вопрос..." rows={4} />
             </div>
-            <Button className="w-full" size="lg">
+            <ConsentCheckbox 
+              checked={consentChecked} 
+              onChange={setConsentChecked}
+              id="device-consent"
+            />
+            <Button className="w-full" size="lg" disabled={!consentChecked}>
               Отправить запрос
             </Button>
           </form>
@@ -269,8 +277,13 @@ export default function DeviceMidaIC202() {
                   <Label htmlFor="modal-quantity">Количество</Label>
                   <Input id="modal-quantity" type="number" min="1" defaultValue="1" />
                 </div>
+                <ConsentCheckbox 
+                  checked={modalConsentChecked} 
+                  onChange={setModalConsentChecked}
+                  id="modal-consent"
+                />
                 <div className="flex gap-3 pt-2">
-                  <Button type="submit" className="flex-1">
+                  <Button type="submit" className="flex-1" disabled={!modalConsentChecked}>
                     <Icon name="Send" size={16} className="mr-2" />
                     Отправить запрос
                   </Button>

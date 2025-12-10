@@ -8,6 +8,7 @@ import Icon from '@/components/ui/icon';
 import { Link } from 'react-router-dom';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import ConsentCheckbox from '@/components/ConsentCheckbox';
 
 export default function Index() {
   const [selectedRange, setSelectedRange] = useState('');
@@ -19,6 +20,7 @@ export default function Index() {
   const [recommendedSeries, setRecommendedSeries] = useState<string[]>([]);
   const [visibleSections, setVisibleSections] = useState<Set<string>>(new Set());
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [consentChecked, setConsentChecked] = useState(false);
   const sectionRefs = useRef<{ [key: string]: HTMLElement | null }>({});
 
   useEffect(() => {
@@ -799,8 +801,18 @@ export default function Index() {
                       rows={4}
                     />
                   </div>
+                  <div className="md:col-span-2">
+                    <ConsentCheckbox 
+                      checked={consentChecked} 
+                      onChange={setConsentChecked}
+                      id="support-consent"
+                    />
+                  </div>
                 </div>
-                <Button className="w-full mt-6 bg-accent hover:bg-accent/90">
+                <Button 
+                  className="w-full mt-6 bg-accent hover:bg-accent/90"
+                  disabled={!consentChecked}
+                >
                   <Icon name="Send" size={20} className="mr-2" />
                   Отправить запрос
                 </Button>

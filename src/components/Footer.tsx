@@ -60,9 +60,19 @@ export default function Footer() {
           </div>
         </div>
         <div className="border-t border-border pt-8">
-          <p className="text-sm text-muted-foreground text-center">
-            © 2025 МИДАУС. Все права защищены.
-          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p className="text-sm text-muted-foreground">
+              © 2025 МИДАУС. Все права защищены.
+            </p>
+            <div className="flex items-center gap-4 text-sm">
+              <Link to="/privacy" className="text-muted-foreground hover:text-primary transition-colors">
+                Политика конфиденциальности
+              </Link>
+              <Link to="/privacy#cookies" className="text-muted-foreground hover:text-primary transition-colors">
+                Использование cookie
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </footer>
