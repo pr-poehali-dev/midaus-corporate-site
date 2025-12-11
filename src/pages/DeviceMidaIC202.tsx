@@ -24,7 +24,7 @@ export default function DeviceMidaIC202() {
     { label: 'Потребляемая мощность', value: 'не более 0,5 Вт' },
     { label: 'Разрядность индикатора', value: '4 разряда' },
     { label: 'Погрешность индикации', value: '±0,5% от диапазона' },
-    { label: 'Маркировка взрывозащиты', value: '0ExiaIICT6' },
+    { label: 'Маркировка взрывозащиты', value: 'ExiaIICT5 X' },
     { label: 'Температура эксплуатации', value: '-40...+80°C' },
     { label: 'Степень защиты', value: 'IP65' },
     { label: 'Габаритные размеры', value: '72×72×40 мм' },
@@ -72,7 +72,7 @@ export default function DeviceMidaIC202() {
               <span className="text-primary font-semibold text-sm">🇷🇺 Российское производство</span>
             </div>
             <div className="inline-flex items-center gap-2 bg-green-100 px-3 py-1 rounded-full mb-3 ml-2">
-              <span className="text-green-700 font-semibold text-sm">Взрывозащита 0ExiaIICT6</span>
+              <span className="text-green-700 font-semibold text-sm">Взрывозащита ExiaIICT5 X</span>
             </div>
             
             <h1 className="font-heading font-bold text-3xl md:text-4xl mb-4">
