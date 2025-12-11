@@ -11,6 +11,12 @@ import Icon from '@/components/ui/icon';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
+interface NewsAttachment {
+  name: string;
+  url: string;
+  type: 'pdf' | 'doc' | 'image';
+}
+
 interface NewsItem {
   id: number;
   date: string;
@@ -19,6 +25,7 @@ interface NewsItem {
   fullText: string;
   image: string;
   category: string;
+  attachments?: NewsAttachment[];
 }
 
 export default function News() {
@@ -48,9 +55,21 @@ export default function News() {
       date: 'Ноябрь 2025',
       title: 'Опытная эксплуатация датчиков МИДА-15 на Ульяновском пивзаводе прошла успешно',
       preview: 'Завершился этап опытной эксплуатации наших датчиков давления в условиях реального производства на Ульяновском пивзаводе.',
-      fullText: 'Завершился этап опытной эксплуатации наших датчиков давления в условиях реального производства на Ульяновском пивзаводе.\n\nДля решения задач пищевого производства была разработана специальная модификация датчика МИДА-15 в гигиеническом исполнении. Основные требования — высокая коррозионная стойкость, возможность CIP-мойки и полное соответствие санитарным нормам.\n\nПо результатам испытаний получено положительное заключение. Датчики успешно зарекомендовали себя, полностью заменив импортные аналоги немецкого производства. На данную модификацию также получен соответствующий сертификат, подтверждающий ее пригодность для применения в пищевой и фармацевтической отраслях.\n\nЭтот проект наглядно демонстрирует способность нашей компании гибко реагировать на запросы рынка, разрабатывать специализированные решения и предлагать надежную отечественную альтернативу импортному оборудованию.',
-      image: 'https://cdn.poehali.dev/files/ddaf71d8-5625-4d64-a187-6246be0b06d8.jpg',
-      category: 'Компания'
+      fullText: 'Завершился этап опытной эксплуатации наших датчиков давления в условиях реального производства на Ульяновском пивзаводе.\n\nДля решения задач пищевого производства была разработана специальная модификация датчика МИДА-15 в гигиеническом исполнении. Основные требования — высокая коррозионная стойкость, возможность CIP-мойки и полное соответствие санитарным нормам. Датчики поставляются с различными типами присоединений, применяемых в пищевой и фармацевтической промышленности (DIN 11851, Tri-Clamp, CLAMP и др.).\n\nПо результатам испытаний получено положительное заключение. Датчики успешно зарекомендовали себя, полностью заменив импортные аналоги немецкого производства.\n\nГигиенический сертификат получен как для серии МИДА-15, так и для серии датчиков давления МИДА-13П, что подтверждает их пригодность для применения в пищевой и фармацевтической отраслях.\n\nЭтот проект наглядно демонстрирует способность нашей компании гибко реагировать на запросы рынка, разрабатывать специализированные решения и предлагать надежную отечественную альтернативу импортному оборудованию.',
+      image: 'https://cdn.poehali.dev/files/IMG-20250627-WA0008 1.jpg',
+      category: 'Компания',
+      attachments: [
+        {
+          name: 'Официальный отзыв от ООО «Трехсосенский»',
+          url: 'https://cdn.poehali.dev/files/otzyv-trehsosenskiy.pdf',
+          type: 'pdf'
+        },
+        {
+          name: 'Скан гигиенического заключения',
+          url: 'https://cdn.poehali.dev/files/IMG-20250227-WA0001 1.jpg',
+          type: 'image'
+        }
+      ]
     },
     {
       id: 4,
@@ -62,6 +81,19 @@ export default function News() {
       category: 'Сертификаты'
     }
   ];
+
+  const getAttachmentIcon = (type: string) => {
+    switch (type) {
+      case 'pdf':
+        return 'FileText';
+      case 'doc':
+        return 'File';
+      case 'image':
+        return 'Image';
+      default:
+        return 'Paperclip';
+    }
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -107,6 +139,12 @@ export default function News() {
                     {news.category}
                   </span>
                 </div>
+                {news.attachments && news.attachments.length > 0 && (
+                  <div className="flex items-center gap-2 mb-3 text-sm text-primary">
+                    <Icon name="Paperclip" size={14} />
+                    <span>{news.attachments.length} {news.attachments.length === 1 ? 'документ' : 'документа'}</span>
+                  </div>
+                )}
                 <h3 className="font-heading font-semibold text-lg mb-3 group-hover:text-primary transition-colors">
                   {news.title}
                 </h3>
@@ -174,13 +212,46 @@ export default function News() {
                   {selectedNews.category}
                 </span>
               </div>
-              <div className="prose prose-sm max-w-none">
+              <div className="prose prose-sm max-w-none mb-6">
                 {selectedNews.fullText.split('\n\n').map((paragraph, index) => (
                   <p key={index} className="mb-4 text-foreground leading-relaxed">
                     {paragraph}
                   </p>
                 ))}
               </div>
+              
+              {selectedNews.attachments && selectedNews.attachments.length > 0 && (
+                <div className="border-t pt-6">
+                  <h3 className="font-heading font-semibold text-lg mb-4 flex items-center gap-2">
+                    <Icon name="Paperclip" size={20} />
+                    Прикрепленные документы
+                  </h3>
+                  <div className="space-y-3">
+                    {selectedNews.attachments.map((attachment, index) => (
+                      <a
+                        key={index}
+                        href={attachment.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-3 p-4 border border-border rounded-lg hover:bg-secondary transition-colors group"
+                      >
+                        <div className="p-2 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-colors">
+                          <Icon name={getAttachmentIcon(attachment.type)} size={24} className="text-primary" />
+                        </div>
+                        <div className="flex-1">
+                          <p className="font-medium text-sm group-hover:text-primary transition-colors">
+                            {attachment.name}
+                          </p>
+                          <p className="text-xs text-muted-foreground">
+                            {attachment.type === 'pdf' ? 'PDF документ' : attachment.type === 'image' ? 'Изображение' : 'Документ'}
+                          </p>
+                        </div>
+                        <Icon name="ExternalLink" size={16} className="text-muted-foreground group-hover:text-primary transition-colors" />
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           )}
         </DialogContent>
