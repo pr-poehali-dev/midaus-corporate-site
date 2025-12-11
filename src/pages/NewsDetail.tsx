@@ -83,7 +83,7 @@ export default function NewsDetail() {
           <Button
             variant="ghost"
             onClick={() => navigate('/news')}
-            className="mb-6 hover:bg-secondary"
+            className="mb-6 hover:bg-primary hover:text-white"
           >
             <Icon name="ArrowLeft" size={20} className="mr-2" />
             Назад к новостям
