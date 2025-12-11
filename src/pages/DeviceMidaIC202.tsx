@@ -82,6 +82,16 @@ export default function DeviceMidaIC202() {
               Съемный взрывозащищенный цифровой индикатор для датчиков давления
             </p>
 
+            <div className="bg-gradient-to-r from-primary/5 to-primary/10 border-l-4 border-primary p-5 rounded-lg mb-6">
+              <h3 className="font-semibold text-foreground mb-2 flex items-center gap-2">
+                <Icon name="Zap" size={18} className="text-primary" />
+                Принцип работы
+              </h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                МИДА-ИЦ-202-Ех принимает токовый сигнал 4-20 мА от датчика давления и преобразует его в цифровое значение, отображаемое на четырехразрядном дисплее.
+              </p>
+            </div>
+
             <div className="bg-secondary p-6 rounded-lg mb-6">
               <h3 className="font-heading font-semibold text-lg mb-3">Основные преимущества</h3>
               <ul className="space-y-2">
