@@ -22,6 +22,7 @@ export default function Footer() {
               <li><Link to="/about" className="hover:text-primary">О компании</Link></li>
               <li><Link to="/laboratory" className="hover:text-primary">Метрологическая лаборатория</Link></li>
               <li><Link to="/news" className="hover:text-primary">Новости</Link></li>
+              <li><Link to="/articles" className="hover:text-primary">Статьи</Link></li>
               <li><Link to="/careers" className="hover:text-primary font-semibold">Вакансии</Link></li>
             </ul>
           </div>
