@@ -15,6 +15,7 @@ export default function DeviceMidaIC202() {
   const [showPriceModal, setShowPriceModal] = useState(false);
   const [consentChecked, setConsentChecked] = useState(false);
   const [modalConsentChecked, setModalConsentChecked] = useState(false);
+  const [withoutExplosionProtection, setWithoutExplosionProtection] = useState(false);
 
   const specs = [
     { label: 'Диапазон индикации', value: '0-100% ВПИ датчика' },
@@ -103,6 +104,23 @@ export default function DeviceMidaIC202() {
                   </p>
                 </div>
               </div>
+            </div>
+
+            <div className="bg-secondary p-4 rounded-lg mb-6">
+              <label className="flex items-start gap-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={withoutExplosionProtection}
+                  onChange={(e) => setWithoutExplosionProtection(e.target.checked)}
+                  className="mt-1 w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary"
+                />
+                <div>
+                  <span className="font-semibold text-foreground">Вариант без взрывозащиты</span>
+                  <p className="text-sm text-muted-foreground mt-1">
+                    Для применения в обычных (невзрывоопасных) условиях
+                  </p>
+                </div>
+              </label>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-3">
