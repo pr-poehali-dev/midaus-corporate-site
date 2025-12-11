@@ -104,7 +104,7 @@ export default function Software() {
                             key={idx}
                             className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary border border-primary/20 whitespace-nowrap"
                           >
-                            <Icon name="Cpu" size={12} className="mr-1.5" />
+                            <Icon name="Gauge" size={12} className="mr-1.5" />
                             {device}
                           </span>
                         ))}
