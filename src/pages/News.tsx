@@ -32,6 +32,7 @@ interface NewsItem {
 export default function News() {
   const [selectedNews, setSelectedNews] = useState<NewsItem | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState<{ [key: number]: number }>({});
+  const [modalImageIndex, setModalImageIndex] = useState(0);
 
   const newsItems: NewsItem[] = [
     {
@@ -269,7 +270,10 @@ export default function News() {
         </div>
       </div>
 
-      <Dialog open={!!selectedNews} onOpenChange={() => setSelectedNews(null)}>
+      <Dialog open={!!selectedNews} onOpenChange={() => {
+        setSelectedNews(null);
+        setModalImageIndex(0);
+      }}>
         <DialogContent className="max-w-3xl max-h-[80vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle className="font-heading text-2xl mb-4">
@@ -278,11 +282,51 @@ export default function News() {
           </DialogHeader>
           {selectedNews && (
             <div>
-              <img 
-                src={selectedNews.image} 
-                alt={selectedNews.title}
-                className="w-full aspect-video object-cover rounded-lg mb-6"
-              />
+              <div className="relative mb-6">
+                <img 
+                  src={selectedNews.images ? selectedNews.images[modalImageIndex] : selectedNews.image} 
+                  alt={selectedNews.title}
+                  className="w-full h-[400px] object-cover rounded-lg"
+                />
+                {selectedNews.images && selectedNews.images.length > 1 && (
+                  <>
+                    <button
+                      onClick={() => {
+                        const prev = modalImageIndex === 0 ? selectedNews.images!.length - 1 : modalImageIndex - 1;
+                        setModalImageIndex(prev);
+                      }}
+                      className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition-all"
+                      aria-label="Предыдущее фото"
+                    >
+                      <Icon name="ChevronLeft" size={20} />
+                    </button>
+                    <button
+                      onClick={() => {
+                        const next = modalImageIndex === selectedNews.images!.length - 1 ? 0 : modalImageIndex + 1;
+                        setModalImageIndex(next);
+                      }}
+                      className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition-all"
+                      aria-label="Следующее фото"
+                    >
+                      <Icon name="ChevronRight" size={20} />
+                    </button>
+                    <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5">
+                      {selectedNews.images.map((_, idx) => (
+                        <button
+                          key={idx}
+                          onClick={() => setModalImageIndex(idx)}
+                          className={`w-2 h-2 rounded-full transition-all ${
+                            modalImageIndex === idx
+                              ? 'bg-white w-6'
+                              : 'bg-white/50 hover:bg-white/75'
+                          }`}
+                          aria-label={`Фото ${idx + 1}`}
+                        />
+                      ))}
+                    </div>
+                  </>
+                )}
+              </div>
               <div className="flex items-center gap-4 mb-6">
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                   <Icon name="Calendar" size={16} />
