@@ -1,135 +1,15 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from '@/components/ui/dialog';
 import Icon from '@/components/ui/icon';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-
-interface NewsAttachment {
-  name: string;
-  url: string;
-  type: 'pdf' | 'doc' | 'image';
-}
-
-interface NewsItem {
-  id: number;
-  date: string;
-  title: string;
-  preview: string;
-  fullText: string;
-  image: string;
-  images?: string[];
-  category: string;
-  attachments?: NewsAttachment[];
-}
+import { newsItems } from '@/data/newsData';
 
 export default function News() {
-  const [selectedNews, setSelectedNews] = useState<NewsItem | null>(null);
+  const navigate = useNavigate();
   const [currentImageIndex, setCurrentImageIndex] = useState<{ [key: number]: number }>({});
-  const [modalImageIndex, setModalImageIndex] = useState(0);
-
-  const newsItems: NewsItem[] = [
-    {
-      id: 1,
-      date: 'Декабрь 2025',
-      title: 'Запущен новый корпоративный сайт с онлайн-конфигуратором датчиков',
-      preview: 'Рады сообщить, что началась работа над новым корпоративным сайтом нашей компании. Ресурс находится в активной разработке и постепенно пополняется контентом.',
-      fullText: 'Рады сообщить, что началась работа над новым корпоративным сайтом нашей компании. Ресурс находится в активной разработке и постепенно пополняется контентом.\n\nУже сейчас полностью доступен и функционирует раздел, посвященный датчикам давления серии МИДА-13П. Его ключевая особенность — интеллектуальный онлайн-конфигуратор заказа. Система позволяет инженерам и проектировщикам самостоятельно, шаг за шагом, сформировать точную спецификацию нужного датчика. Конфигуратор гарантирует техническую корректность заказа, исключая ошибки в совместимости параметров.\n\nНа основе выбранных опций система автоматически генерирует габаритный чертеж будущего изделия, что значительно упрощает процесс проектирования и согласования.\n\nВ ближайшее время на сайт будут добавлены аналогичные разделы для серий МИДА-15 и МИДА-12.\n\nТакже на сайте уже работает сервис для наших клиентов: вы можете оформить заявку на поверку средств измерения давления напрямую через раздел «Метрологическая лаборатория».\n\nМы продолжаем работу над сайтом и скоро представим его в полном объеме!',
-      image: 'https://cdn.poehali.dev/files/Рисунок1.png',
-      category: 'Компания'
-    },
-    {
-      id: 2,
-      date: 'Ноябрь 2025',
-      title: 'МИДА подтвердила 100% российское происхождение датчиков давления',
-      preview: 'Компания «МИКРОЭЛЕКТРОННЫЕ ДАТЧИКИ И УСТРОЙСТВА» получила официальные заключения Министерства промышленности и торговли РФ, подтверждающие статус российской промышленной продукции.',
-      fullText: 'Компания «МИКРОЭЛЕКТРОННЫЕ ДАТЧИКИ И УСТРОЙСТВА» получила официальные заключения Министерства промышленности и торговли РФ, подтверждающие статус российской промышленной продукции для всех трёх ключевых серий датчиков давления: МИДА-15, МИДА-13П и МИДА-12.\n\nРеестровые заключения № 10289080, 10289081, 10289082 устанавливают максимальный уровень локализации производства — 100%. Это означает, что все этапы — от проектирования и производства электронных компонентов до сборки, программирования и финальных испытаний — осуществляются на территории Российской Федерации.\n\nДанный статус не только подчеркивает наш вклад в развитие отечественного приборостроения, но и открывает для наших заказчиков дополнительные возможности при участии в государственных и корпоративных закупках, где предусмотрены преференции для российской продукции.',
-      image: 'https://cdn.poehali.dev/files/Безымянный рисунок.jpg',
-      category: 'Сертификаты',
-      attachments: [
-        {
-          name: 'Выписка из реестра российской продукции ДАТЧИКИ МИДА-13П',
-          url: 'https://cdn.poehali.dev/files/mida-13p-registry.pdf',
-          type: 'pdf'
-        },
-        {
-          name: 'Выписка из реестра российской продукции ДАТЧИКИ МИДА-15',
-          url: 'https://cdn.poehali.dev/files/mida-15-registry.pdf',
-          type: 'pdf'
-        },
-        {
-          name: 'Выписка из реестра российской продукции ДАТЧИКИ МИДА-12',
-          url: 'https://cdn.poehali.dev/files/mida-12-registry.pdf',
-          type: 'pdf'
-        }
-      ]
-    },
-    {
-      id: 3,
-      date: 'Ноябрь 2025',
-      title: 'Опытная эксплуатация датчиков МИДА-15 на Ульяновском пивзаводе прошла успешно',
-      preview: 'Завершился этап опытной эксплуатации наших датчиков давления в условиях реального производства на Ульяновском пивзаводе.',
-      fullText: 'Завершился этап опытной эксплуатации наших датчиков давления в условиях реального производства на Ульяновском пивзаводе.\n\nДля решения задач пищевого производства была разработана специальная модификация датчика МИДА-15 в гигиеническом исполнении. Основные требования — высокая коррозионная стойкость, возможность CIP-мойки и полное соответствие санитарным нормам. Датчики поставляются с различными типами присоединений, применяемых в пищевой и фармацевтической промышленности (DIN 11851, Tri-Clamp, CLAMP и др.).\n\nПо результатам испытаний получено положительное заключение. Датчики успешно зарекомендовали себя, полностью заменив импортные аналоги немецкого производства.\n\nГигиенический сертификат получен как для серии МИДА-15, так и для серии датчиков давления МИДА-13П, что подтверждает их пригодность для применения в пищевой и фармацевтической отраслях.\n\nЭтот проект наглядно демонстрирует способность нашей компании гибко реагировать на запросы рынка, разрабатывать специализированные решения и предлагать надежную отечественную альтернативу импортному оборудованию.',
-      image: 'https://cdn.poehali.dev/files/IMG-20250627-WA0008 1.jpg',
-      images: [
-        'https://cdn.poehali.dev/files/IMG-20250627-WA0008 1.jpg',
-        'https://cdn.poehali.dev/files/IMG-20250227-WA0001 1.jpg'
-      ],
-      category: 'Компания',
-      attachments: [
-        {
-          name: 'Официальный отзыв от ООО «Трехсосенский»',
-          url: 'https://cdn.poehali.dev/files/otzyv-trehsosenskiy.pdf',
-          type: 'pdf'
-        },
-        {
-          name: 'Скан гигиенического заключения',
-          url: 'https://cdn.poehali.dev/files/IMG-20250227-WA0001 1.jpg',
-          type: 'image'
-        }
-      ]
-    },
-    {
-      id: 4,
-      date: 'Май 2025',
-      title: 'Производственная площадка датчиков давления подтвердила соответствие требованиям ИНТИ',
-      preview: 'Компания «Мидаус» успешно прошла независимый аудит производственной площадки и получила Заключение АНО «Институт нефтегазовых технологических инициатив» (ИНТИ).',
-      fullText: 'Компания «Мидаус» успешно прошла независимый аудит производственной площадки и получила Заключение АНО «Институт нефтегазовых технологических инициатив» (ИНТИ) № INTI.QS.PS.90-12-2024-510.\n\nЭксперты института подтвердили, что наше производство в г. Ульяновск технически и организационно способно выпускать продукцию, соответствующую строгим требованиям. В рамках аудита была оценена способность компании изготавливать датчики избыточного давления МИДА-ДИ-12П (датчики давления расплава полимера).\n\nПолученный документ удостоверяет соответствие наших процессов и продукции высоким стандартам, что особенно важно для поставок в нефтегазовый сектор и на другие ответственные объекты. Заключение действует до 11 декабря 2027 года.\n\nЭто достижение расширяет возможности для участия наших датчиков серии МИДА-12 в сложных промышленных проектах, где требуется подтверждение компетенции производителя от авторитетных отраслевых институтов.',
-      image: 'https://cdn.poehali.dev/files/60jwneao96o0tcqvgq2d1o7x9k5gqeep (1).jpg',
-      category: 'Сертификаты',
-      attachments: [
-        {
-          name: 'Заключение по производственной площадке',
-          url: 'https://cdn.poehali.dev/files/inti-proizvodstvennaya-ploschadka.pdf',
-          type: 'pdf'
-        },
-        {
-          name: 'Заключение по продукции',
-          url: 'https://cdn.poehali.dev/files/inti-produkciya.pdf',
-          type: 'pdf'
-        }
-      ]
-    }
-  ];
-
-  const getAttachmentIcon = (type: string) => {
-    switch (type) {
-      case 'pdf':
-        return 'FileText';
-      case 'doc':
-        return 'File';
-      case 'image':
-        return 'Image';
-      default:
-        return 'Paperclip';
-    }
-  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -235,7 +115,7 @@ export default function News() {
                 <Button 
                   variant="link" 
                   className="p-0 h-auto font-semibold"
-                  onClick={() => setSelectedNews(news)}
+                  onClick={() => navigate(`/news/${news.id}`)}
                 >
                   Читать полностью <Icon name="ArrowRight" size={16} className="ml-1" />
                 </Button>
@@ -270,116 +150,7 @@ export default function News() {
         </div>
       </div>
 
-      <Dialog open={!!selectedNews} onOpenChange={() => {
-        setSelectedNews(null);
-        setModalImageIndex(0);
-      }}>
-        <DialogContent className="max-w-3xl max-h-[80vh] overflow-y-auto">
-          <DialogHeader>
-            <DialogTitle className="font-heading text-2xl mb-4">
-              {selectedNews?.title}
-            </DialogTitle>
-          </DialogHeader>
-          {selectedNews && (
-            <div>
-              <div className="relative mb-6">
-                <img 
-                  src={selectedNews.images ? selectedNews.images[modalImageIndex] : selectedNews.image} 
-                  alt={selectedNews.title}
-                  className="w-full h-[400px] object-cover rounded-lg"
-                />
-                {selectedNews.images && selectedNews.images.length > 1 && (
-                  <>
-                    <button
-                      onClick={() => {
-                        const prev = modalImageIndex === 0 ? selectedNews.images!.length - 1 : modalImageIndex - 1;
-                        setModalImageIndex(prev);
-                      }}
-                      className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition-all"
-                      aria-label="Предыдущее фото"
-                    >
-                      <Icon name="ChevronLeft" size={20} />
-                    </button>
-                    <button
-                      onClick={() => {
-                        const next = modalImageIndex === selectedNews.images!.length - 1 ? 0 : modalImageIndex + 1;
-                        setModalImageIndex(next);
-                      }}
-                      className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition-all"
-                      aria-label="Следующее фото"
-                    >
-                      <Icon name="ChevronRight" size={20} />
-                    </button>
-                    <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5">
-                      {selectedNews.images.map((_, idx) => (
-                        <button
-                          key={idx}
-                          onClick={() => setModalImageIndex(idx)}
-                          className={`w-2 h-2 rounded-full transition-all ${
-                            modalImageIndex === idx
-                              ? 'bg-white w-6'
-                              : 'bg-white/50 hover:bg-white/75'
-                          }`}
-                          aria-label={`Фото ${idx + 1}`}
-                        />
-                      ))}
-                    </div>
-                  </>
-                )}
-              </div>
-              <div className="flex items-center gap-4 mb-6">
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <Icon name="Calendar" size={16} />
-                  <span>{selectedNews.date}</span>
-                </div>
-                <span className="bg-primary text-white text-xs font-semibold px-3 py-1 rounded-full">
-                  {selectedNews.category}
-                </span>
-              </div>
-              <div className="prose prose-sm max-w-none mb-6">
-                {selectedNews.fullText.split('\n\n').map((paragraph, index) => (
-                  <p key={index} className="mb-4 text-foreground leading-relaxed">
-                    {paragraph}
-                  </p>
-                ))}
-              </div>
-              
-              {selectedNews.attachments && selectedNews.attachments.length > 0 && (
-                <div className="border-t pt-6">
-                  <h3 className="font-heading font-semibold text-lg mb-4 flex items-center gap-2">
-                    <Icon name="Paperclip" size={20} />
-                    Прикрепленные документы
-                  </h3>
-                  <div className="space-y-3">
-                    {selectedNews.attachments.map((attachment, index) => (
-                      <a
-                        key={index}
-                        href={attachment.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-3 p-4 border border-border rounded-lg hover:bg-secondary transition-colors group"
-                      >
-                        <div className="p-2 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-colors">
-                          <Icon name={getAttachmentIcon(attachment.type)} size={24} className="text-primary" />
-                        </div>
-                        <div className="flex-1">
-                          <p className="font-medium text-sm group-hover:text-primary transition-colors">
-                            {attachment.name}
-                          </p>
-                          <p className="text-xs text-muted-foreground">
-                            {attachment.type === 'pdf' ? 'PDF документ' : attachment.type === 'image' ? 'Изображение' : 'Документ'}
-                          </p>
-                        </div>
-                        <Icon name="ExternalLink" size={16} className="text-muted-foreground group-hover:text-primary transition-colors" />
-                      </a>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-          )}
-        </DialogContent>
-      </Dialog>
+
 
       <Footer />
     </div>
