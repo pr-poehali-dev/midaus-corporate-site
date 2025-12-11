@@ -260,7 +260,7 @@ export default function Index() {
                 link: '#',
               },
               {
-                icon: 'Monitor',
+                icon: 'MonitorCog',
                 title: 'Устройства настройки и индикации',
                 description: 'Индикаторы, корректоры сигналов, конвертеры интерфейсов и устройства настройки',
                 link: '#',

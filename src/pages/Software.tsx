@@ -14,8 +14,8 @@ export default function Software() {
       title: 'Драйвер для устройств связи МИДА-УС-408 и МИДА-УС-410',
       description: 'Драйвер для подключения устройств связи к компьютеру',
       compatible: [
-        { name: 'МИДА-УС-408', icon: 'Monitor' },
-        { name: 'МИДА-УС-410', icon: 'Monitor' }
+        { name: 'МИДА-УС-408', icon: 'MonitorCog' },
+        { name: 'МИДА-УС-410', icon: 'MonitorCog' }
       ],
       downloads: [
         { label: 'Скачать драйвер', url: '#' }
@@ -25,8 +25,8 @@ export default function Software() {
       title: 'SearchConfig',
       description: 'Программа для поиска конфигурации настроек датчика МИДА-15 с протоколом обмена Modbus для связи с ПК',
       compatible: [
-        { name: 'МИДА-УС-408', icon: 'Monitor' },
-        { name: 'МИДА-УС-410', icon: 'Monitor' },
+        { name: 'МИДА-УС-408', icon: 'MonitorCog' },
+        { name: 'МИДА-УС-410', icon: 'MonitorCog' },
         { name: 'МИДА-15', icon: 'Gauge' }
       ],
       downloads: [
