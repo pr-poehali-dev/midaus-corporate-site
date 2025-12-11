@@ -55,14 +55,6 @@ export default function NewsDetail() {
           <div className="absolute inset-0 bg-gradient-to-r from-primary/90 to-primary/60"></div>
         </div>
         <div className="container mx-auto px-4 relative z-10">
-          <Button
-            variant="ghost"
-            onClick={() => navigate('/news')}
-            className="text-white hover:text-white/80 mb-4"
-          >
-            <Icon name="ArrowLeft" size={20} className="mr-2" />
-            Назад к новостям
-          </Button>
           <h1 className="font-heading text-4xl md:text-5xl font-bold text-white mb-4">
             {news.title}
           </h1>
@@ -88,6 +80,14 @@ export default function NewsDetail() {
 
       <section className="py-12 bg-background">
         <div className="container mx-auto px-4 max-w-4xl">
+          <Button
+            variant="ghost"
+            onClick={() => navigate('/news')}
+            className="mb-6 hover:bg-secondary"
+          >
+            <Icon name="ArrowLeft" size={20} className="mr-2" />
+            Назад к новостям
+          </Button>
           <div className="relative mb-8">
             <img
               src={news.images ? news.images[currentImageIndex] : news.image}
