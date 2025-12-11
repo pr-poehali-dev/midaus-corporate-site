@@ -281,7 +281,7 @@ export default function News() {
               <img 
                 src={selectedNews.image} 
                 alt={selectedNews.title}
-                className="w-full h-64 object-cover rounded-lg mb-6"
+                className="w-full aspect-video object-cover rounded-lg mb-6"
               />
               <div className="flex items-center gap-4 mb-6">
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
