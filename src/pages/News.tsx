@@ -24,12 +24,14 @@ interface NewsItem {
   preview: string;
   fullText: string;
   image: string;
+  images?: string[];
   category: string;
   attachments?: NewsAttachment[];
 }
 
 export default function News() {
   const [selectedNews, setSelectedNews] = useState<NewsItem | null>(null);
+  const [currentImageIndex, setCurrentImageIndex] = useState<{ [key: number]: number }>({});
 
   const newsItems: NewsItem[] = [
     {
@@ -57,6 +59,10 @@ export default function News() {
       preview: 'Завершился этап опытной эксплуатации наших датчиков давления в условиях реального производства на Ульяновском пивзаводе.',
       fullText: 'Завершился этап опытной эксплуатации наших датчиков давления в условиях реального производства на Ульяновском пивзаводе.\n\nДля решения задач пищевого производства была разработана специальная модификация датчика МИДА-15 в гигиеническом исполнении. Основные требования — высокая коррозионная стойкость, возможность CIP-мойки и полное соответствие санитарным нормам. Датчики поставляются с различными типами присоединений, применяемых в пищевой и фармацевтической промышленности (DIN 11851, Tri-Clamp, CLAMP и др.).\n\nПо результатам испытаний получено положительное заключение. Датчики успешно зарекомендовали себя, полностью заменив импортные аналоги немецкого производства.\n\nГигиенический сертификат получен как для серии МИДА-15, так и для серии датчиков давления МИДА-13П, что подтверждает их пригодность для применения в пищевой и фармацевтической отраслях.\n\nЭтот проект наглядно демонстрирует способность нашей компании гибко реагировать на запросы рынка, разрабатывать специализированные решения и предлагать надежную отечественную альтернативу импортному оборудованию.',
       image: 'https://cdn.poehali.dev/files/IMG-20250627-WA0008 1.jpg',
+      images: [
+        'https://cdn.poehali.dev/files/IMG-20250627-WA0008 1.jpg',
+        'https://cdn.poehali.dev/files/IMG-20250227-WA0001 1.jpg'
+      ],
       category: 'Компания',
       attachments: [
         {
@@ -136,10 +142,55 @@ export default function News() {
             <Card key={news.id} className="overflow-hidden hover:shadow-lg transition-all duration-300 group">
               <div className="relative aspect-[4/3] overflow-hidden">
                 <img 
-                  src={news.image} 
+                  src={news.images ? news.images[currentImageIndex[news.id] || 0] : news.image} 
                   alt={news.title}
                   className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
                 />
+                {news.images && news.images.length > 1 && (
+                  <>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        const current = currentImageIndex[news.id] || 0;
+                        const prev = current === 0 ? news.images!.length - 1 : current - 1;
+                        setCurrentImageIndex({ ...currentImageIndex, [news.id]: prev });
+                      }}
+                      className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition-all"
+                      aria-label="Предыдущее фото"
+                    >
+                      <Icon name="ChevronLeft" size={20} />
+                    </button>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        const current = currentImageIndex[news.id] || 0;
+                        const next = current === news.images!.length - 1 ? 0 : current + 1;
+                        setCurrentImageIndex({ ...currentImageIndex, [news.id]: next });
+                      }}
+                      className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition-all"
+                      aria-label="Следующее фото"
+                    >
+                      <Icon name="ChevronRight" size={20} />
+                    </button>
+                    <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5">
+                      {news.images.map((_, idx) => (
+                        <button
+                          key={idx}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setCurrentImageIndex({ ...currentImageIndex, [news.id]: idx });
+                          }}
+                          className={`w-2 h-2 rounded-full transition-all ${
+                            (currentImageIndex[news.id] || 0) === idx
+                              ? 'bg-white w-6'
+                              : 'bg-white/50 hover:bg-white/75'
+                          }`}
+                          aria-label={`Фото ${idx + 1}`}
+                        />
+                      ))}
+                    </div>
+                  </>
+                )}
               </div>
               <CardContent className="p-6">
                 <div className="flex items-center gap-3 mb-4">
