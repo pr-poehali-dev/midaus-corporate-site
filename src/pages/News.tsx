@@ -90,25 +90,23 @@ export default function News() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {newsItems.map((news) => (
             <Card key={news.id} className="overflow-hidden hover:shadow-lg transition-all duration-300 group">
+              <div className="relative aspect-[4/3] overflow-hidden">
+                <img 
+                  src={news.image} 
+                  alt={news.title}
+                  className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
               <CardContent className="p-6">
-                <div className="flex items-center gap-2 text-sm text-muted-foreground mb-3">
-                  <Icon name="Calendar" size={16} />
-                  <span>{news.date}</span>
-                </div>
-                <div className="mb-4">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <Icon name="Calendar" size={16} />
+                    <span>{news.date}</span>
+                  </div>
                   <span className="bg-primary text-white text-xs font-semibold px-3 py-1 rounded-full">
                     {news.category}
                   </span>
                 </div>
-              </CardContent>
-              <div className="relative h-48 overflow-hidden">
-                <img 
-                  src={news.image} 
-                  alt={news.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                />
-              </div>
-              <CardContent className="p-6">
                 <h3 className="font-heading font-semibold text-lg mb-3 group-hover:text-primary transition-colors">
                   {news.title}
                 </h3>
