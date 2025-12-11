@@ -12,7 +12,7 @@ export interface NewsItem {
   fullText: string;
   image: string;
   images?: string[];
-  category: string;
+  category: string | string[];
   attachments?: NewsAttachment[];
 }
 
@@ -63,7 +63,7 @@ export const newsItems: NewsItem[] = [
       'https://cdn.poehali.dev/files/IMG-20250627-WA0008 1.jpg',
       'https://cdn.poehali.dev/files/IMG-20250227-WA0001 1.jpg'
     ],
-    category: 'Компания',
+    category: ['Приборы', 'Сертификаты'],
     attachments: [
       {
         name: 'Официальный отзыв от ООО «Трехсосенский»',

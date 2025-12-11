@@ -66,14 +66,22 @@ export default function NewsDetail() {
           <h1 className="font-heading text-4xl md:text-5xl font-bold text-white mb-4">
             {news.title}
           </h1>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 flex-wrap">
             <div className="flex items-center gap-2 text-white/90">
               <Icon name="Calendar" size={16} />
               <span>{news.date}</span>
             </div>
-            <span className="bg-white text-primary text-xs font-semibold px-3 py-1 rounded-full">
-              {news.category}
-            </span>
+            {Array.isArray(news.category) ? (
+              news.category.map((cat, idx) => (
+                <span key={idx} className="bg-white text-primary text-xs font-semibold px-3 py-1 rounded-full">
+                  {cat}
+                </span>
+              ))
+            ) : (
+              <span className="bg-white text-primary text-xs font-semibold px-3 py-1 rounded-full">
+                {news.category}
+              </span>
+            )}
           </div>
         </div>
       </section>

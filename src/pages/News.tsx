@@ -91,14 +91,22 @@ export default function News() {
                 )}
               </div>
               <CardContent className="p-6">
-                <div className="flex items-center gap-3 mb-4">
+                <div className="flex items-center gap-3 mb-4 flex-wrap">
                   <div className="flex items-center gap-2 text-sm text-muted-foreground">
                     <Icon name="Calendar" size={16} />
                     <span>{news.date}</span>
                   </div>
-                  <span className="bg-primary text-white text-xs font-semibold px-3 py-1 rounded-full">
-                    {news.category}
-                  </span>
+                  {Array.isArray(news.category) ? (
+                    news.category.map((cat, idx) => (
+                      <span key={idx} className="bg-primary text-white text-xs font-semibold px-3 py-1 rounded-full">
+                        {cat}
+                      </span>
+                    ))
+                  ) : (
+                    <span className="bg-primary text-white text-xs font-semibold px-3 py-1 rounded-full">
+                      {news.category}
+                    </span>
+                  )}
                 </div>
                 {news.attachments && news.attachments.length > 0 && (
                   <div className="flex items-center gap-2 mb-3 text-sm text-primary">
