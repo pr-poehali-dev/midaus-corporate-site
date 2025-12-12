@@ -9,6 +9,15 @@ import Footer from '@/components/Footer';
 export default function Software() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  const getDeviceUrl = (deviceName: string) => {
+    const deviceMap: { [key: string]: string } = {
+      'МИДА-УС-408': '/products/mida-us-408',
+      'МИДА-УС-410': '/products/mida-us-410',
+      'МИДА-15': '/products/mida-15'
+    };
+    return deviceMap[deviceName] || '/products';
+  };
+
   const software = [
     {
       title: 'Драйвер для устройств связи МИДА-УС-408 и МИДА-УС-410',
@@ -117,13 +126,14 @@ export default function Software() {
                     {item.compatible && (
                       <div className="flex flex-wrap gap-2 justify-end">
                         {item.compatible.map((device, idx) => (
-                          <span 
+                          <Link 
                             key={idx}
-                            className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary border border-primary/20 whitespace-nowrap"
+                            to={getDeviceUrl(device.name)}
+                            className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary border border-primary/20 whitespace-nowrap hover:bg-primary/20 hover:border-primary/30 transition-colors cursor-pointer"
                           >
                             <Icon name={device.icon} size={12} className="mr-1.5" />
                             {device.name}
-                          </span>
+                          </Link>
                         ))}
                       </div>
                     )}
