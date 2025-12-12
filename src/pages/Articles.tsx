@@ -279,39 +279,37 @@ export default function Articles() {
       <div className="container mx-auto px-4 py-16">
         <div className="grid md:grid-cols-4 gap-4 mb-12">
           {categories.map((category) => (
-            <button
-              key={category.id}
-              onClick={() => setSelectedCategory(category.id)}
-              className={`p-6 rounded-lg border-2 transition-all text-left ${
-                selectedCategory === category.id
-                  ? 'border-primary bg-primary/5'
-                  : 'border-border hover:border-primary/50'
-              }`}
-            >
-              <Icon 
-                name={category.icon as any} 
-                size={32} 
-                className={selectedCategory === category.id ? 'text-primary' : 'text-muted-foreground'}
-              />
-              <h3 className="font-heading font-semibold text-lg mt-3 mb-1">
-                {category.title}
-              </h3>
-              <p className="text-sm text-muted-foreground line-clamp-2">
+            <div key={category.id} className="flex flex-col">
+              <button
+                onClick={() => setSelectedCategory(category.id)}
+                className={`p-6 rounded-lg border-2 transition-all text-left ${
+                  selectedCategory === category.id
+                    ? 'border-primary bg-primary/5'
+                    : 'border-border hover:border-primary/50'
+                }`}
+              >
+                <Icon 
+                  name={category.icon as any} 
+                  size={32} 
+                  className={selectedCategory === category.id ? 'text-primary' : 'text-muted-foreground'}
+                />
+                <h3 className="font-heading font-semibold text-lg mt-3">
+                  {category.title}
+                </h3>
+              </button>
+              <p className="text-sm text-muted-foreground mt-3 px-2 leading-relaxed">
                 {category.description}
               </p>
-            </button>
+            </div>
           ))}
         </div>
 
         {currentCategory && (
           <div>
             <div className="mb-8">
-              <h2 className="font-heading font-bold text-3xl mb-3">
+              <h2 className="font-heading font-bold text-3xl">
                 {currentCategory.title}
               </h2>
-              <p className="text-muted-foreground max-w-3xl">
-                {currentCategory.description}
-              </p>
             </div>
 
             <div className="space-y-4">
