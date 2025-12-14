@@ -114,6 +114,14 @@ export default function Index() {
           <div className="absolute inset-0 bg-gradient-to-r from-primary/95 to-primary/70"></div>
         </div>
         
+        <div 
+          className="absolute right-0 top-0 bottom-0 w-1/3 opacity-10 bg-no-repeat bg-right"
+          style={{
+            backgroundImage: `url('https://cdn.poehali.dev/files/mida-pipes.jpg')`,
+            backgroundSize: 'contain',
+          }}
+        ></div>
+        
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl animate-fade-in">
             <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full mb-4">
@@ -316,13 +324,20 @@ export default function Index() {
       </section>
 
       <section 
-        className={`py-16 bg-secondary transition-all duration-1000 ${
+        className={`py-16 bg-secondary transition-all duration-1000 relative overflow-hidden ${
           visibleSections.has('solutions') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}
         id="solutions"
         ref={(el) => (sectionRefs.current['solutions'] = el)}
       >
-        <div className="container mx-auto px-4">
+        <div 
+          className="absolute left-0 top-0 bottom-0 w-64 opacity-5 bg-no-repeat bg-left-bottom"
+          style={{
+            backgroundImage: `url('https://cdn.poehali.dev/files/mida-pipes.jpg')`,
+            backgroundSize: 'contain',
+          }}
+        ></div>
+        <div className="container mx-auto px-4 relative z-10">
           <h2 className="font-heading font-bold text-3xl text-center mb-12">
             Отраслевые решения
           </h2>
@@ -420,8 +435,14 @@ export default function Index() {
             </div>
           </div>
           
-          <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
-            <div className="relative h-96 bg-muted rounded-lg overflow-hidden shadow-xl group">
+          <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto relative">
+            <div 
+              className="absolute -right-12 top-1/2 -translate-y-1/2 w-48 h-48 opacity-5 bg-no-repeat bg-contain pointer-events-none"
+              style={{
+                backgroundImage: `url('https://cdn.poehali.dev/files/mida-pipes.jpg')`,
+              }}
+            ></div>
+            <div className="relative h-96 bg-muted rounded-lg overflow-hidden shadow-xl group z-10">
               <img 
                 src={productionImages[currentSlide].url}
                 alt={productionImages[currentSlide].title}
