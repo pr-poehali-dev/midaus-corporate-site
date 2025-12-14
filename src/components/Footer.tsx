@@ -10,6 +10,12 @@ export default function Footer() {
           backgroundImage: `url('https://cdn.poehali.dev/files/Монтажная область 1.png')`,
         }}
       ></div>
+      <div 
+        className="absolute bottom-0 left-0 w-48 h-[600px] opacity-[0.08] bg-no-repeat bg-bottom bg-contain pointer-events-none"
+        style={{
+          backgroundImage: `url('https://cdn.poehali.dev/files/Монтажная область 3.png')`,
+        }}
+      ></div>
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid md:grid-cols-4 gap-8 mb-8">
           <div>
