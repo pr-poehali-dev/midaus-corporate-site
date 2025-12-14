@@ -3,8 +3,14 @@ import { Link } from 'react-router-dom';
 
 export default function Footer() {
   return (
-    <footer className="bg-secondary py-12 mt-16">
-      <div className="container mx-auto px-4">
+    <footer className="bg-secondary py-12 mt-16 relative overflow-hidden">
+      <div 
+        className="absolute bottom-0 right-0 w-80 h-[600px] opacity-[0.08] bg-no-repeat bg-bottom bg-contain pointer-events-none"
+        style={{
+          backgroundImage: `url('https://cdn.poehali.dev/files/Монтажная область 1.png')`,
+        }}
+      ></div>
+      <div className="container mx-auto px-4 relative z-10">
         <div className="grid md:grid-cols-4 gap-8 mb-8">
           <div>
             <img 
