@@ -854,7 +854,12 @@ export default function Index() {
         </Button>
       )}
 
-
+      <div 
+        className="fixed bottom-0 right-0 w-80 h-[600px] opacity-[0.08] bg-no-repeat bg-bottom bg-contain pointer-events-none z-0"
+        style={{
+          backgroundImage: `url('https://cdn.poehali.dev/files/Монтажная область 1.png')`,
+        }}
+      ></div>
 
       <Footer />
     </div>
