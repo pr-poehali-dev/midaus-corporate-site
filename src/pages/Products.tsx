@@ -43,13 +43,7 @@ export default function Products() {
     <div className="min-h-screen bg-background">
       <Header />
 
-      <div className="container mx-auto px-4 py-8 relative">
-        <div 
-          className="absolute right-0 top-32 w-96 h-96 opacity-[0.15] bg-no-repeat bg-contain pointer-events-none z-0"
-          style={{
-            backgroundImage: `url('https://cdn.poehali.dev/files/mida-pipes.jpg')`,
-          }}
-        ></div>
+      <div className="container mx-auto px-4 py-8">
         <nav className="flex items-center gap-2 text-sm text-muted-foreground mb-8">
           <Link to="/" className="hover:text-primary">Главная</Link>
           <Icon name="ChevronRight" size={16} />
@@ -66,7 +60,7 @@ export default function Products() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {products.map((product) => (
             <Card key={product.id} className="group hover:shadow-lg transition-all duration-300">
               <CardContent className="p-0">
