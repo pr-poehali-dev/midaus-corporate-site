@@ -833,7 +833,12 @@ export default function Index() {
         </Button>
       )}
 
-
+      <div 
+        className="fixed bottom-0 right-0 w-72 h-72 opacity-10 bg-no-repeat bg-bottom bg-contain pointer-events-none z-0"
+        style={{
+          backgroundImage: `url('https://cdn.poehali.dev/files/mida-pipes.jpg')`,
+        }}
+      ></div>
 
       <Footer />
     </div>
