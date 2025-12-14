@@ -11,7 +11,7 @@ export default function Footer() {
         }}
       ></div>
       <div 
-        className="absolute bottom-0 left-0 w-48 h-[600px] opacity-[0.08] bg-no-repeat bg-bottom bg-contain pointer-events-none"
+        className="absolute -bottom-20 left-0 w-48 h-[600px] opacity-[0.08] bg-no-repeat bg-bottom bg-contain pointer-events-none"
         style={{
           backgroundImage: `url('https://cdn.poehali.dev/files/Монтажная область 3.png')`,
         }}
