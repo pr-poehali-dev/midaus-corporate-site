@@ -61,19 +61,35 @@ export default function Header() {
               xmlns="http://www.w3.org/2000/svg"
             >
               <g className="snowman-step">
-                {/* Мешок с подарками */}
+                {/* Ёлочка с синими шариками */}
                 <g className="gift-bag">
-                  <ellipse cx="48" cy="42" rx="8" ry="11" fill="#8b4513" stroke="#6b3410" strokeWidth="1" />
-                  <path d="M 40 35 Q 48 32 56 35" fill="none" stroke="#6b3410" strokeWidth="1.5" strokeLinecap="round" />
-                  <path d="M 42 36 L 48 32 L 54 36" fill="none" stroke="#d4a574" strokeWidth="1" strokeLinecap="round" />
-                  {/* Узелок на мешке */}
-                  <ellipse cx="48" cy="31" rx="2.5" ry="2" fill="#6b3410" />
-                  {/* Блики на мешке */}
-                  <ellipse cx="45" cy="38" rx="2" ry="3" fill="#a0652d" opacity="0.5" />
+                  {/* Ствол */}
+                  <rect x="46" y="48" width="4" height="5" fill="#6b4423" />
+                  
+                  {/* Нижний ярус */}
+                  <path d="M 48 48 L 40 48 L 45 40 L 51 40 L 56 48 Z" fill="#2d5016" />
+                  
+                  {/* Средний ярус */}
+                  <path d="M 48 40 L 42 40 L 46 33 L 50 33 L 54 40 Z" fill="#3d6b1f" />
+                  
+                  {/* Верхний ярус */}
+                  <path d="M 48 33 L 44 33 L 48 27 L 52 33 Z" fill="#4a7c2a" />
+                  
+                  {/* Звезда на верхушке */}
+                  <circle cx="48" cy="26" r="1.5" fill="#fbbf24" />
+                  
+                  {/* Синие шарики в фирменном цвете */}
+                  <circle cx="45" cy="44" r="1.5" fill="#0891b2" stroke="#0e7490" strokeWidth="0.5" />
+                  <circle cx="51" cy="44" r="1.5" fill="#0891b2" stroke="#0e7490" strokeWidth="0.5" />
+                  <circle cx="48" cy="37" r="1.5" fill="#0891b2" stroke="#0e7490" strokeWidth="0.5" />
+                  <circle cx="50" cy="30" r="1.2" fill="#0891b2" stroke="#0e7490" strokeWidth="0.5" />
+                  
+                  {/* Блики на шариках */}
+                  <circle cx="45.5" cy="43.5" r="0.4" fill="white" opacity="0.8" />
+                  <circle cx="51.5" cy="43.5" r="0.4" fill="white" opacity="0.8" />
+                  <circle cx="48.5" cy="36.5" r="0.4" fill="white" opacity="0.8" />
+                  <circle cx="50.5" cy="29.5" r="0.3" fill="white" opacity="0.8" />
                 </g>
-                
-                {/* Веревка от мешка к руке */}
-                <line x1="48" y1="31" x2="38" y2="24" stroke="#8b4513" strokeWidth="1" />
                 
                 {/* Ножки */}
                 <ellipse cx="22" cy="53" rx="3" ry="5" fill="#64748b" />
