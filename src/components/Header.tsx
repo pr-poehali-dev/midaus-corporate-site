@@ -23,39 +23,82 @@ export default function Header() {
               className="h-10 w-auto object-contain"
             />
             
-            {/* Лаконичный снеговик */}
+            {/* Танцующий снеговик */}
             <svg 
-              className="w-8 h-10 flex-shrink-0" 
-              viewBox="0 0 40 50"
+              className="w-10 h-12 flex-shrink-0" 
+              viewBox="0 0 50 60"
               xmlns="http://www.w3.org/2000/svg"
             >
-              {/* Нижний ком */}
-              <circle cx="20" cy="38" r="10" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1" />
+              <style>
+                {`
+                  @keyframes dance {
+                    0%, 100% { transform: rotate(-2deg); }
+                    50% { transform: rotate(2deg); }
+                  }
+                  @keyframes wave-left {
+                    0%, 100% { transform: rotate(-20deg); }
+                    50% { transform: rotate(-50deg); }
+                  }
+                  @keyframes wave-right {
+                    0%, 100% { transform: rotate(20deg); }
+                    50% { transform: rotate(50deg); }
+                  }
+                  @keyframes bounce {
+                    0%, 100% { transform: translateY(0px); }
+                    50% { transform: translateY(-2px); }
+                  }
+                  .snowman-body { animation: dance 1.2s ease-in-out infinite; transform-origin: 25px 50px; }
+                  .arm-left { animation: wave-left 1s ease-in-out infinite; transform-origin: 12px 28px; }
+                  .arm-right { animation: wave-right 1s ease-in-out infinite; transform-origin: 38px 28px; }
+                  .snowman-legs { animation: bounce 0.6s ease-in-out infinite; }
+                `}
+              </style>
               
-              {/* Средний ком */}
-              <circle cx="20" cy="23" r="8" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1" />
-              
-              {/* Голова */}
-              <circle cx="20" cy="11" r="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1" />
-              
-              {/* Глаза */}
-              <circle cx="18" cy="10" r="1" fill="#1e293b" />
-              <circle cx="22" cy="10" r="1" fill="#1e293b" />
-              
-              {/* Нос-морковка */}
-              <path d="M 20 12 L 24 13 L 20 13.5 Z" fill="#f97316" />
-              
-              {/* Улыбка */}
-              <path d="M 17 14 Q 20 15 23 14" fill="none" stroke="#1e293b" strokeWidth="0.5" strokeLinecap="round" />
-              
-              {/* Пуговицы */}
-              <circle cx="20" cy="22" r="0.8" fill="#dc2626" />
-              <circle cx="20" cy="25" r="0.8" fill="#dc2626" />
-              <circle cx="20" cy="36" r="0.8" fill="#dc2626" />
-              
-              {/* Ведро на голове */}
-              <rect x="15" y="3" width="10" height="5" fill="#64748b" rx="0.5" />
-              <rect x="14" y="7" width="12" height="1.5" fill="#64748b" rx="0.3" />
+              <g className="snowman-body">
+                {/* Ножки */}
+                <g className="snowman-legs">
+                  <ellipse cx="22" cy="53" rx="3" ry="5" fill="#64748b" />
+                  <ellipse cx="28" cy="53" rx="3" ry="5" fill="#64748b" />
+                </g>
+                
+                {/* Нижний ком */}
+                <circle cx="25" cy="43" r="10" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1" />
+                
+                {/* Средний ком */}
+                <circle cx="25" cy="28" r="8" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1" />
+                
+                {/* Ручки */}
+                <g className="arm-left">
+                  <line x1="17" y1="26" x2="8" y2="22" stroke="#8b4513" strokeWidth="2" strokeLinecap="round" />
+                  <line x1="8" y1="22" x2="5" y2="20" stroke="#8b4513" strokeWidth="1.5" strokeLinecap="round" />
+                </g>
+                <g className="arm-right">
+                  <line x1="33" y1="26" x2="42" y2="22" stroke="#8b4513" strokeWidth="2" strokeLinecap="round" />
+                  <line x1="42" y1="22" x2="45" y2="20" stroke="#8b4513" strokeWidth="1.5" strokeLinecap="round" />
+                </g>
+                
+                {/* Голова */}
+                <circle cx="25" cy="13" r="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1" />
+                
+                {/* Глаза */}
+                <circle cx="23" cy="12" r="1" fill="#1e293b" />
+                <circle cx="27" cy="12" r="1" fill="#1e293b" />
+                
+                {/* Нос-морковка */}
+                <path d="M 25 14 L 29 15 L 25 15.5 Z" fill="#f97316" />
+                
+                {/* Улыбка */}
+                <path d="M 22 16 Q 25 17 28 16" fill="none" stroke="#1e293b" strokeWidth="0.5" strokeLinecap="round" />
+                
+                {/* Пуговицы */}
+                <circle cx="25" cy="27" r="0.8" fill="#dc2626" />
+                <circle cx="25" cy="30" r="0.8" fill="#dc2626" />
+                <circle cx="25" cy="41" r="0.8" fill="#dc2626" />
+                
+                {/* Ведро на голове */}
+                <rect x="20" y="5" width="10" height="5" fill="#64748b" rx="0.5" />
+                <rect x="19" y="9" width="12" height="1.5" fill="#64748b" rx="0.3" />
+              </g>
             </svg>
           </Link>
           <Button variant="default" className="hidden md:flex" onClick={() => setShowCallModal(true)}>
