@@ -4,75 +4,96 @@ export default function ChristmasGarland() {
   const [lights, setLights] = useState<boolean[]>([]);
 
   useEffect(() => {
-    const lightCount = 30;
+    const lightCount = 25;
     setLights(Array(lightCount).fill(false));
 
     const interval = setInterval(() => {
       setLights(prev => prev.map(() => Math.random() > 0.3));
-    }, 800);
+    }, 900);
 
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <div className="relative w-full h-12 overflow-hidden">
+    <div className="relative w-full h-20 overflow-visible py-2">
       <svg
         className="w-full h-full"
         viewBox="0 0 1200 80"
-        preserveAspectRatio="none"
+        preserveAspectRatio="xMidYMid meet"
         xmlns="http://www.w3.org/2000/svg"
       >
         {/* Провод гирлянды */}
         <path
-          d="M 0,40 Q 60,10 120,40 T 240,40 T 360,40 T 480,40 T 600,40 T 720,40 T 840,40 T 960,40 T 1080,40 T 1200,40"
+          d="M 0,25 Q 60,15 120,25 T 240,25 T 360,25 T 480,25 T 600,25 T 720,25 T 840,25 T 960,25 T 1080,25 T 1200,25"
           fill="none"
           stroke="currentColor"
           strokeWidth="2"
-          className="text-muted-foreground/30"
+          className="text-muted-foreground/40"
         />
 
-        {/* Лампочки */}
+        {/* Советские круглые лампочки */}
         {lights.map((isOn, index) => {
-          const x = (index * 1200) / lights.length + 40;
-          const y = 40 + Math.sin(index * 0.5) * 15;
-          const colors = ['#ef4444', '#22c55e', '#3b82f6', '#eab308', '#ec4899', '#8b5cf6'];
-          const color = colors[index % colors.length];
+          const x = (index * 1200) / lights.length + 48;
+          const y = 25 + Math.sin(index * 0.52) * 8;
+          const sovietColors = ['#d97706', '#dc2626', '#059669', '#2563eb', '#7c3aed', '#be185d'];
+          const color = sovietColors[index % sovietColors.length];
 
           return (
             <g key={index}>
-              {/* Подвес */}
+              {/* Провод к лампочке */}
               <line
                 x1={x}
                 y1={y}
                 x2={x}
-                y2={y + 15}
+                y2={y + 18}
                 stroke="currentColor"
-                strokeWidth="1"
-                className="text-muted-foreground/40"
+                strokeWidth="1.5"
+                className="text-muted-foreground/50"
               />
-              {/* Лампочка */}
-              <ellipse
+              
+              {/* Патрон */}
+              <rect
+                x={x - 3}
+                y={y + 16}
+                width="6"
+                height="6"
+                fill="#4b5563"
+                rx="1"
+              />
+              
+              {/* Круглая лампочка */}
+              <circle
                 cx={x}
-                cy={y + 20}
-                rx="8"
-                ry="12"
-                fill={isOn ? color : '#374151'}
-                opacity={isOn ? 1 : 0.3}
+                cy={y + 35}
+                r="10"
+                fill={isOn ? color : '#6b7280'}
+                opacity={isOn ? 0.95 : 0.4}
                 style={{
-                  filter: isOn ? `drop-shadow(0 0 8px ${color})` : 'none',
-                  transition: 'all 0.3s ease',
+                  filter: isOn ? `drop-shadow(0 0 10px ${color})` : 'none',
+                  transition: 'all 0.4s ease',
                 }}
               />
-              {/* Блик */}
+              
+              {/* Внутренний блик */}
               {isOn && (
-                <ellipse
-                  cx={x - 2}
-                  cy={y + 17}
-                  rx="2"
-                  ry="3"
-                  fill="white"
-                  opacity="0.6"
-                />
+                <>
+                  <circle
+                    cx={x - 3}
+                    cy={y + 32}
+                    r="3"
+                    fill="white"
+                    opacity="0.5"
+                  />
+                  <circle
+                    cx={x}
+                    cy={y + 35}
+                    r="10"
+                    fill="none"
+                    stroke="white"
+                    strokeWidth="0.5"
+                    opacity="0.3"
+                  />
+                </>
               )}
             </g>
           );
