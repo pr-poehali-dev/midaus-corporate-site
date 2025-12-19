@@ -15,104 +15,114 @@ export default function Header() {
   return (
     <>
       <header className="bg-white border-b border-border sticky top-0 z-50 relative overflow-hidden">
-        {/* Снеговик, идущий по шапке */}
+        {/* Снеговик с мешком подарков */}
         <div className="absolute top-1 left-0 w-full h-8 pointer-events-none">
           <style>
             {`
-              @keyframes walk {
-                0% { left: -60px; }
-                100% { left: 100%; }
+              @keyframes walk-back-forth {
+                0% { left: -80px; transform: scaleX(1); }
+                48% { left: calc(100% - 20px); transform: scaleX(1); }
+                50% { left: calc(100% - 20px); transform: scaleX(-1); }
+                98% { left: -80px; transform: scaleX(-1); }
+                100% { left: -80px; transform: scaleX(1); }
               }
               @keyframes step {
-                0%, 100% { transform: translateY(0px) rotate(-1deg); }
-                25% { transform: translateY(-1px) rotate(1deg); }
-                50% { transform: translateY(0px) rotate(-1deg); }
-                75% { transform: translateY(-1px) rotate(1deg); }
+                0%, 100% { transform: translateY(0px); }
+                50% { transform: translateY(-1px); }
               }
-              @keyframes wave-walk-left {
-                0%, 100% { transform: rotate(-10deg); }
-                50% { transform: rotate(-30deg); }
+              @keyframes drag-arm {
+                0%, 100% { transform: rotate(-45deg); }
+                50% { transform: rotate(-55deg); }
               }
-              @keyframes wave-walk-right {
+              @keyframes wave-arm {
                 0%, 100% { transform: rotate(10deg); }
                 50% { transform: rotate(30deg); }
               }
-              @keyframes footprint-fade {
-                0% { opacity: 0.6; }
-                100% { opacity: 0; }
+              @keyframes bag-swing {
+                0%, 100% { transform: rotate(-3deg); }
+                50% { transform: rotate(3deg); }
               }
-              .walking-snowman {
-                animation: walk 20s linear infinite, step 0.8s ease-in-out infinite;
+              .walking-snowman-container {
+                animation: walk-back-forth 24s linear infinite;
                 position: absolute;
               }
-              .walk-arm-left { animation: wave-walk-left 0.8s ease-in-out infinite; transform-origin: 14px 26px; }
-              .walk-arm-right { animation: wave-walk-right 0.8s ease-in-out infinite; transform-origin: 36px 26px; }
-              .footprint {
-                animation: footprint-fade 3s ease-out forwards;
-              }
+              .snowman-step { animation: step 0.8s ease-in-out infinite; }
+              .drag-arm { animation: drag-arm 0.8s ease-in-out infinite; transform-origin: 36px 26px; }
+              .wave-arm { animation: wave-arm 0.8s ease-in-out infinite; transform-origin: 14px 26px; }
+              .gift-bag { animation: bag-swing 0.8s ease-in-out infinite; transform-origin: 45px 35px; }
             `}
           </style>
           
-          {/* Следы */}
-          <svg className="absolute inset-0 w-full h-full" style={{ top: '12px' }}>
-            {[...Array(15)].map((_, i) => (
-              <g key={i} className="footprint" style={{ animationDelay: `${i * 1.3}s` }}>
-                <ellipse cx={i * 80 + 10} cy="12" rx="3" ry="5" fill="#cbd5e1" opacity="0.6" />
-                <ellipse cx={i * 80 + 20} cy="12" rx="3" ry="5" fill="#cbd5e1" opacity="0.6" />
+          {/* Снеговик с мешком */}
+          <div className="walking-snowman-container">
+            <svg 
+              className="w-20 h-14" 
+              viewBox="0 0 80 60"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g className="snowman-step">
+                {/* Мешок с подарками */}
+                <g className="gift-bag">
+                  <ellipse cx="48" cy="42" rx="8" ry="11" fill="#8b4513" stroke="#6b3410" strokeWidth="1" />
+                  <path d="M 40 35 Q 48 32 56 35" fill="none" stroke="#6b3410" strokeWidth="1.5" strokeLinecap="round" />
+                  <path d="M 42 36 L 48 32 L 54 36" fill="none" stroke="#d4a574" strokeWidth="1" strokeLinecap="round" />
+                  {/* Узелок на мешке */}
+                  <ellipse cx="48" cy="31" rx="2.5" ry="2" fill="#6b3410" />
+                  {/* Блики на мешке */}
+                  <ellipse cx="45" cy="38" rx="2" ry="3" fill="#a0652d" opacity="0.5" />
+                </g>
+                
+                {/* Веревка от мешка к руке */}
+                <line x1="48" y1="31" x2="38" y2="24" stroke="#8b4513" strokeWidth="1" />
+                
+                {/* Ножки */}
+                <ellipse cx="22" cy="53" rx="3" ry="5" fill="#64748b" />
+                <ellipse cx="28" cy="53" rx="3" ry="5" fill="#64748b" />
+                
+                {/* Нижний ком */}
+                <circle cx="25" cy="43" r="10" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1" />
+                
+                {/* Средний ком */}
+                <circle cx="25" cy="28" r="8" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1" />
+                
+                {/* Левая ручка (машет) */}
+                <g className="wave-arm">
+                  <ellipse cx="14" cy="26" rx="2.5" ry="4" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="0.8" transform="rotate(-30 14 26)" />
+                  <ellipse cx="10" cy="23" rx="2" ry="3" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="0.8" transform="rotate(-40 10 23)" />
+                  <circle cx="7" cy="21" r="1.5" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="0.8" />
+                </g>
+                
+                {/* Правая ручка (тянет мешок) */}
+                <g className="drag-arm">
+                  <ellipse cx="36" cy="26" rx="2.5" ry="4" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="0.8" transform="rotate(30 36 26)" />
+                  <ellipse cx="40" cy="24" rx="2" ry="3" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="0.8" transform="rotate(35 40 24)" />
+                  <circle cx="43" cy="23" r="1.5" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="0.8" />
+                </g>
+                
+                {/* Голова */}
+                <circle cx="25" cy="13" r="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1" />
+                
+                {/* Глаза */}
+                <circle cx="23" cy="12" r="1" fill="#1e293b" />
+                <circle cx="27" cy="12" r="1" fill="#1e293b" />
+                
+                {/* Нос-морковка */}
+                <path d="M 25 14 L 29 15 L 25 15.5 Z" fill="#f97316" />
+                
+                {/* Улыбка */}
+                <path d="M 22 16 Q 25 17 28 16" fill="none" stroke="#1e293b" strokeWidth="0.5" strokeLinecap="round" />
+                
+                {/* Пуговицы */}
+                <circle cx="25" cy="27" r="0.8" fill="#dc2626" />
+                <circle cx="25" cy="30" r="0.8" fill="#dc2626" />
+                <circle cx="25" cy="41" r="0.8" fill="#dc2626" />
+                
+                {/* Ведро на голове */}
+                <rect x="20" y="5" width="10" height="5" fill="#64748b" rx="0.5" />
+                <rect x="19" y="9" width="12" height="1.5" fill="#64748b" rx="0.3" />
               </g>
-            ))}
-          </svg>
-          
-          {/* Идущий снеговик */}
-          <svg 
-            className="walking-snowman w-12 h-14" 
-            viewBox="0 0 50 60"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            {/* Ножки */}
-            <ellipse cx="22" cy="53" rx="3" ry="5" fill="#64748b" />
-            <ellipse cx="28" cy="53" rx="3" ry="5" fill="#64748b" />
-            
-            {/* Нижний ком */}
-            <circle cx="25" cy="43" r="10" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1" />
-            
-            {/* Средний ком */}
-            <circle cx="25" cy="28" r="8" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1" />
-            
-            {/* Снежные ручки */}
-            <g className="walk-arm-left">
-              <ellipse cx="14" cy="26" rx="2.5" ry="4" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="0.8" transform="rotate(-30 14 26)" />
-              <ellipse cx="10" cy="23" rx="2" ry="3" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="0.8" transform="rotate(-40 10 23)" />
-              <circle cx="7" cy="21" r="1.5" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="0.8" />
-            </g>
-            <g className="walk-arm-right">
-              <ellipse cx="36" cy="26" rx="2.5" ry="4" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="0.8" transform="rotate(30 36 26)" />
-              <ellipse cx="40" cy="23" rx="2" ry="3" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="0.8" transform="rotate(40 40 23)" />
-              <circle cx="43" cy="21" r="1.5" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="0.8" />
-            </g>
-            
-            {/* Голова */}
-            <circle cx="25" cy="13" r="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1" />
-            
-            {/* Глаза */}
-            <circle cx="23" cy="12" r="1" fill="#1e293b" />
-            <circle cx="27" cy="12" r="1" fill="#1e293b" />
-            
-            {/* Нос-морковка */}
-            <path d="M 25 14 L 29 15 L 25 15.5 Z" fill="#f97316" />
-            
-            {/* Улыбка */}
-            <path d="M 22 16 Q 25 17 28 16" fill="none" stroke="#1e293b" strokeWidth="0.5" strokeLinecap="round" />
-            
-            {/* Пуговицы */}
-            <circle cx="25" cy="27" r="0.8" fill="#dc2626" />
-            <circle cx="25" cy="30" r="0.8" fill="#dc2626" />
-            <circle cx="25" cy="41" r="0.8" fill="#dc2626" />
-            
-            {/* Ведро на голове */}
-            <rect x="20" y="5" width="10" height="5" fill="#64748b" rx="0.5" />
-            <rect x="19" y="9" width="12" height="1.5" fill="#64748b" rx="0.3" />
-          </svg>
+            </svg>
+          </div>
         </div>
         
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
