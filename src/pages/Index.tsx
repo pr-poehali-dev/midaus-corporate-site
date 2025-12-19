@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ConsentCheckbox from '@/components/ConsentCheckbox';
+import ChristmasGarland from '@/components/ChristmasGarland';
 
 export default function Index() {
   const [selectedRange, setSelectedRange] = useState('');
@@ -144,6 +145,8 @@ export default function Index() {
           </div>
         </div>
       </section>
+
+      <ChristmasGarland />
 
       <section className="py-16 bg-secondary" id="selector">
         <div className="container mx-auto px-4">
@@ -853,6 +856,8 @@ export default function Index() {
           <Icon name="ArrowUp" size={24} />
         </Button>
       )}
+
+      <ChristmasGarland />
 
       <Footer />
     </div>
