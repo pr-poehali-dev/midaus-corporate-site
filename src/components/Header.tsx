@@ -14,7 +14,107 @@ export default function Header() {
 
   return (
     <>
-      <header className="bg-white border-b border-border sticky top-0 z-50">
+      <header className="bg-white border-b border-border sticky top-0 z-50 relative overflow-hidden">
+        {/* Снеговик, идущий по шапке */}
+        <div className="absolute top-1 left-0 w-full h-8 pointer-events-none">
+          <style>
+            {`
+              @keyframes walk {
+                0% { left: -60px; }
+                100% { left: 100%; }
+              }
+              @keyframes step {
+                0%, 100% { transform: translateY(0px) rotate(-1deg); }
+                25% { transform: translateY(-1px) rotate(1deg); }
+                50% { transform: translateY(0px) rotate(-1deg); }
+                75% { transform: translateY(-1px) rotate(1deg); }
+              }
+              @keyframes wave-walk-left {
+                0%, 100% { transform: rotate(-10deg); }
+                50% { transform: rotate(-30deg); }
+              }
+              @keyframes wave-walk-right {
+                0%, 100% { transform: rotate(10deg); }
+                50% { transform: rotate(30deg); }
+              }
+              @keyframes footprint-fade {
+                0% { opacity: 0.6; }
+                100% { opacity: 0; }
+              }
+              .walking-snowman {
+                animation: walk 20s linear infinite, step 0.8s ease-in-out infinite;
+                position: absolute;
+              }
+              .walk-arm-left { animation: wave-walk-left 0.8s ease-in-out infinite; transform-origin: 14px 26px; }
+              .walk-arm-right { animation: wave-walk-right 0.8s ease-in-out infinite; transform-origin: 36px 26px; }
+              .footprint {
+                animation: footprint-fade 3s ease-out forwards;
+              }
+            `}
+          </style>
+          
+          {/* Следы */}
+          <svg className="absolute inset-0 w-full h-full" style={{ top: '12px' }}>
+            {[...Array(15)].map((_, i) => (
+              <g key={i} className="footprint" style={{ animationDelay: `${i * 1.3}s` }}>
+                <ellipse cx={i * 80 + 10} cy="12" rx="3" ry="5" fill="#cbd5e1" opacity="0.6" />
+                <ellipse cx={i * 80 + 20} cy="12" rx="3" ry="5" fill="#cbd5e1" opacity="0.6" />
+              </g>
+            ))}
+          </svg>
+          
+          {/* Идущий снеговик */}
+          <svg 
+            className="walking-snowman w-12 h-14" 
+            viewBox="0 0 50 60"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            {/* Ножки */}
+            <ellipse cx="22" cy="53" rx="3" ry="5" fill="#64748b" />
+            <ellipse cx="28" cy="53" rx="3" ry="5" fill="#64748b" />
+            
+            {/* Нижний ком */}
+            <circle cx="25" cy="43" r="10" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1" />
+            
+            {/* Средний ком */}
+            <circle cx="25" cy="28" r="8" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1" />
+            
+            {/* Снежные ручки */}
+            <g className="walk-arm-left">
+              <ellipse cx="14" cy="26" rx="2.5" ry="4" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="0.8" transform="rotate(-30 14 26)" />
+              <ellipse cx="10" cy="23" rx="2" ry="3" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="0.8" transform="rotate(-40 10 23)" />
+              <circle cx="7" cy="21" r="1.5" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="0.8" />
+            </g>
+            <g className="walk-arm-right">
+              <ellipse cx="36" cy="26" rx="2.5" ry="4" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="0.8" transform="rotate(30 36 26)" />
+              <ellipse cx="40" cy="23" rx="2" ry="3" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="0.8" transform="rotate(40 40 23)" />
+              <circle cx="43" cy="21" r="1.5" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="0.8" />
+            </g>
+            
+            {/* Голова */}
+            <circle cx="25" cy="13" r="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1" />
+            
+            {/* Глаза */}
+            <circle cx="23" cy="12" r="1" fill="#1e293b" />
+            <circle cx="27" cy="12" r="1" fill="#1e293b" />
+            
+            {/* Нос-морковка */}
+            <path d="M 25 14 L 29 15 L 25 15.5 Z" fill="#f97316" />
+            
+            {/* Улыбка */}
+            <path d="M 22 16 Q 25 17 28 16" fill="none" stroke="#1e293b" strokeWidth="0.5" strokeLinecap="round" />
+            
+            {/* Пуговицы */}
+            <circle cx="25" cy="27" r="0.8" fill="#dc2626" />
+            <circle cx="25" cy="30" r="0.8" fill="#dc2626" />
+            <circle cx="25" cy="41" r="0.8" fill="#dc2626" />
+            
+            {/* Ведро на голове */}
+            <rect x="20" y="5" width="10" height="5" fill="#64748b" rx="0.5" />
+            <rect x="19" y="9" width="12" height="1.5" fill="#64748b" rx="0.3" />
+          </svg>
+        </div>
+        
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-3">
             <img 
@@ -22,86 +122,6 @@ export default function Header() {
               alt="МИДАУС" 
               className="h-10 w-auto object-contain"
             />
-            
-            {/* Танцующий снеговик */}
-            <svg 
-              className="w-10 h-12 flex-shrink-0" 
-              viewBox="0 0 50 60"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <style>
-                {`
-                  @keyframes dance {
-                    0%, 100% { transform: rotate(-2deg); }
-                    50% { transform: rotate(2deg); }
-                  }
-                  @keyframes wave-left {
-                    0%, 100% { transform: rotate(-20deg); }
-                    50% { transform: rotate(-50deg); }
-                  }
-                  @keyframes wave-right {
-                    0%, 100% { transform: rotate(20deg); }
-                    50% { transform: rotate(50deg); }
-                  }
-                  @keyframes bounce {
-                    0%, 100% { transform: translateY(0px); }
-                    50% { transform: translateY(-2px); }
-                  }
-                  .snowman-body { animation: dance 1.2s ease-in-out infinite; transform-origin: 25px 50px; }
-                  .arm-left { animation: wave-left 1s ease-in-out infinite; transform-origin: 12px 28px; }
-                  .arm-right { animation: wave-right 1s ease-in-out infinite; transform-origin: 38px 28px; }
-                  .snowman-legs { animation: bounce 0.6s ease-in-out infinite; }
-                `}
-              </style>
-              
-              <g className="snowman-body">
-                {/* Ножки */}
-                <g className="snowman-legs">
-                  <ellipse cx="22" cy="53" rx="3" ry="5" fill="#64748b" />
-                  <ellipse cx="28" cy="53" rx="3" ry="5" fill="#64748b" />
-                </g>
-                
-                {/* Нижний ком */}
-                <circle cx="25" cy="43" r="10" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1" />
-                
-                {/* Средний ком */}
-                <circle cx="25" cy="28" r="8" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1" />
-                
-                {/* Снежные ручки */}
-                <g className="arm-left">
-                  <ellipse cx="14" cy="26" rx="2.5" ry="4" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="0.8" transform="rotate(-30 14 26)" />
-                  <ellipse cx="10" cy="23" rx="2" ry="3" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="0.8" transform="rotate(-40 10 23)" />
-                  <circle cx="7" cy="21" r="1.5" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="0.8" />
-                </g>
-                <g className="arm-right">
-                  <ellipse cx="36" cy="26" rx="2.5" ry="4" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="0.8" transform="rotate(30 36 26)" />
-                  <ellipse cx="40" cy="23" rx="2" ry="3" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="0.8" transform="rotate(40 40 23)" />
-                  <circle cx="43" cy="21" r="1.5" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="0.8" />
-                </g>
-                
-                {/* Голова */}
-                <circle cx="25" cy="13" r="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1" />
-                
-                {/* Глаза */}
-                <circle cx="23" cy="12" r="1" fill="#1e293b" />
-                <circle cx="27" cy="12" r="1" fill="#1e293b" />
-                
-                {/* Нос-морковка */}
-                <path d="M 25 14 L 29 15 L 25 15.5 Z" fill="#f97316" />
-                
-                {/* Улыбка */}
-                <path d="M 22 16 Q 25 17 28 16" fill="none" stroke="#1e293b" strokeWidth="0.5" strokeLinecap="round" />
-                
-                {/* Пуговицы */}
-                <circle cx="25" cy="27" r="0.8" fill="#dc2626" />
-                <circle cx="25" cy="30" r="0.8" fill="#dc2626" />
-                <circle cx="25" cy="41" r="0.8" fill="#dc2626" />
-                
-                {/* Ведро на голове */}
-                <rect x="20" y="5" width="10" height="5" fill="#64748b" rx="0.5" />
-                <rect x="19" y="9" width="12" height="1.5" fill="#64748b" rx="0.3" />
-              </g>
-            </svg>
           </Link>
           <Button variant="default" className="hidden md:flex" onClick={() => setShowCallModal(true)}>
             Заказать звонок
