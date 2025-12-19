@@ -16,11 +16,41 @@ export default function Header() {
     <>
       <header className="bg-white border-b border-border sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2">
+          <Link to="/" className="flex items-center gap-2 relative">
+            {/* Новогодний венок */}
+            <svg 
+              className="absolute -inset-3 w-16 h-16 pointer-events-none" 
+              viewBox="0 0 100 100"
+              style={{ left: '-12px', top: '-12px' }}
+            >
+              {/* Венок из еловых веток */}
+              <g>
+                {[...Array(12)].map((_, i) => {
+                  const angle = (i * 30) * Math.PI / 180;
+                  const x = 50 + Math.cos(angle) * 35;
+                  const y = 50 + Math.sin(angle) * 35;
+                  return (
+                    <g key={i}>
+                      <circle cx={x} cy={y} r="6" fill="#2d5016" opacity="0.8" />
+                      <circle cx={x + 2} cy={y - 2} r="4" fill="#3d6b1f" opacity="0.9" />
+                      <circle cx={x - 2} cy={y + 1} r="3" fill="#4a7c2a" opacity="0.7" />
+                    </g>
+                  );
+                })}
+                {/* Красные ягодки */}
+                <circle cx="70" cy="30" r="3" fill="#dc2626" opacity="0.9" />
+                <circle cx="75" cy="35" r="2.5" fill="#dc2626" opacity="0.85" />
+                <circle cx="30" cy="70" r="3" fill="#dc2626" opacity="0.9" />
+                <circle cx="25" cy="65" r="2.5" fill="#dc2626" opacity="0.85" />
+                <circle cx="50" cy="15" r="2.5" fill="#dc2626" opacity="0.9" />
+                <circle cx="85" cy="50" r="2.5" fill="#dc2626" opacity="0.85" />
+              </g>
+            </svg>
+            
             <img 
               src="https://cdn.poehali.dev/files/bf9d6490-da2b-41da-829f-65eea317fd60.png" 
               alt="МИДАУС" 
-              className="h-10 w-auto object-contain"
+              className="h-10 w-auto object-contain relative z-10"
             />
           </Link>
           <Button variant="default" className="hidden md:flex" onClick={() => setShowCallModal(true)}>
