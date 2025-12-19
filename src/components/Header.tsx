@@ -67,14 +67,16 @@ export default function Header() {
                 {/* Средний ком */}
                 <circle cx="25" cy="28" r="8" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1" />
                 
-                {/* Ручки */}
+                {/* Снежные ручки */}
                 <g className="arm-left">
-                  <line x1="17" y1="26" x2="8" y2="22" stroke="#8b4513" strokeWidth="2" strokeLinecap="round" />
-                  <line x1="8" y1="22" x2="5" y2="20" stroke="#8b4513" strokeWidth="1.5" strokeLinecap="round" />
+                  <ellipse cx="14" cy="26" rx="2.5" ry="4" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="0.8" transform="rotate(-30 14 26)" />
+                  <ellipse cx="10" cy="23" rx="2" ry="3" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="0.8" transform="rotate(-40 10 23)" />
+                  <circle cx="7" cy="21" r="1.5" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="0.8" />
                 </g>
                 <g className="arm-right">
-                  <line x1="33" y1="26" x2="42" y2="22" stroke="#8b4513" strokeWidth="2" strokeLinecap="round" />
-                  <line x1="42" y1="22" x2="45" y2="20" stroke="#8b4513" strokeWidth="1.5" strokeLinecap="round" />
+                  <ellipse cx="36" cy="26" rx="2.5" ry="4" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="0.8" transform="rotate(30 36 26)" />
+                  <ellipse cx="40" cy="23" rx="2" ry="3" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="0.8" transform="rotate(40 40 23)" />
+                  <circle cx="43" cy="21" r="1.5" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="0.8" />
                 </g>
                 
                 {/* Голова */}
