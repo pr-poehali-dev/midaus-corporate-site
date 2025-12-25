@@ -8,16 +8,18 @@ import Icon from '@/components/ui/icon';
 import { Link } from 'react-router-dom';
 
 const searchDatabase = [
-  { title: 'MIDI 15', category: 'Датчики давления', link: '/products', description: 'Микропроцессорный датчик избыточного давления' },
-  { title: 'MIDI 13P', category: 'Датчики давления', link: '/products', description: 'Датчик абсолютного давления' },
-  { title: 'MIDI 12', category: 'Датчики давления', link: '/products', description: 'Датчик давления с цифровым выходом' },
-  { title: 'MIDI 11', category: 'Датчики давления', link: '/products', description: 'Датчик давления общепромышленный' },
-  { title: 'MIDI 10', category: 'Датчики давления', link: '/products', description: 'Датчик давления базовый' },
+  { title: 'МИДА-15', category: 'Датчики давления', link: '/products', description: 'Микропроцессорный датчик избыточного давления' },
+  { title: 'МИДА-13П', category: 'Датчики давления', link: '/products', description: 'Датчик абсолютного давления' },
+  { title: 'МИДА-12', category: 'Датчики давления', link: '/products', description: 'Датчик давления с цифровым выходом' },
+  { title: 'МИДА-11', category: 'Датчики давления', link: '/products', description: 'Датчик давления общепромышленный' },
+  { title: 'МИДА-10', category: 'Датчики давления', link: '/products', description: 'Датчик давления базовый' },
+  { title: 'МИДА-ДА', category: 'Датчики давления', link: '/products', description: 'Датчик абсолютного давления' },
+  { title: 'МИДА-ДИ', category: 'Датчики давления', link: '/products', description: 'Датчик избыточного давления' },
   { title: 'ПИ-1', category: 'Индикаторы', link: '/products', description: 'Показывающий индикатор давления' },
   { title: 'УС-1', category: 'Устройства связи', link: '/products', description: 'Устройство связи с датчиками' },
-  { title: 'БП-15', category: 'Источники питания', link: '/products', description: 'Блок питания 15В' },
+  { title: 'БП-15', category: 'Источники питания', link: '/products', description: 'Блок питания для датчиков' },
   { title: 'УЗ-1', category: 'Средства защиты', link: '/products', description: 'Устройство защиты от перенапряжений' },
-  { title: 'МКА', category: 'Арматура', link: '/products', description: 'Монтажная коммутационная арматура' },
+  { title: 'Монтажная арматура', category: 'Арматура', link: '/products', description: 'Комплектующие для монтажа датчиков' },
 ];
 
 export default function Header() {
