@@ -7,12 +7,33 @@ import { Label } from '@/components/ui/label';
 import Icon from '@/components/ui/icon';
 import { Link } from 'react-router-dom';
 
+const searchDatabase = [
+  { title: 'MIDI 15', category: 'Датчики давления', link: '/products', description: 'Микропроцессорный датчик избыточного давления' },
+  { title: 'MIDI 13P', category: 'Датчики давления', link: '/products', description: 'Датчик абсолютного давления' },
+  { title: 'MIDI 12', category: 'Датчики давления', link: '/products', description: 'Датчик давления с цифровым выходом' },
+  { title: 'MIDI 11', category: 'Датчики давления', link: '/products', description: 'Датчик давления общепромышленный' },
+  { title: 'MIDI 10', category: 'Датчики давления', link: '/products', description: 'Датчик давления базовый' },
+  { title: 'ПИ-1', category: 'Индикаторы', link: '/products', description: 'Показывающий индикатор давления' },
+  { title: 'УС-1', category: 'Устройства связи', link: '/products', description: 'Устройство связи с датчиками' },
+  { title: 'БП-15', category: 'Источники питания', link: '/products', description: 'Блок питания 15В' },
+  { title: 'УЗ-1', category: 'Средства защиты', link: '/products', description: 'Устройство защиты от перенапряжений' },
+  { title: 'МКА', category: 'Арматура', link: '/products', description: 'Монтажная коммутационная арматура' },
+];
+
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showCallModal, setShowCallModal] = useState(false);
   const [productsMenuOpen, setProductsMenuOpen] = useState(false);
   const [showSearchModal, setShowSearchModal] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+
+  const filteredResults = searchQuery.length > 0 
+    ? searchDatabase.filter(item => 
+        item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        item.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        item.description.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+    : [];
 
   return (
     <>
@@ -197,34 +218,37 @@ export default function Header() {
               </div>
               {searchQuery.length > 0 ? (
                 <div className="space-y-3">
-                  <p className="text-sm text-muted-foreground">Результаты поиска для "{searchQuery}":</p>
-                  <div className="space-y-2">
-                    <Link 
-                      to="/products" 
-                      className="block p-3 rounded-lg hover:bg-primary/5 transition-colors border border-border"
-                      onClick={() => setShowSearchModal(false)}
-                    >
-                      <div className="flex items-start gap-3">
-                        <Icon name="FileText" size={20} className="text-primary mt-0.5" />
-                        <div>
-                          <h4 className="font-medium text-sm mb-1">Датчики давления МИДАУС</h4>
-                          <p className="text-xs text-muted-foreground">Каталог продукции с техническими характеристиками</p>
-                        </div>
+                  <p className="text-sm text-muted-foreground">
+                    {filteredResults.length > 0 
+                      ? `Найдено результатов: ${filteredResults.length}` 
+                      : 'Ничего не найдено'}
+                  </p>
+                  <div className="space-y-2 max-h-96 overflow-y-auto">
+                    {filteredResults.length > 0 ? (
+                      filteredResults.map((item, index) => (
+                        <Link 
+                          key={index}
+                          to={item.link} 
+                          className="block p-3 rounded-lg hover:bg-primary/5 transition-colors border border-border"
+                          onClick={() => { setShowSearchModal(false); setSearchQuery(''); }}
+                        >
+                          <div className="flex items-start gap-3">
+                            <Icon name="Package" size={20} className="text-primary mt-0.5 flex-shrink-0" />
+                            <div>
+                              <h4 className="font-medium text-sm mb-1">{item.title}</h4>
+                              <p className="text-xs text-primary mb-1">{item.category}</p>
+                              <p className="text-xs text-muted-foreground">{item.description}</p>
+                            </div>
+                          </div>
+                        </Link>
+                      ))
+                    ) : (
+                      <div className="text-center py-8 text-muted-foreground">
+                        <Icon name="SearchX" size={48} className="mx-auto mb-3 opacity-50" />
+                        <p className="text-sm">По вашему запросу ничего не найдено</p>
+                        <p className="text-xs mt-1">Попробуйте изменить поисковый запрос</p>
                       </div>
-                    </Link>
-                    <Link 
-                      to="/about" 
-                      className="block p-3 rounded-lg hover:bg-primary/5 transition-colors border border-border"
-                      onClick={() => setShowSearchModal(false)}
-                    >
-                      <div className="flex items-start gap-3">
-                        <Icon name="Building2" size={20} className="text-primary mt-0.5" />
-                        <div>
-                          <h4 className="font-medium text-sm mb-1">О компании МИДАУС</h4>
-                          <p className="text-xs text-muted-foreground">История, миссия и контактная информация</p>
-                        </div>
-                      </div>
-                    </Link>
+                    )}
                   </div>
                 </div>
               ) : (
