@@ -42,28 +42,28 @@ export default function Header() {
               Новости
             </Link>
           </nav>
-          <div className="hidden lg:flex items-center gap-3">
+          <div className="flex items-center gap-3">
             <Button 
               variant="outline" 
               size="icon"
               onClick={() => setShowSearchModal(true)}
-              className="border-primary text-primary hover:bg-primary hover:text-white transition-colors"
+              className="border-primary text-primary hover:bg-primary hover:text-white transition-colors hidden sm:flex"
               aria-label="Открыть поиск"
             >
               <Icon name="Search" size={20} />
             </Button>
-            <Button variant="default" onClick={() => setShowCallModal(true)}>
+            <Button variant="default" onClick={() => setShowCallModal(true)} className="hidden sm:flex">
               Заказать звонок
             </Button>
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="sm:hidden"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
+              <Icon name={mobileMenuOpen ? "X" : "Menu"} size={24} />
+            </Button>
           </div>
-          <Button 
-            variant="ghost" 
-            size="icon" 
-            className="lg:hidden"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          >
-            <Icon name={mobileMenuOpen ? "X" : "Menu"} size={24} />
-          </Button>
         </div>
         
         <div 
