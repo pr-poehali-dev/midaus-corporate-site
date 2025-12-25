@@ -44,10 +44,10 @@ export default function Header() {
           </nav>
           <div className="hidden lg:flex items-center gap-3">
             <Button 
-              variant="ghost" 
+              variant="outline" 
               size="icon"
               onClick={() => setShowSearchModal(true)}
-              className="hover:bg-primary/10 hover:text-primary transition-colors"
+              className="border-primary text-primary hover:bg-primary hover:text-white transition-colors"
               aria-label="Открыть поиск"
             >
               <Icon name="Search" size={20} />
