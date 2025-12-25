@@ -11,6 +11,8 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showCallModal, setShowCallModal] = useState(false);
   const [productsMenuOpen, setProductsMenuOpen] = useState(false);
+  const [showSearchModal, setShowSearchModal] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
 
   return (
     <>
@@ -40,9 +42,19 @@ export default function Header() {
               Новости
             </Link>
           </nav>
-          <Button variant="default" className="hidden lg:flex" onClick={() => setShowCallModal(true)}>
-            Заказать звонок
-          </Button>
+          <div className="hidden lg:flex items-center gap-3">
+            <Button 
+              variant="ghost" 
+              size="icon"
+              onClick={() => setShowSearchModal(true)}
+              className="hover:bg-primary/10 hover:text-primary transition-colors"
+            >
+              <Icon name="Search" size={20} />
+            </Button>
+            <Button variant="default" onClick={() => setShowCallModal(true)}>
+              Заказать звонок
+            </Button>
+          </div>
           <Button 
             variant="ghost" 
             size="icon" 
@@ -146,12 +158,104 @@ export default function Header() {
             >
               Новости
             </Link>
-            <Button variant="default" className="w-full animate-slide-up" style={{ animationDelay: '350ms' }} onClick={() => { setShowCallModal(true); setMobileMenuOpen(false); }}>
+            <button
+              className="w-full flex items-center gap-2 px-4 py-2 text-sm font-medium text-foreground hover:text-primary hover:bg-primary/10 rounded-md transition-colors animate-slide-up"
+              style={{ animationDelay: '350ms' }}
+              onClick={() => { setShowSearchModal(true); setMobileMenuOpen(false); }}
+            >
+              <Icon name="Search" size={18} />
+              Поиск
+            </button>
+            <Button variant="default" className="w-full animate-slide-up" style={{ animationDelay: '400ms' }} onClick={() => { setShowCallModal(true); setMobileMenuOpen(false); }}>
               Заказать звонок
             </Button>
           </nav>
         </div>
       </header>
+
+      {showSearchModal && (
+        <div className="fixed inset-0 bg-black/50 z-50 flex items-start justify-center pt-20 p-4" onClick={() => setShowSearchModal(false)}>
+          <Card className="max-w-2xl w-full" onClick={(e) => e.stopPropagation()}>
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="font-heading font-bold text-xl">Поиск по сайту</h3>
+                <Button variant="ghost" size="icon" onClick={() => setShowSearchModal(false)}>
+                  <Icon name="X" size={20} />
+                </Button>
+              </div>
+              <div className="relative mb-6">
+                <Icon name="Search" size={20} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
+                <Input 
+                  type="search"
+                  placeholder="Введите запрос: датчик давления, сертификаты, контакты..." 
+                  className="pl-10 pr-4 h-12 text-base"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  autoFocus
+                />
+              </div>
+              {searchQuery.length > 0 ? (
+                <div className="space-y-3">
+                  <p className="text-sm text-muted-foreground">Результаты поиска для "{searchQuery}":</p>
+                  <div className="space-y-2">
+                    <Link 
+                      to="/products" 
+                      className="block p-3 rounded-lg hover:bg-primary/5 transition-colors border border-border"
+                      onClick={() => setShowSearchModal(false)}
+                    >
+                      <div className="flex items-start gap-3">
+                        <Icon name="FileText" size={20} className="text-primary mt-0.5" />
+                        <div>
+                          <h4 className="font-medium text-sm mb-1">Датчики давления МИДАУС</h4>
+                          <p className="text-xs text-muted-foreground">Каталог продукции с техническими характеристиками</p>
+                        </div>
+                      </div>
+                    </Link>
+                    <Link 
+                      to="/about" 
+                      className="block p-3 rounded-lg hover:bg-primary/5 transition-colors border border-border"
+                      onClick={() => setShowSearchModal(false)}
+                    >
+                      <div className="flex items-start gap-3">
+                        <Icon name="Building2" size={20} className="text-primary mt-0.5" />
+                        <div>
+                          <h4 className="font-medium text-sm mb-1">О компании МИДАУС</h4>
+                          <p className="text-xs text-muted-foreground">История, миссия и контактная информация</p>
+                        </div>
+                      </div>
+                    </Link>
+                  </div>
+                </div>
+              ) : (
+                <div className="text-center py-8">
+                  <Icon name="Search" size={48} className="mx-auto text-muted-foreground/30 mb-3" />
+                  <p className="text-sm text-muted-foreground">Начните вводить запрос для поиска</p>
+                  <div className="mt-6 flex flex-wrap gap-2 justify-center">
+                    <button 
+                      className="px-3 py-1.5 text-xs rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
+                      onClick={() => setSearchQuery('датчики давления')}
+                    >
+                      Датчики давления
+                    </button>
+                    <button 
+                      className="px-3 py-1.5 text-xs rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
+                      onClick={() => setSearchQuery('сертификаты')}
+                    >
+                      Сертификаты
+                    </button>
+                    <button 
+                      className="px-3 py-1.5 text-xs rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
+                      onClick={() => setSearchQuery('контакты')}
+                    >
+                      Контакты
+                    </button>
+                  </div>
+                </div>
+              )}
+            </CardContent>
+          </Card>
+        </div>
+      )}
 
       {showCallModal && (
         <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4" onClick={() => setShowCallModal(false)}>
