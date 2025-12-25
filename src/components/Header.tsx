@@ -48,6 +48,7 @@ export default function Header() {
               size="icon"
               onClick={() => setShowSearchModal(true)}
               className="hover:bg-primary/10 hover:text-primary transition-colors"
+              aria-label="Открыть поиск"
             >
               <Icon name="Search" size={20} />
             </Button>
