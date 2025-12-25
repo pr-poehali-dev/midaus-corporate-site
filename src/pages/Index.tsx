@@ -522,11 +522,8 @@ export default function Index() {
                   <h3 className="font-heading font-semibold text-sm mb-0.5">
                     Бушев Константин
                   </h3>
-                  <p className="text-primary text-xs font-medium mb-1">
+                  <p className="text-primary text-xs font-medium mb-2">
                     Генеральный директор
-                  </p>
-                  <p className="text-[10px] text-muted-foreground mb-2">
-                    Общие вопросы, партнерство
                   </p>
                   <div className="space-y-1 text-xs text-muted-foreground">
                     <div className="flex items-center justify-center gap-1">
@@ -557,11 +554,8 @@ export default function Index() {
                   <h3 className="font-heading font-semibold text-sm mb-0.5">
                     Купырин Владимир
                   </h3>
-                  <p className="text-primary text-xs font-medium mb-1">
+                  <p className="text-primary text-xs font-medium mb-2">
                     Технический директор
-                  </p>
-                  <p className="text-[10px] text-muted-foreground mb-2">
-                    Технические вопросы, разработка
                   </p>
                   <div className="space-y-1 text-xs text-muted-foreground">
                     <div className="flex items-center justify-center gap-1">
@@ -593,10 +587,10 @@ export default function Index() {
                     Савченко Евгений
                   </h3>
                   <p className="text-primary text-xs font-medium mb-1">
-                    Директор по развитию и науке
+                    Директор по развитию
                   </p>
-                  <p className="text-[10px] text-muted-foreground mb-2">
-                    НИР, НИОКР, публикации, к.т.н.
+                  <p className="text-[10px] text-muted-foreground italic mb-2">
+                    Кандидат техн. наук
                   </p>
                   <div className="space-y-1 text-xs text-muted-foreground">
                     <div className="flex items-center justify-center gap-1">
@@ -627,11 +621,8 @@ export default function Index() {
                   <h3 className="font-heading font-semibold text-sm mb-0.5">
                     Алашеев Валентин
                   </h3>
-                  <p className="text-primary text-xs font-medium mb-1">
+                  <p className="text-primary text-xs font-medium mb-2">
                     Главный конструктор
-                  </p>
-                  <p className="text-[10px] text-muted-foreground mb-2">
-                    Подбор датчиков, спецразработки
                   </p>
                   <div className="space-y-1 text-xs text-muted-foreground">
                     <div className="flex items-center justify-center gap-1">
@@ -662,11 +653,8 @@ export default function Index() {
                   <h3 className="font-heading font-semibold text-sm mb-0.5">
                     Мартынова Людмила
                   </h3>
-                  <p className="text-primary text-xs font-medium mb-1">
+                  <p className="text-primary text-xs font-medium mb-2">
                     Начальник отдела продаж
-                  </p>
-                  <p className="text-[10px] text-muted-foreground mb-2">
-                    Коммерческие вопросы, продажи
                   </p>
                   <div className="space-y-1 text-xs text-muted-foreground">
                     <div className="flex items-center justify-center gap-1">
@@ -697,11 +685,8 @@ export default function Index() {
                   <h3 className="font-heading font-semibold text-sm mb-0.5">
                     Маланин Михаил
                   </h3>
-                  <p className="text-primary text-xs font-medium mb-1">
+                  <p className="text-primary text-xs font-medium mb-2">
                     Главный метролог
-                  </p>
-                  <p className="text-[10px] text-muted-foreground mb-2">
-                    Метрология, поверка
                   </p>
                   <div className="space-y-1 text-xs text-muted-foreground">
                     <div className="flex items-center justify-center gap-1">
@@ -732,11 +717,8 @@ export default function Index() {
                   <h3 className="font-heading font-semibold text-sm mb-0.5">
                     Лукьянов Сергей
                   </h3>
-                  <p className="text-primary text-xs font-medium mb-1">
+                  <p className="text-primary text-xs font-medium mb-2">
                     Начальник группы качества
-                  </p>
-                  <p className="text-[10px] text-muted-foreground mb-2">
-                    Контроль качества, рекламации
                   </p>
                   <div className="space-y-1 text-xs text-muted-foreground">
                     <div className="flex items-center justify-center gap-1">
@@ -839,7 +821,40 @@ export default function Index() {
         </Button>
       )}
 
-
+      {showCallModal && (
+        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4" onClick={() => setShowCallModal(false)}>
+          <Card className="max-w-md w-full" onClick={(e) => e.stopPropagation()}>
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="font-heading font-bold text-xl">Заказать звонок</h3>
+                <Button variant="ghost" size="icon" onClick={() => setShowCallModal(false)}>
+                  <Icon name="X" size={20} />
+                </Button>
+              </div>
+              <p className="text-sm text-muted-foreground mb-6">
+                Оставьте свои контакты, и мы перезвоним вам в течение рабочего дня
+              </p>
+              <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); setShowCallModal(false); }}>
+                <div className="space-y-2">
+                  <Label htmlFor="call-name">Имя *</Label>
+                  <Input id="call-name" placeholder="Ваше имя" required />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="call-phone">Телефон *</Label>
+                  <Input id="call-phone" type="tel" placeholder="+7 (___) ___-__-__" required />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="call-comment">Комментарий</Label>
+                  <Textarea id="call-comment" placeholder="Опишите ваш вопрос или задачу" rows={3} />
+                </div>
+                <Button type="submit" className="w-full" size="lg">
+                  Отправить заявку
+                </Button>
+              </form>
+            </CardContent>
+          </Card>
+        </div>
+      )}
 
       <Footer />
     </div>
