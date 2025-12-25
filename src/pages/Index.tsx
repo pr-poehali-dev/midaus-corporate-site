@@ -8,7 +8,6 @@ import Icon from '@/components/ui/icon';
 import { Link } from 'react-router-dom';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import ConsentCheckbox from '@/components/ConsentCheckbox';
 
 export default function Index() {
   const [selectedRange, setSelectedRange] = useState('');
@@ -20,7 +19,6 @@ export default function Index() {
   const [recommendedSeries, setRecommendedSeries] = useState<string[]>([]);
   const [visibleSections, setVisibleSections] = useState<Set<string>>(new Set());
   const [showScrollTop, setShowScrollTop] = useState(false);
-  const [consentChecked, setConsentChecked] = useState(false);
   const sectionRefs = useRef<{ [key: string]: HTMLElement | null }>({});
 
   useEffect(() => {
@@ -524,8 +522,11 @@ export default function Index() {
                   <h3 className="font-heading font-semibold text-sm mb-0.5">
                     Бушев Константин
                   </h3>
-                  <p className="text-primary text-xs font-medium mb-2">
+                  <p className="text-primary text-xs font-medium mb-1">
                     Генеральный директор
+                  </p>
+                  <p className="text-[10px] text-muted-foreground mb-2">
+                    Общие вопросы, партнерство
                   </p>
                   <div className="space-y-1 text-xs text-muted-foreground">
                     <div className="flex items-center justify-center gap-1">
@@ -556,8 +557,11 @@ export default function Index() {
                   <h3 className="font-heading font-semibold text-sm mb-0.5">
                     Купырин Владимир
                   </h3>
-                  <p className="text-primary text-xs font-medium mb-2">
+                  <p className="text-primary text-xs font-medium mb-1">
                     Технический директор
+                  </p>
+                  <p className="text-[10px] text-muted-foreground mb-2">
+                    Технические вопросы, разработка
                   </p>
                   <div className="space-y-1 text-xs text-muted-foreground">
                     <div className="flex items-center justify-center gap-1">
@@ -589,10 +593,10 @@ export default function Index() {
                     Савченко Евгений
                   </h3>
                   <p className="text-primary text-xs font-medium mb-1">
-                    Директор по развитию
+                    Директор по развитию и науке
                   </p>
-                  <p className="text-[10px] text-muted-foreground italic mb-2">
-                    Кандидат техн. наук
+                  <p className="text-[10px] text-muted-foreground mb-2">
+                    НИР, НИОКР, публикации, к.т.н.
                   </p>
                   <div className="space-y-1 text-xs text-muted-foreground">
                     <div className="flex items-center justify-center gap-1">
@@ -623,8 +627,11 @@ export default function Index() {
                   <h3 className="font-heading font-semibold text-sm mb-0.5">
                     Алашеев Валентин
                   </h3>
-                  <p className="text-primary text-xs font-medium mb-2">
+                  <p className="text-primary text-xs font-medium mb-1">
                     Главный конструктор
+                  </p>
+                  <p className="text-[10px] text-muted-foreground mb-2">
+                    Подбор датчиков, спецразработки
                   </p>
                   <div className="space-y-1 text-xs text-muted-foreground">
                     <div className="flex items-center justify-center gap-1">
@@ -655,8 +662,11 @@ export default function Index() {
                   <h3 className="font-heading font-semibold text-sm mb-0.5">
                     Мартынова Людмила
                   </h3>
-                  <p className="text-primary text-xs font-medium mb-2">
+                  <p className="text-primary text-xs font-medium mb-1">
                     Начальник отдела продаж
+                  </p>
+                  <p className="text-[10px] text-muted-foreground mb-2">
+                    Коммерческие вопросы, продажи
                   </p>
                   <div className="space-y-1 text-xs text-muted-foreground">
                     <div className="flex items-center justify-center gap-1">
@@ -687,8 +697,11 @@ export default function Index() {
                   <h3 className="font-heading font-semibold text-sm mb-0.5">
                     Маланин Михаил
                   </h3>
-                  <p className="text-primary text-xs font-medium mb-2">
+                  <p className="text-primary text-xs font-medium mb-1">
                     Главный метролог
+                  </p>
+                  <p className="text-[10px] text-muted-foreground mb-2">
+                    Метрология, поверка
                   </p>
                   <div className="space-y-1 text-xs text-muted-foreground">
                     <div className="flex items-center justify-center gap-1">
@@ -719,8 +732,11 @@ export default function Index() {
                   <h3 className="font-heading font-semibold text-sm mb-0.5">
                     Лукьянов Сергей
                   </h3>
-                  <p className="text-primary text-xs font-medium mb-2">
+                  <p className="text-primary text-xs font-medium mb-1">
                     Начальник группы качества
+                  </p>
+                  <p className="text-[10px] text-muted-foreground mb-2">
+                    Контроль качества, рекламации
                   </p>
                   <div className="space-y-1 text-xs text-muted-foreground">
                     <div className="flex items-center justify-center gap-1">
@@ -801,18 +817,8 @@ export default function Index() {
                       rows={4}
                     />
                   </div>
-                  <div className="md:col-span-2">
-                    <ConsentCheckbox 
-                      checked={consentChecked} 
-                      onChange={setConsentChecked}
-                      id="support-consent"
-                    />
-                  </div>
                 </div>
-                <Button 
-                  className="w-full mt-6 bg-accent hover:bg-accent/90"
-                  disabled={!consentChecked}
-                >
+                <Button className="w-full mt-6 bg-accent hover:bg-accent/90">
                   <Icon name="Send" size={20} className="mr-2" />
                   Отправить запрос
                 </Button>
