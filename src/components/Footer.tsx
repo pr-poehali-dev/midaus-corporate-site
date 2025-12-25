@@ -3,20 +3,8 @@ import { Link } from 'react-router-dom';
 
 export default function Footer() {
   return (
-    <footer className="bg-secondary py-12 mt-16 relative overflow-hidden">
-      <div 
-        className="absolute bottom-0 right-0 w-80 h-[600px] opacity-[0.08] bg-no-repeat bg-bottom bg-contain pointer-events-none"
-        style={{
-          backgroundImage: `url('https://cdn.poehali.dev/files/Монтажная область 1.png')`,
-        }}
-      ></div>
-      <div 
-        className="absolute -bottom-20 left-0 w-48 h-[600px] opacity-[0.08] bg-no-repeat bg-bottom bg-contain pointer-events-none"
-        style={{
-          backgroundImage: `url('https://cdn.poehali.dev/files/Монтажная область 3.png')`,
-        }}
-      ></div>
-      <div className="container mx-auto px-4 relative z-10">
+    <footer className="bg-secondary py-12 mt-16">
+      <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-4 gap-8 mb-8">
           <div>
             <img 
@@ -34,7 +22,6 @@ export default function Footer() {
               <li><Link to="/about" className="hover:text-primary">О компании</Link></li>
               <li><Link to="/laboratory" className="hover:text-primary">Метрологическая лаборатория</Link></li>
               <li><Link to="/news" className="hover:text-primary">Новости</Link></li>
-              <li><Link to="/articles" className="hover:text-primary">Статьи</Link></li>
               <li><Link to="/careers" className="hover:text-primary font-semibold">Вакансии</Link></li>
             </ul>
           </div>

@@ -13,8 +13,6 @@ import Software from "./pages/Software";
 import About from "./pages/About";
 import Laboratory from "./pages/Laboratory";
 import News from "./pages/News";
-import NewsDetail from "./pages/NewsDetail";
-import Articles from "./pages/Articles";
 import Careers from "./pages/Careers";
 import Privacy from "./pages/Privacy";
 import NotFound from "./pages/NotFound";
@@ -39,8 +37,6 @@ const App = () => (
           <Route path="/about" element={<About />} />
           <Route path="/laboratory" element={<Laboratory />} />
           <Route path="/news" element={<News />} />
-          <Route path="/news/:id" element={<NewsDetail />} />
-          <Route path="/articles" element={<Articles />} />
           <Route path="/careers" element={<Careers />} />
           <Route path="/privacy" element={<Privacy />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

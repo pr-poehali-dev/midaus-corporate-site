@@ -15,7 +15,6 @@ export default function DeviceMidaIC202() {
   const [showPriceModal, setShowPriceModal] = useState(false);
   const [consentChecked, setConsentChecked] = useState(false);
   const [modalConsentChecked, setModalConsentChecked] = useState(false);
-  const [withoutExplosionProtection, setWithoutExplosionProtection] = useState(false);
 
   const specs = [
     { label: 'Диапазон индикации', value: '0-100% ВПИ датчика' },
@@ -24,7 +23,7 @@ export default function DeviceMidaIC202() {
     { label: 'Потребляемая мощность', value: 'не более 0,5 Вт' },
     { label: 'Разрядность индикатора', value: '4 разряда' },
     { label: 'Погрешность индикации', value: '±0,5% от диапазона' },
-    { label: 'Маркировка взрывозащиты', value: 'ExiaIICT5 X' },
+    { label: 'Маркировка взрывозащиты', value: '0ExiaIICT6' },
     { label: 'Температура эксплуатации', value: '-40...+80°C' },
     { label: 'Степень защиты', value: 'IP65' },
     { label: 'Габаритные размеры', value: '72×72×40 мм' },
@@ -72,7 +71,7 @@ export default function DeviceMidaIC202() {
               <span className="text-primary font-semibold text-sm">🇷🇺 Российское производство</span>
             </div>
             <div className="inline-flex items-center gap-2 bg-green-100 px-3 py-1 rounded-full mb-3 ml-2">
-              <span className="text-green-700 font-semibold text-sm">Взрывозащита ExiaIICT5 X</span>
+              <span className="text-green-700 font-semibold text-sm">Взрывозащита 0ExiaIICT6</span>
             </div>
             
             <h1 className="font-heading font-bold text-3xl md:text-4xl mb-4">
@@ -81,16 +80,6 @@ export default function DeviceMidaIC202() {
             <p className="text-xl text-muted-foreground mb-6">
               Съемный взрывозащищенный цифровой индикатор для датчиков давления
             </p>
-
-            <div className="bg-gradient-to-r from-primary/5 to-primary/10 border-l-4 border-primary p-5 rounded-lg mb-6">
-              <h3 className="font-semibold text-foreground mb-2 flex items-center gap-2">
-                <Icon name="Zap" size={18} className="text-primary" />
-                Принцип работы
-              </h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                МИДА-ИЦ-202-Ех принимает токовый сигнал 4-20 мА от датчика давления и преобразует его в цифровое значение, отображаемое на четырехразрядном дисплее.
-              </p>
-            </div>
 
             <div className="bg-secondary p-6 rounded-lg mb-6">
               <h3 className="font-heading font-semibold text-lg mb-3">Основные преимущества</h3>
@@ -114,23 +103,6 @@ export default function DeviceMidaIC202() {
                   </p>
                 </div>
               </div>
-            </div>
-
-            <div className="bg-secondary p-4 rounded-lg mb-6">
-              <label className="flex items-start gap-3 cursor-pointer">
-                <input
-                  type="checkbox"
-                  checked={withoutExplosionProtection}
-                  onChange={(e) => setWithoutExplosionProtection(e.target.checked)}
-                  className="mt-1 w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary"
-                />
-                <div>
-                  <span className="font-semibold text-foreground">Вариант без взрывозащиты</span>
-                  <p className="text-sm text-muted-foreground mt-1">
-                    Для применения в обычных (невзрывоопасных) условиях
-                  </p>
-                </div>
-              </label>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-3">

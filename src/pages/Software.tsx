@@ -9,23 +9,10 @@ import Footer from '@/components/Footer';
 export default function Software() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const getDeviceUrl = (deviceName: string) => {
-    const deviceMap: { [key: string]: string } = {
-      'МИДА-УС-408': '/products/mida-us-408',
-      'МИДА-УС-410': '/products/mida-us-410',
-      'МИДА-15': '/products/mida-15'
-    };
-    return deviceMap[deviceName] || '/products';
-  };
-
   const software = [
     {
       title: 'Драйвер для устройств связи МИДА-УС-408 и МИДА-УС-410',
       description: 'Драйвер для подключения устройств связи к компьютеру',
-      compatible: [
-        { name: 'МИДА-УС-408', icon: 'MonitorCog' },
-        { name: 'МИДА-УС-410', icon: 'MonitorCog' }
-      ],
       downloads: [
         { label: 'Скачать драйвер', url: '#' }
       ]
@@ -33,11 +20,6 @@ export default function Software() {
     {
       title: 'SearchConfig',
       description: 'Программа для поиска конфигурации настроек датчика МИДА-15 с протоколом обмена Modbus для связи с ПК',
-      compatible: [
-        { name: 'МИДА-УС-408', icon: 'MonitorCog' },
-        { name: 'МИДА-УС-410', icon: 'MonitorCog' },
-        { name: 'МИДА-15', icon: 'Gauge' }
-      ],
       downloads: [
         { label: 'Скачать программу', url: '#' }
       ]
@@ -45,9 +27,6 @@ export default function Software() {
     {
       title: 'Mida15Tool',
       description: 'Программа предназначена для проверки функционирования, настройки и для отображения измеряемого давления датчиком МИДА-15 с протоколом обмена Mida',
-      compatible: [
-        { name: 'МИДА-15', icon: 'Gauge' }
-      ],
       downloads: [
         { label: 'Установщик (*.exe, 735 kb)', url: '#' },
         { label: 'Portable-версия (*.zip, 445 kb)', url: '#' },
@@ -57,9 +36,6 @@ export default function Software() {
     {
       title: 'Mida15Tool Modbus',
       description: 'Программа предназначена для проверки функционирования, настройки и для отображения измеряемого давления датчиком МИДА-15 с протоколом обмена Modbus',
-      compatible: [
-        { name: 'МИДА-15', icon: 'Gauge' }
-      ],
       downloads: [
         { label: 'Актуальная версия (zip*.exe, 1.11 МБ)', url: '#' },
         { label: 'Описание программы (*.doc, 445 kb)', url: '#' }
@@ -68,9 +44,6 @@ export default function Software() {
     {
       title: 'MIDA-Android-Modbus',
       description: 'Программа предназначена для проверки функционирования, настройки и для отображения измеряемого давления датчиком МИДА-15 с протоколом обмена Modbus с помощью устройств на базе ОС Android',
-      compatible: [
-        { name: 'МИДА-15', icon: 'Gauge' }
-      ],
       downloads: [
         { label: 'Руководство пользователя (*.pdf, 432 kb)', url: '#' },
         { label: 'Google Play', url: '#', external: true },
@@ -80,9 +53,6 @@ export default function Software() {
     {
       title: 'CorrectZeroPGAI',
       description: 'Программа предназначена для корректировки (в случае необходимости) начального значения выходного сигнала датчиков давления МИДА-15 с токовым выходным сигналом 4-20 мА (код сигнала 01)',
-      compatible: [
-        { name: 'МИДА-15', icon: 'Gauge' }
-      ],
       downloads: [
         { label: 'Скачать программу (*.zip, ~ 48Mb)', url: '#' }
       ]
@@ -90,9 +60,6 @@ export default function Software() {
     {
       title: 'CorrectZeroPGAU',
       description: 'Программа предназначена для корректировки (в случае необходимости) начального значения выходного сигнала датчиков давления МИДА-15 с выходным сигналом в виде напряжения постоянного тока 0,4-2 В (код сигнала 051, 055, 058), 0,5-4,5 В (коды сигналов 052, 057, 059)',
-      compatible: [
-        { name: 'МИДА-15', icon: 'Gauge' }
-      ],
       downloads: [
         { label: 'Скачать программу (*.zip, 49.7 МБ)', url: '#' }
       ]
@@ -118,26 +85,10 @@ export default function Software() {
             {software.map((item, index) => (
               <Card key={index} className="hover:shadow-lg transition-shadow">
                 <CardHeader>
-                  <div className="flex items-start justify-between gap-4 mb-2">
-                    <CardTitle className="flex items-start gap-3 flex-1">
-                      <Icon name="Download" className="text-primary flex-shrink-0 mt-1" size={24} />
-                      <span>{item.title}</span>
-                    </CardTitle>
-                    {item.compatible && (
-                      <div className="flex flex-wrap gap-2 justify-end">
-                        {item.compatible.map((device, idx) => (
-                          <Link 
-                            key={idx}
-                            to={getDeviceUrl(device.name)}
-                            className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary border border-primary/20 whitespace-nowrap hover:bg-primary/20 hover:border-primary/30 transition-colors cursor-pointer"
-                          >
-                            <Icon name={device.icon} size={12} className="mr-1.5" />
-                            {device.name}
-                          </Link>
-                        ))}
-                      </div>
-                    )}
-                  </div>
+                  <CardTitle className="flex items-start gap-3">
+                    <Icon name="Download" className="text-primary flex-shrink-0 mt-1" size={24} />
+                    <span>{item.title}</span>
+                  </CardTitle>
                   <CardDescription className="text-base">
                     {item.description}
                   </CardDescription>
